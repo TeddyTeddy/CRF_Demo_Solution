@@ -1,6 +1,5 @@
-from RegistrationFormDataUtils import   registration_form_data_generator_factory
+from RegistrationFormDataUtils import registration_form_data_generator_factory
 from robot.api.deco import keyword
-from robot.api import logger
 
 
 class RegistrationFormDataReader:
@@ -19,5 +18,3 @@ class RegistrationFormDataReader:
             return None
         else:
             return registration_form_data
-
-

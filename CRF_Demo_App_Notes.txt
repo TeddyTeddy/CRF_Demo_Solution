@@ -80,4 +80,102 @@ Hakan
 
 	
 
+Check Registration Form Error Messages
+    [Arguments]     ${registration_form_data}
+	Take Screenshot
+    IF  $registration_form_data['username']['isValid']==False
+        # entered username is not valid, we expect an error message
+        ${count} = 		Get Element Count   text=${registration_form_data}[username][expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing username field error message: ${registration_form_data}[username][expected_error]	values=False
+    END
 
+    IF  $registration_form_data['password']['isValid']==False
+        # entered password is not valid, we expect an error message
+        ${count} = 		Get Element Count   text=${registration_form_data}[password][expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${registration_form_data}[password][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['first_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   text=${registration_form_data}[first_name][expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing first_name field error message: ${registration_form_data}[first_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['last_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   text=${registration_form_data}[last_name][expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing last_name field error message: ${registration_form_data}[last_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['phone_number']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   text=${registration_form_data}[phone_number][expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing phone_number field error message: ${registration_form_data}[phone_number][expected_error]	values=False
+    END
+
+
+
+Check Registration Form Error Messages
+    [Arguments]     ${registration_form_data}
+	Take Screenshot
+    IF  $registration_form_data['username']['isValid']==False
+        # entered username is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[username][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing username field error message: ${registration_form_data}[username][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['password']['isValid']==False
+        # entered password is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[password][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${registration_form_data}[password][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['first_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[first_name][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing first_name field error message: ${registration_form_data}[first_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['last_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[last_name][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing last_name field error message: ${registration_form_data}[last_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['phone_number']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[phone_number][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing phone_number field error message: ${registration_form_data}[phone_number][expected_error]	values=False
+    END
+
+
+    Record Selector
+    IF  $registration_form_data['username']['isValid']==False
+        # entered username is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[username][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing username field error message: ${registration_form_data}[username][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['password']['isValid']==False
+        # entered password is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[password][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${registration_form_data}[password][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['first_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[first_name][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing first_name field error message: ${registration_form_data}[first_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['last_name']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[last_name][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing last_name field error message: ${registration_form_data}[last_name][expected_error]	values=False
+    END
+
+    IF  $registration_form_data['phone_number']['isValid']==False
+        # entered first_name is not valid, we expect an error message
+        ${count} = 		Get Element Count   css=:has-text('${registration_form_data}[phone_number][expected_error]')
+		Should Be Equal As Integers		${count}		${1}	Missing phone_number field error message: ${registration_form_data}[phone_number][expected_error]	values=False
+    END

@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "An empty phone number",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "Please fill out this field."
     },
     {
         "value": "+358506662712",

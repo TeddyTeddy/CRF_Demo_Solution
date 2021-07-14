@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "An empty first name",
-        "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        "expected_error": "Please fill out this field."
     },
     {
         "value": "Hakan",
@@ -69,7 +69,7 @@
     {
         "value": "Helena      Margaretha",
         "isValid": false,
-        "description": "Two valid first names seperated by a single space character",
+        "description": "Two valid first names seperated by multiple space characters making it invalid",
         "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
     }
 ]

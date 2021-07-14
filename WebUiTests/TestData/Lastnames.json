@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "An empty last name",
-        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        "expected_error": "Please fill out this field."
     },
     {
         "value": "Cuzdan",
