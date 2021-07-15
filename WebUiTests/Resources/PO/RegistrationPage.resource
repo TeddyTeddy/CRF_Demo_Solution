@@ -151,32 +151,41 @@ Check Registration Form Error Messages
     ...                     - last_name
     ...                     - phone_number
     ...                 Refer to TestData/RegisterFormDataSet.json for a list of registration_form_data examples.
-    ...                 We check in the above given priority order the following:
-    ...                     - If the element (e.g. username) is invalid, then we expect to see its custom error message
-    ...                         - If the custom error message is shown, then we move on to the next element.
-    ...                         - Otherwise, we fail with telling which custom error message is missing.
+    ...                 In this keyword, we check registration_form_data's elements in the above given priority order as such:
+    ...                     - If the element in registration_form_data (e.g. username) is invalid,
+    ...                       then we expect to see its custom error message
+    ...                         - If the custom error message is shown, then we quit this keyword.
+    ...                         - Otherwise, we fail the keyword with telling which custom error message is missing.
 
     [Arguments]         ${registration_form_data}
     IF  $registration_form_data['username']['isValid']==False
+        # the below keyword will either succeed or fail
         Check Username Field Error      ${registration_form_data}[username]
+        # if the execution reaches here, then the field error is shown correctly
         # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
         Return From Keyword
     END
 
     IF  $registration_form_data['password']['isValid']==False
+        # the below keyword will either succeed or fail
         Check Password Field Error      ${registration_form_data}[password]
+        # if the execution reaches here, then the field error is shown correctly
         # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
         Return From Keyword
     END
 
     IF  $registration_form_data['first_name']['isValid']==False
+        # the below keyword will either succeed or fail
         Check First Name Field Error      ${registration_form_data}[first_name]
+        # if the execution reaches here, then the field error is shown correctly
         # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
         Return From Keyword
     END
 
     IF  $registration_form_data['last_name']['isValid']==False
+        # the below keyword will either succeed or fail
         Check Last Name Field Error      ${registration_form_data}[last_name]
+        # if the execution reaches here, then the field error is shown correctly
         # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
         Return From Keyword
     END

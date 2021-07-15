@@ -1,7 +1,9 @@
 *** Settings ***
 Documentation		Note that Top Nav area has its own Verifiers/TopNavVerifier.resource,
 ...					whose keywords are utilized here.
-...					This file mainly exports keywords which is utilized by Tests/Registration.robot
+...					This file mainly exports keywords which is utilized by
+...						- Resources/CrfDemoApp.robot
+...						- Tests/Registration.robot
 
 
 *** Keywords ***

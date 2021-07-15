@@ -4,7 +4,9 @@ Documentation		This page object contains low level keywords in 4 different categ
 ...						- Verifying Element Links
 ...						- Actions that can be taken on the TopNav area (i.e. click Register etc)
 ...					Note that TopNav area is shared accross Login Page and Registration Page
-...					meaning that the keywords presented here are utilized by Verifiers/TopNavVerifier.resource
+...					meaning that the keywords presented here are utilized by
+... 				Verifiers/TopNavVerifier.resource
+
 Resource			../Texts/TopNavTexts.resource
 
 

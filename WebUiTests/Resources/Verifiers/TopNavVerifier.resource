@@ -1,5 +1,7 @@
 *** Settings ***
-Documentation		Exposes its keywords to other Verifiers/*Verifier.resource files
+Documentation		This file exposes its keywords to other Verifiers/*Verifier.resource files:
+...						- LoginPageVerifier.resource
+...						- RegistrationPageVerifier.resource
 ... 				Top Nav area has a state:
 ...						- If user is not logged in, it shows:
 ...							- Demo App
