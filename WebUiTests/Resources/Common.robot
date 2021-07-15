@@ -2,7 +2,7 @@
 Documentation		Common keywords and variables defined here for the test suites
 Library				OperatingSystem
 Library				Process
-Library				Browser		timeout=5s		auto_closing_level=SUITE	enable_presenter_mode=${True}
+Library				Browser		timeout=5s		auto_closing_level=SUITE	enable_presenter_mode=${False}
 
 
 *** Variables ***

@@ -61,16 +61,11 @@ Press Register Button
 
 Check Username Field Error
         [Arguments]     ${username_field}
-        ${is_username_field_error_message_shown} =         Set Variable    ${False}
-        # entered username is not valid, we expect an error message given in username_field data
-        IF  not $username_field['value']
+       IF  not $username_field['value']
             # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
             # if the username field is left blank and pressed Register Button
             # then we expect an attribute named "required" in username_field.
             Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[username_field]   contains  required
-            # If execution comes to here passing the above assertion "contains" , then
-            # We expect that the tooltip box is shown by the browser (e.g. "Please fill out this field." in Chromium)
-            ${is_username_field_error_message_shown} =         Set Variable    ${True}
         ELSE
             # there is a non-empty & invalid username in the username field
             # we expect its error message given
@@ -79,75 +74,56 @@ Check Username Field Error
             # if the execution comes here, that means the correct error message is shown
             ${is_username_field_error_message_shown} =         Set Variable    ${True}
         END
-        [Return]    ${is_username_field_error_message_shown}
+        # If execution comes here, the error message is shown correctly
 
 Check Password Field Error
         [Arguments]     ${password_field}
-        ${is_password_field_error_message_shown} =         Set Variable    ${False}
         # entered username is not valid, we expect an error message given in password_field data
         IF  not $password_field['value']
             # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
             # if the password field is left blank and pressed Register Button
             # then we expect an attribute named "required" in password_field.
             Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[password_field]   contains  required
-            # If execution comes to here passing the above assertion "contains" , then
-            # We expect that the tooltip box is shown by the browser (e.g. "Please fill out this field." in Chromium)
-            ${is_password_field_error_message_shown} =         Set Variable    ${True}
         ELSE
             # there is a non-empty & invalid password in the password field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${password_field}[expected_error]
 		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${password_field}[expected_error]	    values=False
-            # if the execution comes here, that means the correct error message is shown
-            ${is_password_field_error_message_shown} =         Set Variable    ${True}
         END
-        [Return]    ${is_password_field_error_message_shown}
-
+        # If execution comes here, the error message is shown correctly
 
 Check First Name Field Error
         [Arguments]     ${first_name_field}
-        ${is_first_name_field_error_message_shown} =         Set Variable    ${False}
         # entered username is not valid, we expect an error message given in first_name_field data
         IF  not $first_name_field['value']
             # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
             # if the first name field is left blank and pressed Register Button
             # then we expect an attribute named "required" in firstname_field.
             Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[firstname_field]   contains  required
-            # If execution comes to here passing the above assertion "contains" , then
-            # We expect that the tooltip box is shown by the browser (e.g. "Please fill out this field." in Chromium)
-            ${is_first_name_field_error_message_shown} =         Set Variable    ${True}
         ELSE
             # there is a non-empty & invalid first name in the first name field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${first_name_field}[expected_error]
 		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${first_name_field}[expected_error]	    values=False
-            # if the execution comes here, that means the correct error message is shown
-            ${is_first_name_field_error_message_shown} =         Set Variable    ${True}
         END
-        [Return]    ${is_first_name_field_error_message_shown}
+        # If execution comes here, the error message is shown correctly
 
 
 Check Last Name Field Error
         [Arguments]     ${last_name_field}
-        ${is_last_name_field_error_message_shown} =         Set Variable    ${False}
         # entered username is not valid, we expect an error message given in last_name_field data
         IF  not $last_name_field['value']
             # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
             # if the last name field is left blank and pressed Register Button
             # then we expect an attribute named "required" in lastname_field.
             Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[lastname_field]   contains  required
-            # If execution comes to here passing the above assertion "contains" , then
-            # We expect that the tooltip box is shown by the browser (e.g. "Please fill out this field." in Chromium)
-            ${is_last_name_field_error_message_shown} =         Set Variable    ${True}
         ELSE
             # there is a non-empty & invalid last name in the last name field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${last_name_field}[expected_error]
 		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${last_name_field}[expected_error]	    values=False
-            # if the execution comes here, that means the correct error message is shown
-            ${is_last_name_field_error_message_shown} =         Set Variable    ${True}
         END
-        [Return]    ${is_last_name_field_error_message_shown}
+        # If execution comes here, the error message is shown correctly
 
 
 Check Phone Number Field Error
@@ -182,32 +158,28 @@ Check Registration Form Error Messages
 
     [Arguments]         ${registration_form_data}
     IF  $registration_form_data['username']['isValid']==False
-        ${is_username_field_error_message_shown} =         Check Username Field Error      ${registration_form_data}[username]
+        Check Username Field Error      ${registration_form_data}[username]
+        # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
+        Return From Keyword
     END
-
-    # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
-    Return From Keyword If      ${is_username_field_error_message_shown}
 
     IF  $registration_form_data['password']['isValid']==False
-        ${is_password_field_error_message_shown} =         Check Password Field Error      ${registration_form_data}[password]
+        Check Password Field Error      ${registration_form_data}[password]
+        # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
+        Return From Keyword
     END
-
-    # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
-    Return From Keyword If      ${is_password_field_error_message_shown}
 
     IF  $registration_form_data['first_name']['isValid']==False
-        ${is_firstname_field_error_message_shown} =         Check First Name Field Error      ${registration_form_data}[first_name]
+        Check First Name Field Error      ${registration_form_data}[first_name]
+        # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
+        Return From Keyword
     END
-
-    # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
-    Return From Keyword If      ${is_firstname_field_error_message_shown}
 
     IF  $registration_form_data['last_name']['isValid']==False
-        ${is_lastname_field_error_message_shown} =         Check Last Name Field Error      ${registration_form_data}[last_name]
+        Check Last Name Field Error      ${registration_form_data}[last_name]
+        # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
+        Return From Keyword
     END
-
-    # Note that form only shows one error at a time from top to bottom, so must not check for other fields' errors at the bottom
-    Return From Keyword If      ${is_lastname_field_error_message_shown}
 
     IF  $registration_form_data['phone_number']['isValid']==False
         Check Phone Number Field Error      ${registration_form_data}[phone_number]
