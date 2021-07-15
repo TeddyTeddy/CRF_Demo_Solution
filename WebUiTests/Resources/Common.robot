@@ -55,8 +55,8 @@ Load Locator Resources
 	IF		'${BROWSER}'=='firefox'
 	    Import Locators		${LOCATORS_PATH}Firefox
 	END
-	IF		'${BROWSER}'=='chrome' or '${BROWSER}'=='gc'
-	    Import Locators		${LOCATORS_PATH}Chrome
+	IF		'${BROWSER}'=='webkit'
+	    Import Locators		${LOCATORS_PATH}Webkit
 	END
 	IF		'${BROWSER}'=='chromium'
 		Import Locators		${LOCATORS_PATH}Chromium
