@@ -52,7 +52,7 @@ Load Locator Resources
 	...				  Each *Locators.resource file (e.g. Locators/Chromium/LoginPageLocators.resource)
 	...				  contains the correct locators for the page in question (e.g. Login Page)
 	...				  and for the browser (e.g. Chromium ) in question
-	IF		'${BROWSER}'=='firefox' or '${BROWSER}'=='ff'
+	IF		'${BROWSER}'=='firefox'
 	    Import Locators		${LOCATORS_PATH}Firefox
 	END
 	IF		'${BROWSER}'=='chrome' or '${BROWSER}'=='gc'
