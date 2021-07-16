@@ -105,7 +105,7 @@ Re-Start Web Application With No Users
 	...					alias=flasky
 	...					cwd=${EXECDIR}${/}..${/}Flasky
 	# let the system under test app to re-start in its own time
-	Sleep	1s
+	Sleep	1.5s
 	Go To	${BASE_URL}
 
 Log Result
