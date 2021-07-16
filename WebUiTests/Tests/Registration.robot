@@ -3,8 +3,9 @@ Documentation       This test suite contains registration test cases for CRF Dem
 ...                 Documentation for the application can be found:
 ...                 https://github.com/Interview-demoapp/Flasky
 
-Resource                ../Resources/Common.robot
 Resource                ../Resources/CrfDemoApp.robot
+Resource                ../Resources/Common.robot
+
 
 Suite Setup             Begin Web Test
 Suite Teardown          End Web Test

@@ -109,15 +109,26 @@ Re-Start Web Application With No Users
 	Go To	${BASE_URL}
 
 Log Result
-	[Arguments]		${index}	${status}   ${response}     ${registration_form_data}
-	IF		$status=='PASS'
-		Log		Registration (with index: ${index}) succeeded with the following form data:		level=INFO		console=True
+	[Arguments]		${index}	${register_keyword_status}   ${error_message}     ${registration_form_data}
+    ${is_registration_form_data_valid} =    Check Registration Form Data Validity   ${registration_form_data}
+	IF			$is_registration_form_data_valid==True and $register_keyword_status=='PASS'
+		Log		Registration (with index: ${index}) succeeded as it should with the following form data:		level=INFO		console=True
 		Log		${registration_form_data}		level=INFO		console=True
 		Log		-------------------------		level=INFO		console=True
-	ELSE
-		Log		Registration (with index: ${index}) has failed with the following form data:			level=ERROR
+	ELSE IF		$is_registration_form_data_valid==False and $register_keyword_status=='PASS'
+		Log		Registration (with index: ${index}) failed as it should with the following form data:		level=INFO		console=True
+		Log		${registration_form_data}		level=INFO		console=True
+		Log		-------------------------		level=INFO		console=True
+	ELSE IF		$is_registration_form_data_valid==True and $register_keyword_status=='FAIL'
+		Log		Programming error in Register keyword. (Index: ${index}). Register keyword should not have failed with the following form data:			level=ERROR
 		Log		${registration_form_data}		level=ERROR
 		Log		Error message:					level=ERROR
-		Log		${response}						level=ERROR
+		Log		${error_message}				level=ERROR
+		Log		-------------------------		level=ERROR
+	ELSE IF		$is_registration_form_data_valid==False and $register_keyword_status=='FAIL'
+		Log		Registration attempt with index: ${index}. Register keyword has catched an error with the following form data:			level=ERROR
+		Log		${registration_form_data}		level=ERROR
+		Log		Error message:					level=ERROR
+		Log		${error_message}				level=ERROR
 		Log		-------------------------		level=ERROR
 	END

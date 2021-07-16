@@ -12,7 +12,7 @@ ${EXPECTED_REGISTRATION_PAGE_URL}       ${BASE_URL}register
 
 *** Keywords ***
 Verify Url
-	Get Url		==		${EXPECTED_REGISTRATION_PAGE_URL}
+	Get Url		==		${EXPECTED_REGISTRATION_PAGE_URL}       Wrong URL for Registration Page. Likely, registration has passed where it shouldn't have.
 
 Verify Form Main Title Text
 	Get Text	${REGISTRATION_PAGE_LOCATOR}[form_title]    ==	    ${REGISTRATION_PAGE_TEXT}[form_title]
@@ -104,7 +104,7 @@ Check First Name Field Error
             # there is a non-empty & invalid first name in the first name field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${first_name_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${first_name_field}[expected_error]	    values=False
+		    Should Be Equal As Integers		${count}		${1}	Missing first name field error message: ${first_name_field}[expected_error]	    values=False
         END
         # If execution comes here, the error message is shown correctly
 
@@ -121,7 +121,7 @@ Check Last Name Field Error
             # there is a non-empty & invalid last name in the last name field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${last_name_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${last_name_field}[expected_error]	    values=False
+		    Should Be Equal As Integers		${count}		${1}	Missing last name field error message: ${last_name_field}[expected_error]	    values=False
         END
         # If execution comes here, the error message is shown correctly
 
@@ -138,7 +138,7 @@ Check Phone Number Field Error
             # there is a non-empty & invalid phone number in the phone number field
             # we expect its error message given
             ${count} = 		Get Element Count   text=${phone_number_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${phone_number_field}[expected_error]	    values=False
+		    Should Be Equal As Integers		${count}		${1}	Missing phone number field error message: ${phone_number_field}[expected_error]	    values=False
         END
 
 
@@ -158,6 +158,7 @@ Check Registration Form Error Messages
     ...                         - Otherwise, we fail the keyword with telling which custom error message is missing.
 
     [Arguments]         ${registration_form_data}
+    Take Screenshot
     IF  $registration_form_data['username']['isValid']==False
         # the below keyword will either succeed or fail
         Check Username Field Error      ${registration_form_data}[username]

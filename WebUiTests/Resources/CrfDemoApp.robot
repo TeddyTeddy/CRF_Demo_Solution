@@ -39,12 +39,17 @@ Register
         Fail    'Could not calculate next page from registration form data'
     END
 
+Check Registration Form Data Validity
+    [Arguments]     ${registration_form_data}
+    ${is_registration_form_data_valid} =    Evaluate    $registration_form_data['username']['isValid'] and $registration_form_data['password']['isValid'] and $registration_form_data['first_name']['isValid'] and $registration_form_data['last_name']['isValid'] and $registration_form_data['phone_number']['isValid']
+    [Return]    ${is_registration_form_data_valid}
+
 Calculate Next Page
     [Documentation]     In order registration_form_data to be valid, all the fields' in registration_form_data must be valid.
     ...                 If registration_form_data is valid we expect the system under test to redirect to login page.
     ...                 If registration_form_data is invalid, we expect the system under test to stay in registration page.
     [Arguments]     ${registration_form_data}
-    ${is_registration_form_data_valid} =    Evaluate    $registration_form_data['username']['isValid'] and $registration_form_data['password']['isValid'] and $registration_form_data['first_name']['isValid'] and $registration_form_data['last_name']['isValid'] and $registration_form_data['phone_number']['isValid']
+    ${is_registration_form_data_valid} =    Check Registration Form Data Validity   ${registration_form_data}
     ${next_page} =      Set Variable       RegistrationPage
     IF      ${is_registration_form_data_valid}
         ${next_page} =      Set Variable       LoginPage
