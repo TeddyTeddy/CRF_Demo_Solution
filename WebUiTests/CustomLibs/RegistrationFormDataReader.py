@@ -9,9 +9,9 @@ class RegistrationFormDataReader:
 
         Args:
             data_set_length (int): how many registration_form_data instances do you want the reader to return.
-                                   For an example of 100 registration_form_data instances, refer to TestData/RegisterFormDataSet.json
+                                   For an example of 100 registration_form_data instances, refer to TestData/RegistrationFormDataSet.json
             use_existing_form_data_set (bool): if true, then registration_form_data_generator_factory returns an iterator
-                                   iteratively reading existing TestData/RegisterFormDataSet.json contents
+                                   iteratively reading existing TestData/RegistrationFormDataSet.json contents
                                    (one registration_form_data at a time ignoring data_set_length).
                                    If false, then the factory returns 'yet another' iterator, which uses data_set_length
                                    to populate as many registration_form_data instances as data_set_length value (e.g. 100)

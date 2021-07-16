@@ -56,7 +56,7 @@ def create_register_form_data_set(usernames, passwords, first_names, last_names,
                         else: # do nothing
                             pass
                         i+=1
-    write_to_file('RegisterFormDataSet.json', data_set)
+    write_to_file('RegistrationFormDataSet.json', data_set)
 
 
 def read_register_form_data_set(filename):
@@ -78,7 +78,7 @@ def read_register_form_data_set(filename):
 
 def register_form_data_generator_factory(usernames, passwords, first_names, last_names, phone_numbers, data_set_length=100, use_existing_form_data_set = True):
     if use_existing_form_data_set:
-        return read_register_form_data_set('RegisterFormDataSet.json')
+        return read_register_form_data_set('RegistrationFormDataSet.json')
     else:
         return create_register_form_data_set(usernames, passwords, first_names, last_names, phone_numbers, data_set_length)
 

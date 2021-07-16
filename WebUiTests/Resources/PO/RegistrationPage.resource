@@ -150,7 +150,7 @@ Check Registration Form Error Messages
     ...                     - first_name
     ...                     - last_name
     ...                     - phone_number
-    ...                 Refer to TestData/RegisterFormDataSet.json for a list of registration_form_data examples.
+    ...                 Refer to TestData/RegistrationFormDataSet.json for a list of registration_form_data examples.
     ...                 In this keyword, we check registration_form_data's elements in the above given priority order as such:
     ...                     - If the element in registration_form_data (e.g. username) is invalid,
     ...                       then we expect to see its custom error message

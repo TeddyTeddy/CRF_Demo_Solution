@@ -97,11 +97,11 @@ def create_register_form_data_set(usernames, passwords, first_names, last_names,
                         else: # do nothing
                             pass
                         i+=1
-    write_to_file('RegisterFormDataSet.json', data_set)
+    write_to_file('RegistrationFormDataSet.json', data_set)
 
 
-def read_register_form_data_set(filename='RegisterFormDataSet.json'):
-    """ Reads the TestData/RegisterFormDataSet.json file one register_form_data at a time.
+def read_register_form_data_set(filename='RegistrationFormDataSet.json'):
+    """ Reads the TestData/RegistrationFormDataSet.json file one register_form_data at a time.
         An example of register_form_data instance can be listed as:
 
     {
@@ -135,7 +135,7 @@ def read_register_form_data_set(filename='RegisterFormDataSet.json'):
     Note that the file contains a list of register_form_data instances.
     Args:
         filename (str, optional): The json file which is supposed to contain register_form_data instances in a list.
-                                  Defaults to 'RegisterFormDataSet.json'. Look under TestData/ folder the file with that name
+                                  Defaults to 'RegistrationFormDataSet.json'. Look under TestData/ folder the file with that name
 
     Yields:
         [dictionary]: a Python dict object, which is initialized by reading register_form_data's lines, representing registration_form_data
@@ -162,7 +162,7 @@ def registration_form_data_generator_factory(data_set_length=100, use_existing_f
     Args:
         data_set_length (int, optional): the number of form_data_sets the iterator will return. Defaults to 100.
         use_existing_form_data_set (bool, optional): if true, then this method returns an iterator
-                                   iteratively reading existing TestData/RegisterFormDataSet.json contents
+                                   iteratively reading existing TestData/RegistrationFormDataSet.json contents
                                    (one registration_form_data at a time ignoring data_set_length).
                                    If false, then the factory returns 'yet another' iterator. This iterator uses data_set_length
                                    to populate as many registration_form_data instances as data_set_length (e.g. 100). Defaults to True.
@@ -171,7 +171,7 @@ def registration_form_data_generator_factory(data_set_length=100, use_existing_f
         [iterator/generator]: an iterator yielding a register_form_data at each next() call
     """
     if use_existing_form_data_set:
-        return read_register_form_data_set('RegisterFormDataSet.json')
+        return read_register_form_data_set('RegistrationFormDataSet.json')
     else:
         usernames = load_data('Usernames.json')
         passwords = load_data('Passwords.json')

@@ -13,7 +13,7 @@ ${BROWSER}						chromium
 
 *** Keywords ***
 Register
-    [Documentation]     For a list of registration_form_data examples, have a look at TestData/RegisterFormDataSet.json
+    [Documentation]     For a list of registration_form_data examples, have a look at TestData/RegistrationFormDataSet.json
     ...                 Note that registration_form_data is a dictionary.
     ...                 This keyword fills in the form with the given data in the registration_form_data dictionary.
     ...                 The presses "Register" button in the registration page.
