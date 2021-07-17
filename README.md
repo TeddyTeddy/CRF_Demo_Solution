@@ -22,6 +22,7 @@ On bash terminal, in the given order:
 3. git clone https://github.com/Interview-demoapp/Flasky.git
 
 Continuing on the same bash terminal in CRF_Demo_Solution/ folder:
+
 4. Install a virtual environment:       python -m venv .venv/
 5. Activate the virtual environment:    source .venv/bin/activate
 6. python -m pip install -r requirements.txt
@@ -35,5 +36,7 @@ Continuing on the same bash terminal in CRF_Demo_Solution/ folder:
 # REFERENCES
 
 [1] https://linuxhint.com/install_sqlite_browser_ubuntu_1804/
+
 [2] https://phoenixnap.com/kb/how-to-install-python-3-ubuntu
+
 [3] https://github.com/nodesource/distributions/blob/master/README.md  > Node.js v16.x
