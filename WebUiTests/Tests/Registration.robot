@@ -9,6 +9,9 @@ Resource                ../Resources/Common.robot
 
 Suite Setup             Begin Web Test
 Suite Teardown          End Web Test
+Test Setup              Re-Start Web Application With No Users
+Test Teardown           Stop Web Application
+
 
 *** Test Cases ***
 Registering With Variety Of Form Data
@@ -24,3 +27,12 @@ Registering With Variety Of Form Data
         ${test_case_passed} =      Evaluate     $test_case_passed and $status=='PASS'
     END
     Should Be True      ${test_case_passed}
+
+Attempting to Register With An Existing User Name Fails
+    [Documentation]     Tests that if a user name is already registered, then
+    ...                 the registration fails with an appropriate error message.
+    ${valid_user_registration_form_data} =     Get Valid User's Registration Form Data
+    Go To Registration Page
+    Register            ${valid_user_registration_form_data}
+    Go To Registration Page
+    Re-Register         ${valid_user_registration_form_data}

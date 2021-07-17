@@ -13,7 +13,7 @@ Verify Login Page Texts
 	LoginPage.Verify Form Main Title Text
 	LoginPage.Verify Username Text
 	LoginPage.Verify Password Text
-	LoginPage.Verify Register Button Text
+	LoginPage.Verify Login Button Text
 
 Verify Login Page Links
 	[Arguments]		${username}

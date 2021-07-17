@@ -11,5 +11,6 @@ Documentation     The localization texts for Registration Page are stored here
 ...         lastname_label=Family Name
 ...         phone_number_label=Phone number
 ...         register_button_text=Register
+...         already_registered_error=User %s is already registered.
 
 

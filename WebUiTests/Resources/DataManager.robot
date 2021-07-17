@@ -39,3 +39,7 @@ Get Registration Form Data
     ...     }
     ${registration_form_data} =  read registration form data
     [Return]  ${registration_form_data}
+
+Get Valid User's Registration Form Data
+    ${valid_user_registration_form_data} =  read valid users registration form data
+    [Return]  ${valid_user_registration_form_data}

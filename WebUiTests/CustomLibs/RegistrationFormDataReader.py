@@ -1,4 +1,4 @@
-from RegistrationFormDataUtils import registration_form_data_generator_factory
+from RegistrationFormDataUtils import registration_form_data_generator_factory, load_data
 from robot.api.deco import keyword
 
 
@@ -30,3 +30,7 @@ class RegistrationFormDataReader:
             return None
         else:
             return registration_form_data
+
+    @keyword
+    def read_valid_users_registration_form_data(self):
+        return load_data("ValidUserRegistrationFormData.json")

@@ -60,86 +60,86 @@ Press Register Button
     Click       ${REGISTRATION_PAGE_LOCATOR}[register_button]
 
 Check Username Field Error
-        [Arguments]     ${username_field}
-       IF  not $username_field['value']
-            # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
-            # if the username field is left blank and pressed Register Button
-            # then we expect an attribute named "required" in username_field.
-            Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[username_field]   contains  required
-        ELSE
-            # there is a non-empty & invalid username in the username field
-            # we expect its error message given
-            ${count} = 		Get Element Count   text=${username_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing username field error message: ${username_field}[expected_error]	    values=False
-            # if the execution comes here, that means the correct error message is shown
-            ${is_username_field_error_message_shown} =         Set Variable    ${True}
-        END
-        # If execution comes here, the error message is shown correctly
+    [Arguments]     ${username_field}
+    IF  not $username_field['value']
+        # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
+        # if the username field is left blank and pressed Register Button
+        # then we expect an attribute named "required" in username_field.
+        Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[username_field]   contains  required
+    ELSE
+        # there is a non-empty & invalid username in the username field
+        # we expect its error message given
+        ${count} = 		Get Element Count   text=${username_field}[expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing username field error message: ${username_field}[expected_error]	    values=False
+        # if the execution comes here, that means the correct error message is shown
+        ${is_username_field_error_message_shown} =         Set Variable    ${True}
+    END
+    # If execution comes here, the error message is shown correctly
 
 Check Password Field Error
-        [Arguments]     ${password_field}
-        # entered username is not valid, we expect an error message given in password_field data
-        IF  not $password_field['value']
-            # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
-            # if the password field is left blank and pressed Register Button
-            # then we expect an attribute named "required" in password_field.
-            Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[password_field]   contains  required
-        ELSE
-            # there is a non-empty & invalid password in the password field
-            # we expect its error message given
-            ${count} = 		Get Element Count   text=${password_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${password_field}[expected_error]	    values=False
-        END
-        # If execution comes here, the error message is shown correctly
+    [Arguments]     ${password_field}
+    # entered username is not valid, we expect an error message given in password_field data
+    IF  not $password_field['value']
+        # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
+        # if the password field is left blank and pressed Register Button
+        # then we expect an attribute named "required" in password_field.
+        Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[password_field]   contains  required
+    ELSE
+        # there is a non-empty & invalid password in the password field
+        # we expect its error message given
+        ${count} = 		Get Element Count   text=${password_field}[expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing password field error message: ${password_field}[expected_error]	    values=False
+    END
+    # If execution comes here, the error message is shown correctly
 
 Check First Name Field Error
-        [Arguments]     ${first_name_field}
-        # entered username is not valid, we expect an error message given in first_name_field data
-        IF  not $first_name_field['value']
-            # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
-            # if the first name field is left blank and pressed Register Button
-            # then we expect an attribute named "required" in firstname_field.
-            Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[firstname_field]   contains  required
-        ELSE
-            # there is a non-empty & invalid first name in the first name field
-            # we expect its error message given
-            ${count} = 		Get Element Count   text=${first_name_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing first name field error message: ${first_name_field}[expected_error]	    values=False
-        END
-        # If execution comes here, the error message is shown correctly
+    [Arguments]     ${first_name_field}
+    # entered username is not valid, we expect an error message given in first_name_field data
+    IF  not $first_name_field['value']
+        # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
+        # if the first name field is left blank and pressed Register Button
+        # then we expect an attribute named "required" in firstname_field.
+        Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[firstname_field]   contains  required
+    ELSE
+        # there is a non-empty & invalid first name in the first name field
+        # we expect its error message given
+        ${count} = 		Get Element Count   text=${first_name_field}[expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing first name field error message: ${first_name_field}[expected_error]	    values=False
+    END
+    # If execution comes here, the error message is shown correctly
 
 
 Check Last Name Field Error
-        [Arguments]     ${last_name_field}
-        # entered username is not valid, we expect an error message given in last_name_field data
-        IF  not $last_name_field['value']
-            # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
-            # if the last name field is left blank and pressed Register Button
-            # then we expect an attribute named "required" in lastname_field.
-            Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[lastname_field]   contains  required
-        ELSE
-            # there is a non-empty & invalid last name in the last name field
-            # we expect its error message given
-            ${count} = 		Get Element Count   text=${last_name_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing last name field error message: ${last_name_field}[expected_error]	    values=False
-        END
-        # If execution comes here, the error message is shown correctly
+    [Arguments]     ${last_name_field}
+    # entered username is not valid, we expect an error message given in last_name_field data
+    IF  not $last_name_field['value']
+        # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
+        # if the last name field is left blank and pressed Register Button
+        # then we expect an attribute named "required" in lastname_field.
+        Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[lastname_field]   contains  required
+    ELSE
+        # there is a non-empty & invalid last name in the last name field
+        # we expect its error message given
+        ${count} = 		Get Element Count   text=${last_name_field}[expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing last name field error message: ${last_name_field}[expected_error]	    values=False
+    END
+    # If execution comes here, the error message is shown correctly
 
 
 Check Phone Number Field Error
-        [Arguments]     ${phone_number_field}
-        # entered phone number is not valid, we expect an error message given in phone_number_field data
-        IF  not $phone_number_field['value']
-            # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
-            # if the phone number field is left blank and pressed Register Button
-            # then we expect an attribute named "required" in phone_number_field.
-            Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[phone_number_field]   contains  required
-        ELSE
-            # there is a non-empty & invalid phone number in the phone number field
-            # we expect its error message given
-            ${count} = 		Get Element Count   text=${phone_number_field}[expected_error]
-		    Should Be Equal As Integers		${count}		${1}	Missing phone number field error message: ${phone_number_field}[expected_error]	    values=False
-        END
+    [Arguments]     ${phone_number_field}
+    # entered phone number is not valid, we expect an error message given in phone_number_field data
+    IF  not $phone_number_field['value']
+        # https://medium.com/@nalinikanth/selenium-and-html5-required-7da8e8b22121
+        # if the phone number field is left blank and pressed Register Button
+        # then we expect an attribute named "required" in phone_number_field.
+        Get Attribute Names   ${REGISTRATION_PAGE_LOCATOR}[phone_number_field]   contains  required
+    ELSE
+        # there is a non-empty & invalid phone number in the phone number field
+        # we expect its error message given
+        ${count} = 		Get Element Count   text=${phone_number_field}[expected_error]
+		Should Be Equal As Integers		${count}		${1}	Missing phone number field error message: ${phone_number_field}[expected_error]	    values=False
+    END
 
 
 Check Registration Form Error Messages
@@ -194,3 +194,9 @@ Check Registration Form Error Messages
     IF  $registration_form_data['phone_number']['isValid']==False
         Check Phone Number Field Error      ${registration_form_data}[phone_number]
     END
+
+Verify User Name Already Exists Error
+    [Arguments]         ${username}
+    ${expected_error} =        Evaluate     $REGISTRATION_PAGE_TEXT['already_registered_error'] % $username
+    ${count} = 		Get Element Count   text=${expected_error}
+	Should Be Equal As Integers		${count}		${1}	Missing first name field error message: ${expected_error}	    values=False

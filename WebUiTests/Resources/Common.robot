@@ -13,7 +13,7 @@ ${BASE_URL}						http://localhost:8080/
 
 *** Keywords ***
 Begin Web Test
-	[Documentation]		Operations that are repeated at suite setup
+	[Documentation]		Operations that are meant for the suite setup
 	Convert Suite Variables To Correct Types	# (1)
 	Import Resource 			${EXECDIR}${/}Resources${/}DataManager.robot	# (2)
 	# Important, (1) must run before (2)
@@ -21,12 +21,10 @@ Begin Web Test
 	New Browser 	browser=${BROWSER}	 headless=False
 	New Context
 	New Page
-	Re-Start Web Application With No Users
 
 End Web Test
-	[Documentation]		Operations that are repeated at suite tear down
+	[Documentation]		Operations that are meant for the suite tear down
 	Close Browser
-	Stop Web Application
 
 Convert Suite Variables To Correct Types
 	[Documentation]		This keyword is needed because parameters passed by command line
