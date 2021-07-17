@@ -32,6 +32,7 @@ Continuing on the same bash terminal in CRF_Demo_Solution/ folder:
 1. cd CRF_Demo_Solution/WebUiTests/
 2. ./run
 
+The outcome of test results can be found under CRF_Demo_Solution/WebUiTests/Results/ folder
 
 # REFERENCES
 
