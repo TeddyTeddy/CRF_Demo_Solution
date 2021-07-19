@@ -8,6 +8,3 @@ Documentation     The localization texts for Login Page are stored here
 ...			username_label=Username
 ...			password_label=Password
 ...         login_button_text=Log In
-
-
-

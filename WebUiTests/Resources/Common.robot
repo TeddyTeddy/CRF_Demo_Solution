@@ -14,9 +14,9 @@ ${BASE_URL}						http://localhost:8080/
 *** Keywords ***
 Begin Web Test
 	[Documentation]		Operations that are meant for the suite setup
+	# Important, (1) must run before (2)
 	Convert Suite Variables To Correct Types	# (1)
 	Import Resource 			${EXECDIR}${/}Resources${/}DataManager.robot	# (2)
-	# Important, (1) must run before (2)
 	Load Locator Resources
 	New Browser 	browser=${BROWSER}	 headless=False
 	New Context

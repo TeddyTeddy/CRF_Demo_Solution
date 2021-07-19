@@ -100,7 +100,7 @@ def create_register_form_data_set(usernames, passwords, first_names, last_names,
     write_to_file('RegistrationFormDataSet.json', data_set)
 
 
-def read_register_form_data_set(filename='RegistrationFormDataSet.json'):
+def read_registration_form_data_set(filename='RegistrationFormDataSet.json'):
     """ Reads the TestData/RegistrationFormDataSet.json file one register_form_data at a time.
         An example of register_form_data instance can be listed as:
 
@@ -171,7 +171,7 @@ def registration_form_data_generator_factory(data_set_length=100, use_existing_f
         [iterator/generator]: an iterator yielding a register_form_data at each next() call
     """
     if use_existing_form_data_set:
-        return read_register_form_data_set('RegistrationFormDataSet.json')
+        return read_registration_form_data_set('RegistrationFormDataSet.json')
     else:
         usernames = load_data('Usernames.json')
         passwords = load_data('Passwords.json')

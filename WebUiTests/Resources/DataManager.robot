@@ -37,9 +37,9 @@ Get Registration Form Data
     ...             "expected_error": "Please fill out this field."
     ...         }
     ...     }
-    ${registration_form_data} =  read registration form data
+    ${registration_form_data} =  read random registration form data
     [Return]  ${registration_form_data}
 
 Get Valid User's Registration Form Data
-    ${valid_user_registration_form_data} =  read valid users registration form data
+    ${valid_user_registration_form_data} =  read one valid users registration form data
     [Return]  ${valid_user_registration_form_data}

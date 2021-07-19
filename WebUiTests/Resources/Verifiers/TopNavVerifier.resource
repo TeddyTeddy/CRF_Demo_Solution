@@ -19,7 +19,7 @@ Documentation		This file exposes its keywords to other Verifiers/*Verifier.resou
 *** Keywords ***
 Verify Top Nav Texts
 	[Arguments]			${username}
-	Verify Main Title Text
+	TopNav.Verify Main Title Text
 	IF	$username
 		Verify User X Text		${username}
 		Verify Logout Text
@@ -30,7 +30,7 @@ Verify Top Nav Texts
 
 Verify Top Nav Links
 	[Arguments]			${username}
-	Verify Main Title Link
+	TopNav.Verify Main Title Link
 	IF	$username
 		Verify Logout Link
 	ELSE

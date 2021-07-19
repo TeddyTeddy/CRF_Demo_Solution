@@ -1,0 +1,68 @@
+[
+    {
+        "username": {
+            "value": "SuperDuperUser1",
+            "isValid": true
+        },
+        "password": {
+            "value": "012!.Aab",
+            "isValid": true
+        },
+        "first_name": {
+            "value": "David",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0506627124",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "SuperDuperUser2",
+            "isValid": true
+        },
+        "password": {
+            "value": "012!.Aabcd",
+            "isValid": true
+        },
+        "first_name": {
+            "value": "Hakan",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0407563452",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "SuperDuperUser3",
+            "isValid": true
+        },
+        "password": {
+            "value": "012!.Aabcdxxx",
+            "isValid": true
+        },
+        "first_name": {
+            "value": "John",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Brown",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0508094677",
+            "isValid": true
+        }
+    }
+]
