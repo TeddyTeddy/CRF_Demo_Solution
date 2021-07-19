@@ -5,11 +5,13 @@ Resource			./PO/RegistrationPage.resource
 Resource			./PO/LoginPage.resource
 Resource	        ./PO/MainPage.resource
 Resource			./PO/LoginFailurePage.resource
+Resource			./PO/IndexPage.resource
 Resource			./Verifiers/TopNavVerifier.resource
 Resource			./Verifiers/RegistrationPageVerifier.resource
 Resource			./Verifiers/LoginPageVerifier.resource
 Resource			./Verifiers/MainPageVerifier.resource
 Resource            ./Verifiers/LoginFailurePageVerifier.resource
+Resource            ./Verifiers/IndexPageVerifier.resource
 Library				Collections
 
 

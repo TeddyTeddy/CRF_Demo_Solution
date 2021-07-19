@@ -24,3 +24,15 @@ Can Review Own User Information From The Main View
     Go To Login Page
     Fill In Login Form And Press Login Button            ${valid_user_registration_form_data}
     Verify Main Page    ${valid_user_registration_form_data}
+
+Once Logged In, Can Log Out
+    [Documentation]     Tests that if user has successfully logged in, then he can log out.
+    ...                 Upon logging out, user is redirected to index page
+    ${valid_user_registration_form_data} =     Get Valid User's Registration Form Data
+    Mark Username As Registered    ${valid_user_registration_form_data}
+    Mark Password As Registered    ${valid_user_registration_form_data}
+    Go To Login Page
+    Fill In Login Form And Press Login Button            ${valid_user_registration_form_data}
+    Sleep      3s
+    Logout
+    Verify Index Page
