@@ -2,6 +2,8 @@
 Documentation       This test suite contains registration test cases for CRF Demo Web Application.
 ...                 Documentation for the application can be found:
 ...                 https://github.com/Interview-demoapp/Flasky
+...                 The acceptance criteria we verify here is
+...                 "1: As a UI user I can register through web portal"
 
 Resource                ../Resources/CrfDemoApp.robot
 Resource                ../Resources/Common.robot
