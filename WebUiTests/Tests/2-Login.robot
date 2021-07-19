@@ -2,6 +2,8 @@
 Documentation       This test suite contains login test cases for CRF Demo Web Application.
 ...                 Documentation for the application can be found:
 ...                 https://github.com/Interview-demoapp/Flasky
+...                 The acceptance criteria we verify here is
+...                 "2: As a UI user I can login"
 
 Resource                ../Resources/CrfDemoApp.robot
 Resource                ../Resources/Common.robot
