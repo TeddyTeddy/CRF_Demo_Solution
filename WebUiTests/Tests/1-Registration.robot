@@ -18,7 +18,7 @@ Test Teardown           Stop Web Application
 *** Test Cases ***
 Registering With Valid Registration Form Data
     [Documentation]     When username/password/first name/last name and phone number are according to the requirements,
-                        then this keyword checks that registration is successful
+    ...                 then this keyword checks that registration is successful
     [Tags]              BAT
     ${valid_user_registration_form_data} =     Get Valid User's Registration Form Data
     Go To Registration Page

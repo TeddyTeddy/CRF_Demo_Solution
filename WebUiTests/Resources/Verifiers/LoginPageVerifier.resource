@@ -8,22 +8,19 @@ Documentation		Note that Top Nav area has its own Verifiers/TopNavVerifier.resou
 
 *** Keywords ***
 Verify Login Page Texts
-	[Arguments]		${username}
-	Verify Top Nav Texts		${username}
+	Verify Top Nav Texts		${EMPTY}
 	LoginPage.Verify Form Main Title Text
 	LoginPage.Verify Username Text
 	LoginPage.Verify Password Text
 	LoginPage.Verify Login Button Text
 
 Verify Login Page Links
-	[Arguments]		${username}
-	Verify Top Nav Links	${username}
+	Verify Top Nav Links	${EMPTY}
 
 Verify Login Page
-	[Arguments]		${username}
 	LoginPage.Verify Url
-	Verify Login Page Texts	 ${username}
-	Verify Login Page Links	 ${username}
+	Verify Login Page Texts
+	Verify Login Page Links
 
 
 

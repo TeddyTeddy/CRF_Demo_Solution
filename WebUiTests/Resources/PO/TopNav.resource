@@ -61,3 +61,6 @@ Go To Registration Page
 
 Go To Login Page
 	Click		${TOP_NAV_LOCATOR}[login]
+
+Click On Username
+	Click		${TOP_NAV_LOCATOR}[dynamic_username]

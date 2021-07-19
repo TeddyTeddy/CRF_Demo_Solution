@@ -46,7 +46,7 @@ Register
         Verify Registration Page
         Check Registration Form Error Messages    ${registration_form_data}
     ELSE IF     $expected_page=='LoginPage'
-        Verify Login Page    ${EMPTY}       # we pass an empty username to indicate that user is not logged in yet
+        Verify Login Page
     ELSE
         Fail    Could not calculate next page from registration form data
     END
