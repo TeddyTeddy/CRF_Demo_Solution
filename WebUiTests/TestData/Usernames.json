@@ -24,7 +24,7 @@
     {
         "value": "1234567",
         "isValid": false,
-        "description": "7 numeric characters forms username, minumum 8 characters required",
+        "description": "7 numeric characters forms username, minimum 8 characters required",
         "expected_error": "Minimum 8 characters required. Space character is not allowed"
     },
     {

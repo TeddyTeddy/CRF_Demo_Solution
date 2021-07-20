@@ -43,3 +43,7 @@ Get Registration Form Data
 Get Valid User's Registration Form Data
     ${valid_user_registration_form_data} =  read one valid users registration form data
     [Return]  ${valid_user_registration_form_data}
+
+Manipulate
+    [Arguments]     ${registration_form_data}       ${key}      ${description}
+    do manipulate       ${registration_form_data}       ${key}      ${description}

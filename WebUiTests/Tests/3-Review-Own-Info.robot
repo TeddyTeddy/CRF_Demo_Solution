@@ -41,7 +41,6 @@ Once Logged In, Can Log Out
 Once Logged In, Can Switch Between Index and Main Page
     [Documentation]     Tests that once user has successfully logged in, he is in main page.
     ...                 Using the Top Nav Area, he can switch between index and main page.
-    [Tags]              run-me-only
     # Referring to (1), note that valid_user_registration_form_data is one of the registered user's data
     ${valid_user_registration_form_data} =     Get Valid User's Registration Form Data
     Mark Username As Registered    ${valid_user_registration_form_data}

@@ -40,6 +40,8 @@ Register
     ...                 If the form data is not valid, then the registration page is supposed to show only the first
     ...                 error for the field from top to bottom. Refer to "Check Registration Form Error Messages" for more information
     [Arguments]     ${registration_form_data}
+    Go To Registration Page
+    Verify Registration Page
     Fill Registration Form And Press Register       ${registration_form_data}
     ${expected_page} =      Calculate Next Page    ${registration_form_data}
     IF          $expected_page=='RegistrationPage'
@@ -72,6 +74,8 @@ Re-Register
     [Documentation]     If the user has already registered with the given valid_user_registration_form_data,
     ...                 then this keyword expects "User X is already registered.", where X is the username
     [Arguments]     ${registration_form_data}
+    Go To Registration Page
+    Verify Registration Page
     Fill Registration Form And Press Register       ${registration_form_data}
     Verify Registration Page
     Verify User Name Already Exists Error        ${registration_form_data}[username][value]
@@ -82,7 +86,7 @@ Re-Start Web Application With Many Registered Users
     FOR     ${index}        IN RANGE    999999
         ${registration_form_data} =     Get Valid User's Registration Form Data
         Exit For Loop If   $registration_form_data is None
-
+        # we didn't exit the loop: we have valid registration_form_data
         Go To Registration Page
         Register        ${registration_form_data}
     END

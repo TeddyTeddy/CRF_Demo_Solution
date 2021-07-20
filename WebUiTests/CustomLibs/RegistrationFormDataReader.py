@@ -1,4 +1,4 @@
-from RegistrationFormDataUtils import registration_form_data_generator_factory, read_registration_form_data_set
+from RegistrationFormDataUtils import registration_form_data_generator_factory, read_registration_form_data_set, load_data
 from robot.api.deco import keyword
 
 
@@ -18,9 +18,12 @@ class RegistrationFormDataReader:
         """
         self._random_form_data_generator = registration_form_data_generator_factory(data_set_length, use_existing_form_data_set)
         self._valid_form_data_generator = read_registration_form_data_set('ManyValidUsers.json')
+        self._usernames = None
 
     def __del__(self):
-        pass
+        del self._random_form_data_generator
+        del self._valid_form_data_generator
+        del self._usernames
 
     @keyword
     def read_random_registration_form_data(self):
@@ -46,3 +49,21 @@ class RegistrationFormDataReader:
             return None
         else:
             return registration_form_data
+
+    @staticmethod
+    def look_for(list_of_items, description):
+        for item in list_of_items:
+            if description.upper() in item['description'].upper():
+                return item
+        assert False    # should never happen, make sure that description is set correctly
+
+    @keyword
+    def do_manipulate(self, registration_form_data, key, description):
+        if key == 'username':
+            if self._usernames is None:
+                self._usernames = load_data('Usernames.json')
+            username = RegistrationFormDataReader.look_for(self._usernames, description)
+            registration_form_data['username'] = username
+
+
+
