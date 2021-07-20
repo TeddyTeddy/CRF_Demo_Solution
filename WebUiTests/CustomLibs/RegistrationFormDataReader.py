@@ -19,11 +19,13 @@ class RegistrationFormDataReader:
         self._random_form_data_generator = registration_form_data_generator_factory(data_set_length, use_existing_form_data_set)
         self._valid_form_data_generator = read_registration_form_data_set('ManyValidUsers.json')
         self._usernames = None
+        self._passwords = None
 
     def __del__(self):
         del self._random_form_data_generator
         del self._valid_form_data_generator
         del self._usernames
+        del self._passwords
 
     @keyword
     def read_random_registration_form_data(self):
@@ -53,7 +55,7 @@ class RegistrationFormDataReader:
     @staticmethod
     def look_for(list_of_items, description):
         for item in list_of_items:
-            if description.upper() in item['description'].upper():
+            if description in item['description']:  # case sensitive search
                 return item
         assert False    # should never happen, make sure that description is set correctly
 
@@ -64,6 +66,13 @@ class RegistrationFormDataReader:
                 self._usernames = load_data('Usernames.json')
             username = RegistrationFormDataReader.look_for(self._usernames, description)
             registration_form_data['username'] = username
+            return
+        if key == 'password':
+            if self._usernames is None:
+                self.passwords = load_data('Passwords.json')
+            password = RegistrationFormDataReader.look_for(self.passwords, description)
+            registration_form_data['password'] = password
+            return
 
 
 

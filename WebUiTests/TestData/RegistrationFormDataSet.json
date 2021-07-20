@@ -1,43 +1,17 @@
 [
     {
         "username": {
-            "value": "",
+            "value": "!#%&/\u00a4%",
             "isValid": false,
-            "expected_error": "Please fill out this field."
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcdefgh",
+            "value": "ABCDEFG",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Hakan",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan123!?.",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "password": {
-            "value": "abcd0123",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H X",
+            "value": "H Xu",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
@@ -47,33 +21,9 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "+358abc662712xyz",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
-        },
-        "password": {
-            "value": "012!.Aab012!.Aab012!.A",
-            "isValid": true
-        },
-        "first_name": {
-            "value": "Ha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
@@ -83,194 +33,13 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCD!?.",
+            "value": "ABCabc!",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Hakan123!?.",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm Cuzdan",
+            "value": "Helena Margaretha",
             "isValid": true
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=",
-            "isValid": true
-        },
-        "password": {
-            "value": "abcd!?.!",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm      Cuzdan",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABC456.?",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=",
-            "isValid": true
-        },
-        "password": {
-            "value": "012!?.AB",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=!()=?",
-            "isValid": true
-        },
-        "password": {
-            "value": "abcd0123456789defghjk4",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=!()=?",
-            "isValid": true
-        },
-        "password": {
-            "value": "abcd!?.!abcd!?.!abcd??",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm      Cuzdan",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%=!()=?",
-            "isValid": true
-        },
-        "password": {
-            "value": "012!?.AB012!?.AB012!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "1234567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "0123456",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "Holm123",
@@ -284,132 +53,12 @@
     },
     {
         "username": {
-            "value": "12345678",
-            "isValid": true
+            "value": "!#%&/\u00a4%",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcdABCD",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "phone_number": {
-            "value": "0506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "12345678",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.67abc!?.67abc!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "12345678",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.67abc!?.67abc!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "12345678",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABC!?.01",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "12345678912345",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.6",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "12345678912345",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.67abc!?.67abc!?.",
+            "value": "abc!?.Z",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -430,38 +79,14 @@
     },
     {
         "username": {
-            "value": "12345678912345",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABC!?.01",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "abcdefg",
+            "value": "!#%&/\u00a4%",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "012!.Aab012!.Aab012!.A",
-            "isValid": true
+            "value": "ABC456.?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
             "value": "",
@@ -469,22 +94,47 @@
             "expected_error": "Please fill out this field."
         },
         "last_name": {
-            "value": "Holm Cuzdan",
+            "value": "Wi",
             "isValid": true
         },
         "phone_number": {
-            "value": "050!?.#662712",
+            "value": "0+506662712+",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "abcdefgh",
+            "value": "!#%&/\u00a4%=",
             "isValid": true
         },
         "password": {
-            "value": "!?.?!.!?!?.?!.!?!.!.",
+            "value": "abcdefghjklmnprsto\u00f6u\u00fcvyz",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "H X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4%=",
+            "isValid": true
+        },
+        "password": {
+            "value": "abcdABCD",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -499,30 +149,76 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "050!?.#662712",
+            "value": "0+506662712+",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "abcdefgh",
+            "value": "!#%&/\u00a4%=!()=?",
             "isValid": true
         },
         "password": {
-            "value": "abc!?.6",
+            "value": "0123456",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+            "value": "Helena",
+            "isValid": true
         },
         "last_name": {
-            "value": "W Xi",
+            "value": "Holm      Cuzdan",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4%=!()=?",
+            "isValid": true
+        },
+        "password": {
+            "value": "!?.?!.!?!?.?!.!?!.!.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha Xu",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4%=!()=?",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABCabc!?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
         },
         "phone_number": {
             "value": "+358+50666+2712",
@@ -532,88 +228,60 @@
     },
     {
         "username": {
-            "value": "abcdefghijklmnprstop",
+            "value": "!#%&/\u00a4%=!()=?",
             "isValid": true
         },
         "password": {
-            "value": "0123456",
+            "value": "ABC!?.01",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "abcdefghijklmnprstop",
-            "isValid": true
-        },
-        "password": {
-            "value": "!?.?!.!",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan123!?.",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "abcdefghijklmnprstop",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABCD012",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
+            "value": "Helena!.?",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+            "value": "Wi Xi",
+            "isValid": true
         },
         "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+            "value": "0506662712",
+            "isValid": true
         }
     },
     {
         "username": {
-            "value": "hakan12",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+            "value": "!#%&/\u00a4%=!()=?",
+            "isValid": true
         },
         "password": {
-            "value": "ABCabc!?ABCabc!?ABCab.",
+            "value": "012!.Aab",
+            "isValid": true
+        },
+        "first_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        }
+    },
+    {
+        "username": {
+            "value": "12345678",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABCD0123ABCD0123ABCD01",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -628,7 +296,207 @@
             "expected_error": "Please fill out this field."
         },
         "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "12345678912345",
+            "isValid": true
+        },
+        "password": {
+            "value": "abcdABCDefgjklmnprsto\u00f6",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "12345678912345",
+            "isValid": true
+        },
+        "password": {
+            "value": "abcdAB9",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        }
+    },
+    {
+        "username": {
+            "value": "12345678912345",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABC456.?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "last_name": {
+            "value": "Wi",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefg",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd!?.!",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "H X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefgh",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABC!?.0",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "H Xu",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefghijklmnprstop",
+            "isValid": true
+        },
+        "password": {
+            "value": "abcd!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
             "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefghijklmnprstop",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABCD0123ABCD0123ABCD01",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha Xu",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefghijklmnprstop",
+            "isValid": true
+        },
+        "password": {
+            "value": "abc!?.67abc!?.67abc!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena!.?",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Wi Xi",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -645,141 +513,13 @@
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena",
+            "value": "Ha Xu",
             "isValid": true
         },
         "last_name": {
-            "value": "W Xi",
+            "value": "Holm!.?",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "hakan12",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.A",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Cuzdan123!?.",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "hakan12",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.AB",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358+50666+2712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "hakan123",
-            "isValid": true
-        },
-        "password": {
-            "value": "abcd012",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "hakan123",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABC!?.ab",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Cuzdan123!?.",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "hakan123",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABC!?.abABC!?.abABC!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm Cuzdan",
-            "isValid": true
         },
         "phone_number": {
             "value": "+358506abc!#662712",
@@ -793,7 +533,7 @@
             "isValid": true
         },
         "password": {
-            "value": "ABCD012",
+            "value": "!?.?!.!?",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -803,13 +543,39 @@
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Holm Cuzdan",
-            "isValid": true
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "hakan123456789123456789",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABCD!?..",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
+        },
+        "last_name": {
+            "value": "Holm123",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358506662712",
+            "isValid": true
         }
     },
     {
@@ -823,18 +589,18 @@
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm",
+            "value": "Ha Xu",
             "isValid": true
         },
-        "phone_number": {
-            "value": "",
+        "last_name": {
+            "value": "Holm!.?",
             "isValid": false,
-            "expected_error": "Please fill out this field."
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
@@ -843,21 +609,47 @@
             "isValid": true
         },
         "password": {
-            "value": "012!.Aab",
-            "isValid": true
+            "value": "abc012.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Ha X",
+            "value": "Hakan123!?.",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "",
+            "value": "Wi X",
             "isValid": false,
-            "expected_error": "Please fill out this field."
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "+358506abc!#662712",
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "hakan123456789123456789",
+            "isValid": true
+        },
+        "password": {
+            "value": "012!.Aa",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan123!?.",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "050!?.#662712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -869,21 +661,48 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCabc!?",
+            "value": "abc!?.Z",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Ha",
+            "value": "Hakan",
             "isValid": true
+        },
+        "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4%123!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.6",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "Wi Xi",
             "isValid": true
         },
         "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
@@ -898,7 +717,7 @@
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena Margaretha",
+            "value": "Helena",
             "isValid": true
         },
         "last_name": {
@@ -907,31 +726,7 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&",
-            "isValid": true
-        },
-        "password": {
-            "value": "abcd0123",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "0+506662712+",
+            "value": "+358506abc!#662712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -947,13 +742,39 @@
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Hakan123!?.",
+            "value": "H Xu",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Wi",
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4%123!&7683##()=?@#\u00a4%&34567",
             "isValid": true
+        },
+        "password": {
+            "value": "ABCD!?..",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
             "value": "+358506662712",
@@ -966,32 +787,7 @@
             "isValid": true
         },
         "password": {
-            "value": "ABCDEFGH",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358abc662712xyz",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##()=?@#\u00a4%&34567",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.ZAabc!?.ZAabc!?.",
+            "value": "abc!?.Z",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -1001,37 +797,11 @@
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##()=?@#\u00a4%&34567",
+            "value": "Wi Xi",
             "isValid": true
         },
-        "password": {
-            "value": "ABC!?.ab",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
         "phone_number": {
-            "value": "0+506662712+",
+            "value": "+358506abc!#662712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -1043,16 +813,17 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCD0123",
+            "value": "abcdAB9",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Wi X",
+            "value": "Holm      Cuzdan",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
@@ -1069,12 +840,12 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCD!?..ABCD!?..ABCD!?",
+            "value": "abc!?.6",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena!.?",
+            "value": "Helena      Margaretha",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
@@ -1084,28 +855,27 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "050!?.#662712",
+            "value": "",
             "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+            "expected_error": "Please fill out this field."
         }
     },
     {
         "username": {
-            "value": "#\u00a4123ab",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+            "value": "#\u00a4/&\u00a4!!123abc456hjk",
+            "isValid": true
         },
         "password": {
-            "value": "abc!?.67abc!?.67abc!?.",
+            "value": "",
             "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+            "expected_error": "Please fill out this field."
         },
         "first_name": {
-            "value": "Helena",
+            "value": "Ha",
             "isValid": true
         },
         "last_name": {
-            "value": "Holm      Cuzdan",
+            "value": "W Xi",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
@@ -1117,62 +887,65 @@
     },
     {
         "username": {
-            "value": "#\u00a4123abc",
-            "isValid": true
+            "value": "#\u00a4/abc!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "!?.?!.!",
+            "value": "abcdefg",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena      Margaretha",
+            "value": "",
             "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+            "expected_error": "Please fill out this field."
         },
         "last_name": {
-            "value": "Holm",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358abc662712xyz",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4123abc",
-            "isValid": true
-        },
-        "password": {
-            "value": "0123!?.0",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm123",
+            "value": "W Xi",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "+358abc662712xyz",
+            "value": "+358506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd012",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "#\u00a4123abc",
-            "isValid": true
+            "value": "#\u00a4/abc!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "012!?.ab",
+            "value": "abcd!?.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -1187,51 +960,29 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "050!?.#662712",
+            "value": "+358abc662712xyz",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "#\u00a4/&\u00a4!!123abc456hjk",
-            "isValid": true
+            "value": "#\u00a4/abc!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcd!?.!",
+            "value": "ABCD!?..ABCD!?..ABCD!?",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena123",
+            "value": "Helena      Margaretha",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "Wi Xi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/&\u00a4!!123abc456hjk",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABCD0123",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan",
             "isValid": true
         },
         "phone_number": {
@@ -1241,122 +992,18 @@
     },
     {
         "username": {
-            "value": "#\u00a4/&\u00a4!!123abc456hjk",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABCabc!",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/&\u00a4!!123abc456hjk",
-            "isValid": true
-        },
-        "password": {
-            "value": "abc!?.6",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Hakan123!?.",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "phone_number": {
-            "value": "+358+50666+2712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
             "value": "#\u00a4/abc!g",
             "isValid": true
         },
         "password": {
-            "value": "01234567890123456789",
+            "value": "abcdAB90",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/abc!g",
-            "isValid": true
-        },
-        "password": {
-            "value": "0123!?.00123!?.00123!?",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
-            "isValid": true
-        },
-        "password": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "W X",
@@ -1364,31 +1011,6 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
-            "isValid": true
-        },
-        "password": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
@@ -1396,138 +1018,11 @@
     },
     {
         "username": {
-            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
+            "value": "#\u00a4/abc!g",
             "isValid": true
         },
         "password": {
-            "value": "!?.?!.!?!?.?!.!?!.!.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        },
-        "last_name": {
-            "value": "Holm",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
-            "isValid": true
-        },
-        "password": {
-            "value": "ABCD!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!# &/\u00a4%",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABCD0123ABCD0123ABCD01",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha Xu",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!# &/\u00a4%",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abc012.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha Xu",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi Xi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!# &/\u00a4%",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abc!?.ZA",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi Xi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!# &/\u00a4%",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABC456.",
+            "value": "ABCabc!?ABCabc!?ABCab.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -1542,6 +1037,30 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
+            "value": "+358506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
+            "isValid": true
+        },
+        "password": {
+            "value": "ABCDEFGHJKLMNPRSTO\u00d6U\u00dcVYZ",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
             "value": "+358+50666+2712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
@@ -1549,27 +1068,25 @@
     },
     {
         "username": {
-            "value": "!# &/\u00a4%",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+            "value": "#\u00a4/abc!g()=&%\u00a4fghjklQWERTY",
+            "isValid": true
         },
         "password": {
-            "value": "ABC!?.01",
+            "value": "abcdABCD",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
         },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
+        },
         "phone_number": {
-            "value": "+358abc662712xyz",
+            "value": "+358506abc!#662712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -1581,18 +1098,70 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "012!?.a",
+            "value": "ABCDEFGHJKLMNPRSTO\u00d6U\u00dcVYZ",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Ha",
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm!.?",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "050!?.#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "!# &/\u00a4%",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD012",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan",
             "isValid": true
         },
         "last_name": {
-            "value": "",
+            "value": "W X",
             "isValid": false,
-            "expected_error": "Please fill out this field."
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4 =",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdABC",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena!.?",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
         },
         "phone_number": {
             "value": "+358abc662712xyz",
@@ -1607,16 +1176,43 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcdefgh",
+            "value": "abcdABCD",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Ha Xu",
+            "value": "Hakan",
             "isValid": true
         },
         "last_name": {
-            "value": "Holm      Cuzdan",
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "050!?.#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4 =",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd012",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena123",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Wi X",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
@@ -1633,24 +1229,22 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abc012!?",
+            "value": "abcd!?.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena123",
+            "value": "Helena!.?",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+            "value": "Wi",
+            "isValid": true
         },
         "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+            "value": "0506662712",
+            "isValid": true
         }
     },
     {
@@ -1669,62 +1263,11 @@
             "isValid": true
         },
         "last_name": {
-            "value": "Cuzdan",
+            "value": "Wi Xi",
             "isValid": true
         },
         "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4 =",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abc!?.6",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4 =",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABC456abABC456abABC456",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
+            "value": "+358+50666+2712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
@@ -1736,96 +1279,43 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "0123!?.",
+            "value": "",
             "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+            "expected_error": "Please fill out this field."
         },
         "first_name": {
-            "value": "Helena123",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi",
+            "value": "Ha Xu",
             "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "!#%&/\u00a4%= ()=?",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "0123!?.0",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "0506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "1234 67",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcdABCD",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "1234 67",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABCD0123ABCD0123ABCD01",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "Cuzdan123!?.",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "!#%&/\u00a4%= ()=?",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdABCDefgjklmnprsto\u00f6",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Wi Xi",
+            "isValid": true
         },
         "phone_number": {
             "value": "",
@@ -1835,13 +1325,172 @@
     },
     {
         "username": {
+            "value": "!#%&/\u00a4%= ()=?",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
             "value": "1234 67",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "012!.Aab",
+            "value": "ABC!?.01",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena123",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm",
             "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "123456 8",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdefg",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena123",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Wi Xi",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "123456 8",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCabc!?ABCabc!?ABCab.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena Margaretha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "12345678 12345",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdABCD",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena Margaretha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "12345678 12345",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.ZA",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "12345678 12345",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.67",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
             "value": "Ha",
@@ -1859,128 +1508,23 @@
     },
     {
         "username": {
-            "value": "123456 8",
+            "value": "12345678 12345",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABC!?.01",
+            "value": "abc!?.67abc!?.67abc!?.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "W Xi",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "123456 8",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.AB",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
         },
-        "phone_number": {
-            "value": "0506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "123456 8",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!.Aab012!.Aab012!.A",
-            "isValid": true
-        },
-        "first_name": {
-            "value": "Hakan",
-            "isValid": true
-        },
         "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "0506662712",
+            "value": "Cuzdan",
             "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "12345678 12345",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "!?.?!.!?",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Hakan123!?.",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358+50666+2712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "12345678 12345",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.ab012!?.ab012!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
             "value": "+358+50666+2712",
@@ -1995,70 +1539,17 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcdefg",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "abcdefghijklmnp stop",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abc012!?",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena      Margaretha",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358+50666+2712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "abcdefghijklmnp stop",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABC!?.01ABC!?.01ABC!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
             "value": "",
             "isValid": false,
             "expected_error": "Please fill out this field."
         },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
         "last_name": {
-            "value": "Holm      Cuzdan",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+            "value": "Holm Cuzdan",
+            "isValid": true
         },
         "phone_number": {
             "value": "050!?.#662712",
@@ -2068,37 +1559,91 @@
     },
     {
         "username": {
-            "value": "haka 12",
+            "value": "abcd fg",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "abcdABC",
+            "value": "ABC!?.01ABC!?.01ABC!?.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Ha",
-            "isValid": true
+            "value": "H Xu",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Cuzdan",
-            "isValid": true
+            "value": "Holm!.?",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "0+506662712+",
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "abcd fg",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "012!.Aa",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm      Cuzdan",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "haka 123",
+            "value": "ab defgh",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCD!?..ABCD!?..ABCD!?",
+            "value": "ABCDEFG",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "ab defgh",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "0123!?.0",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -2120,91 +1665,38 @@
     },
     {
         "username": {
-            "value": "haka 123456789123456789",
+            "value": "ab defgh",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABCabc!?ABCabc!?ABCab.",
+            "value": "abc!?.ZA",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena      Margaretha",
+            "value": "H Xu",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "Holm123",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4% 23!",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.AB012!?.AB012!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
+            "value": "Wi Xi",
             "isValid": true
         },
-        "last_name": {
-            "value": "Cuzdan123!?.",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
         "phone_number": {
-            "value": "+358abc662712xyz",
+            "value": "0+506662712+",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
         "username": {
-            "value": "# %123!&",
+            "value": "abcdefghijklmnp stop",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "0123456",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Hakan123!?.",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "W Xi",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "# %123!&",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcdABCDefgjklmnprsto\u00f6",
+            "value": "abc012.",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -2219,6 +1711,319 @@
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
+            "value": "050!?.#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "abcdefghijklmnp stop",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.ZAabc!?.ZAabc!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "haka 12",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCDEFG",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 12",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "0123456",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena123",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 12",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd0123",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "H Xu",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Wi X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 12",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd!?.!",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm123",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 123",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABC456.?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 123",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABC!?.0",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 123456789123456789",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD!?..ABCD!?..ABCD!?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm      Cuzdan",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "haka 123456789123456789",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABC456.?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4% 23!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcd!?.!",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm!.?",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "050!?.#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4% 23!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha Xu",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan123!?.",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4% 23!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc012.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
             "value": "+358+50666+2712",
             "isValid": false,
             "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
@@ -2231,141 +2036,13 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABC456ab",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "+358+50666+2712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcdefg",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Hakan",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "W Xi",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "!?.?!.!?!?.?!.!?!.!.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506662712",
-            "isValid": true
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcd!?.!abcd!?.!abcd??",
+            "value": "abcdAB90",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
             "value": "Helena",
             "isValid": true
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "+358506abc!#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcdAB90",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "",
-            "isValid": false,
-            "expected_error": "Please fill out this field."
-        }
-    },
-    {
-        "username": {
-            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "012!?.AB",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha X",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
             "value": "Holm123",
@@ -2380,27 +2057,106 @@
     },
     {
         "username": {
-            "value": "#\u00a412 ab",
+            "value": "# %123!&",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABC456abABC456abABC456",
+            "value": "ABC!?.0",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "Helena Margaretha",
-            "isValid": true
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
         },
         "last_name": {
-            "value": "W X",
+            "value": "Wi",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD!?..ABCD!?..ABCD!?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "last_name": {
+            "value": "Holm      Cuzdan",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
         "phone_number": {
-            "value": "+358506662712",
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.6",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
             "isValid": true
+        },
+        "last_name": {
+            "value": "Holm!.?",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4%123!&7683##() ?@#\u00a4%&34567",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.67",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     },
     {
@@ -2410,17 +2166,41 @@
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABC!?.01ABC!?.01ABC!?.",
+            "value": "abc!?.ZA",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "H Xu",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+            "value": "Helena",
+            "isValid": true
         },
         "last_name": {
-            "value": "Cuzdan",
+            "value": "Wi Xi",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "# 123abc",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "!?.?!.!?!?.?!.!?!.!.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena Margaretha",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Wi Xi",
             "isValid": true
         },
         "phone_number": {
@@ -2441,91 +2221,12 @@
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
         "first_name": {
-            "value": "H X",
+            "value": "H Xu",
             "isValid": false,
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
-            "value": "W X",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "0+506662712+",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "# 123abc",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABCD0123",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "Wi",
-            "isValid": true
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "# 123abc",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "abcdAB9",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Ha Xu",
-            "isValid": true
-        },
-        "last_name": {
-            "value": "Holm!.?",
-            "isValid": false,
-            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
-        },
-        "phone_number": {
-            "value": "050!?.#662712",
-            "isValid": false,
-            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
-        }
-    },
-    {
-        "username": {
-            "value": "# 123abc",
-            "isValid": false,
-            "expected_error": "Minimum 8 characters required. Space character is not allowed"
-        },
-        "password": {
-            "value": "ABC!?.abABC!?.abABC!?.",
-            "isValid": false,
-            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
-        },
-        "first_name": {
-            "value": "Helena!.?",
-            "isValid": false,
-            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
-        },
-        "last_name": {
-            "value": "W Xi",
+            "value": "Holm      Cuzdan",
             "isValid": false,
             "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
         },
@@ -2537,12 +2238,143 @@
     },
     {
         "username": {
-            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "value": "# 123abc",
             "isValid": false,
             "expected_error": "Minimum 8 characters required. Space character is not allowed"
         },
         "password": {
-            "value": "ABC456.?ABC456.?ABC456",
+            "value": "abcd!?.!",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena123",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "0506662712",
+            "isValid": true
+        }
+    },
+    {
+        "username": {
+            "value": "# 123abc",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "012!.Aab012!.Aab012!.A",
+            "isValid": true
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/&  !123abc456hjk",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCabc!?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "W Xi",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/&  !123abc456hjk",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abc!?.ZAabc!?.ZAabc!?.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4 abc!",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "012!.Aa",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena!.?",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4 abc!g",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdAB90abcdAB90abcdAB",
             "isValid": false,
             "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
         },
@@ -2552,12 +2384,197 @@
             "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
         },
         "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4 abc!g",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCabc!?ABCabc!?ABCab.",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena",
+            "isValid": true
+        },
+        "last_name": {
             "value": "Cuzdan",
             "isValid": true
         },
         "phone_number": {
-            "value": "0506662712",
+            "value": "050!?.#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdefg",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena!.?",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm      Cuzdan",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358abc662712xyz",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD0123ABCD0123ABCD01",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena Margaretha",
             "isValid": true
+        },
+        "last_name": {
+            "value": "",
+            "isValid": false,
+            "expected_error": "Please fill out this field."
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "ABCD!?..ABCD!?..ABCD!?",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Hakan",
+            "isValid": true
+        },
+        "last_name": {
+            "value": "Holm",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "+358506abc!#662712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdAB9",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Helena      Margaretha",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Cuzdan",
+            "isValid": true
+        },
+        "phone_number": {
+            "value": "0+506662712+",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "abcdAB90",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "Holm!.?",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        }
+    },
+    {
+        "username": {
+            "value": "#\u00a4/abc!g() &%\u00a4fghjklQWERTY",
+            "isValid": false,
+            "expected_error": "Minimum 8 characters required. Space character is not allowed"
+        },
+        "password": {
+            "value": "012!.Aa",
+            "isValid": false,
+            "expected_error": "Min 8 characters. Must contain at least one character from [a-z], [A-Z], [0-9] and [!?.]"
+        },
+        "first_name": {
+            "value": "Ha X",
+            "isValid": false,
+            "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+        },
+        "last_name": {
+            "value": "W X",
+            "isValid": false,
+            "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+        },
+        "phone_number": {
+            "value": "+358+50666+2712",
+            "isValid": false,
+            "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
         }
     }
 ]
