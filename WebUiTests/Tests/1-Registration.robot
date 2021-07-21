@@ -805,9 +805,86 @@ First Name Having Two Words Seperated By A Single Space Is Indeed Accepted
     Register        ${registration_form_data}
 
 First Name Having Two Words Seperated By Multiple Spaces Is Not Accepted
-    [Tags]              BAT     first_name      run-me
+    [Tags]              BAT     first_name
     ${registration_form_data} =     Get Valid User's Registration Form Data
     Manipulate      ${registration_form_data}       first_name    Two valid first names seperated by multiple space characters making it invalid
+    Register        ${registration_form_data}
+
+Empty Last Name Is Not Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    empty last name
+    Register        ${registration_form_data}
+
+A Valid Last Name Containing More Than 2 Characters Is Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    last name containing more than 2 characters
+    Register        ${registration_form_data}
+
+Last Name Containing Numbers And Non-Aphanumeric Characters Is Not Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    last name containing numbers and non-alphanumeric characters
+    Register        ${registration_form_data}
+
+'Wi' As Last Name Is Accepted
+    [Documentation]       Short names in Asian culture are common with 2 alphabetical letters minimum
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    2 character last name with only one word
+    Register        ${registration_form_data}
+
+'Wi Xi' As Last Name Is Accepted
+    [Documentation]       Short names in Asian culture are common with 2 alphabetical letters minimum for each word
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    2 characters last name with two words
+    Register        ${registration_form_data}
+
+'W Xi' As Last Name Is Not Accepted
+    [Documentation]       Short names in Asian culture are common with at least 2 alphabetical letters minimum for each word
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    The first last name is invalid with only 1 letter, the second last name is valid
+    Register        ${registration_form_data}
+
+'Wi X' As Last Name Is Not Accepted
+    [Documentation]       Short names in Asian culture are common with at least 2 alphabetical letters minimum for each word
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    second last name is invalid with only 1 letter, the first last name is valid
+    Register        ${registration_form_data}
+
+'W X' As Last Name Is Not Accepted
+    [Documentation]       Short names in Asian culture are common with at least 2 alphabetical letters minimum for each word
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    both last names are invalid because they only have 1 letter
+    Register        ${registration_form_data}
+
+Last Name Containing Numbers Is Not Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    Last name does contain numbers, which makes it invalid
+    Register        ${registration_form_data}
+
+Last Name Containing Non-Alphanumeric Characters Is Not Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    Last name does contain non alphanumeric characters, which makes it invalid
+    Register        ${registration_form_data}
+
+Last Name Containing Two Words Seperated By A Space Is Accepted
+    [Tags]              BAT     last_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    Two valid last names seperated by a single space character
+    Register        ${registration_form_data}
+
+Last Name Containing Two Words Seperated By Many Spaces Is Not Accepted
+    [Tags]              BAT     last_name       run-me
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       last_name    Two valid last names seperated by many space characters
     Register        ${registration_form_data}
 
 Registering With Variety Of Registration Form Data

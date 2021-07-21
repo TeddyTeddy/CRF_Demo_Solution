@@ -21,6 +21,7 @@ class RegistrationFormDataReader:
         self._usernames = None
         self._passwords = None
         self._first_names = None
+        self._last_names = None
 
     def __del__(self):
         del self._random_form_data_generator
@@ -28,6 +29,7 @@ class RegistrationFormDataReader:
         del self._usernames
         del self._passwords
         del self._first_names
+        del self._last_names
 
     @keyword
     def read_random_registration_form_data(self):
@@ -80,6 +82,12 @@ class RegistrationFormDataReader:
                 self._first_names = load_data('Firstnames.json')
             first_name = RegistrationFormDataReader.look_for(self._first_names, description)
             registration_form_data['first_name'] = first_name
+            return
+        if key == 'last_name':
+            if self._last_names is None:
+                self._last_names = load_data('Lastnames.json')
+            last_name = RegistrationFormDataReader.look_for(self._last_names, description)
+            registration_form_data['last_name'] = last_name
             return
         assert False    # should never happen, make sure that key is set correctly
 
