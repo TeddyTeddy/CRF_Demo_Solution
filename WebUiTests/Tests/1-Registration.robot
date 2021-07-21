@@ -16,6 +16,15 @@ Test Teardown           Stop Web Application
 
 
 *** Test Cases ***
+Empty Username Is Not Accepted
+    [Documentation]   username must be at least 8 chars. It can contain any character except space characters
+    [tags]      BAT     username    empty
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    # at this stage, registration_form_data is valid
+    # make it have a short username
+    Manipulate      ${registration_form_data}       username    an empty username
+    Register        ${registration_form_data}
+
 Short Username Containing Numbers Is Not Accepted
     [Documentation]   username must be at least 8 chars. It can contain any character except space characters
     [tags]      BAT     username    minimum-8-characters
@@ -224,7 +233,17 @@ Usernames Containing Space(s) Are Not Accepted
     Manipulate      ${registration_form_data}       username    25 non-alphanumeric and alpha characters and a space form username
     Register        ${registration_form_data}
 
+Empty Password Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
+    [tags]  BAT     password    empty
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    # at this stage, registration_form_data is valid
+    # make it have a valid long password
+    Manipulate      ${registration_form_data}       password    an empty password
+    Register        ${registration_form_data}
+
 Short Password Containing Only Small Letters [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -233,6 +252,7 @@ Short Password Containing Only Small Letters [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Only [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -241,6 +261,7 @@ Minimum Length Password Containing Only [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Long Password Containing Only Small Letters [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -249,6 +270,7 @@ Long Password Containing Only Small Letters [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Only Capital Letters [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -257,6 +279,7 @@ Short Password Containing Only Capital Letters [A-Z] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Only Capital Letters [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -265,6 +288,7 @@ Minimum Length Password Containing Only Capital Letters [A-Z] Is Not Accepted
     Register        ${registration_form_data}
 
 Long Password Containing Only Capital Letters [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -273,6 +297,7 @@ Long Password Containing Only Capital Letters [A-Z] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Only [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -281,6 +306,7 @@ Short Password Containing Only [0-9] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Only [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -289,6 +315,7 @@ Minimum Length Password Containing Only [0-9] Is Not Accepted
     Register        ${registration_form_data}
 
 Long Password Containing Only [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -297,6 +324,7 @@ Long Password Containing Only [0-9] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Only [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -305,6 +333,7 @@ Short Password Containing Only [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Only [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -313,6 +342,7 @@ Minimum Length Password Containing Only [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Long Password Containing Only [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -321,6 +351,7 @@ Long Password Containing Only [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -329,6 +360,7 @@ Short Password Containing Characters From Sets [A-Z] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -337,6 +369,7 @@ Minimum Length Password Containing Characters From Sets [A-Z] and [a-z] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [A-Z] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -345,6 +378,7 @@ Long Password Containing Characters From Sets [A-Z] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [0-9] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -353,6 +387,7 @@ Short Password Containing Characters From Sets [0-9] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [0-9] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -361,6 +396,7 @@ Minimum Length Password Containing Characters From Sets [0-9] and [a-z] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [0-9] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -369,6 +405,7 @@ Long Password Containing Characters From Sets [0-9] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [!?.] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -377,6 +414,7 @@ Short Password Containing Characters From Sets [!?.] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [!?.] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -385,6 +423,7 @@ Minimum Length Password Containing Characters From Sets [!?.] and [a-z] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [!?.] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -393,6 +432,7 @@ Long Password Containing Characters From Sets [!?.] and [a-z] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -401,6 +441,7 @@ Short Password Containing Characters From Sets [A-Z] and [0-9] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -409,6 +450,7 @@ Minimum Length Password Containing Characters From Sets [A-Z] and [0-9] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -417,6 +459,7 @@ Long Password Containing Characters From Sets [A-Z] and [0-9] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -425,6 +468,7 @@ Short Password Containing Characters From Sets [A-Z] and [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -433,6 +477,7 @@ Minimum Length Password Containing Characters From Sets [A-Z] and [!?.] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -441,6 +486,7 @@ Long Password Containing Characters From Sets [A-Z] and [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -449,6 +495,7 @@ Short Password Containing Characters From Sets [0-9] and [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -457,6 +504,7 @@ Minimum Length Password Containing Characters From Sets [0-9] and [!?.] Is Not A
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -465,6 +513,7 @@ Long Password Containing Characters From Sets [0-9] and [!?.] Is Not Accepted
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [a-z], [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -473,6 +522,7 @@ Short Password Containing Characters From Sets [a-z], [A-Z] and [0-9] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters Sets [a-z], [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -481,6 +531,7 @@ Minimum Length Password Containing Characters Sets [a-z], [A-Z] and [0-9] Is Not
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [a-z], [A-Z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     A-Z     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -489,6 +540,7 @@ Long Password Containing Characters From Sets [a-z], [A-Z] and [0-9] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [a-z], [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -497,6 +549,7 @@ Short Password Containing Characters From Sets [a-z], [A-Z] and [!?.] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters Sets [a-z], [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -505,6 +558,7 @@ Minimum Length Password Containing Characters Sets [a-z], [A-Z] and [!?.] Is Not
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [a-z], [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     A-Z     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -513,6 +567,7 @@ Long Password Containing Characters From Sets [a-z], [A-Z] and [!?.] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [!?.], [0-9] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -521,6 +576,7 @@ Short Password Containing Characters From Sets [!?.], [0-9] and [a-z] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters Sets [a-z], [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -529,6 +585,7 @@ Minimum Length Password Containing Characters Sets [a-z], [0-9] and [!?.] Is Not
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [a-z], [!?.] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -537,6 +594,7 @@ Long Password Containing Characters From Sets [a-z], [!?.] and [0-9] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [a-z], [!?.] and [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     !?.     A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -545,6 +603,7 @@ Short Password Containing Characters From Sets [a-z], [!?.] and [A-Z] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters Sets [a-z], [!?.] and [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     !?.     A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -553,6 +612,7 @@ Minimum Length Password Containing Characters Sets [a-z], [!?.] and [A-Z] Is Not
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [a-z], [!?.] and [A-Z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     !?.     A-Z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -561,6 +621,7 @@ Long Password Containing Characters From Sets [a-z], [!?.] and [A-Z] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [0-9], [a-z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   a-z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -569,6 +630,7 @@ Short Password Containing Characters From Sets [0-9], [a-z] and [!?.] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [0-9], [!?.] and [a-z] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   a-z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -577,6 +639,7 @@ Minimum Length Password Containing Characters From Sets [0-9], [!?.] and [a-z] I
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [!?.], [a-z] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   a-z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -585,6 +648,7 @@ Long Password Containing Characters From Sets [!?.], [a-z] and [0-9] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z], [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -593,6 +657,7 @@ Short Password Containing Characters From Sets [A-Z], [0-9] and [!?.] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z], [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -601,6 +666,7 @@ Minimum Length Password Containing Characters From Sets [A-Z], [0-9] and [!?.] I
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [A-Z], [0-9] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z     0-9     !?.
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -609,6 +675,7 @@ Long Password Containing Characters From Sets [A-Z], [0-9] and [!?.] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z], [!?.] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    short   A-Z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -617,6 +684,7 @@ Short Password Containing Characters From Sets [A-Z], [!?.] and [0-9] Is Not Acc
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z], [!?.] and [0-9] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    min-length   A-Z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -625,6 +693,7 @@ Minimum Length Password Containing Characters From Sets [A-Z], [!?.] and [0-9] I
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [0-9], [A-Z] and [!?.] Is Not Accepted
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
     [tags]  BAT     password    long   A-Z     !?.     0-9
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
@@ -633,7 +702,8 @@ Long Password Containing Characters From Sets [0-9], [A-Z] and [!?.] Is Not Acce
     Register        ${registration_form_data}
 
 Short Password Containing Characters From Sets [A-Z], [!?.], [0-9] and [a-z] Is Not Accepted
-    [tags]  BAT     password    short   A-Z     !?.     0-9     a-z   
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
+    [tags]  BAT     password    short   A-Z     !?.     0-9     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
     # make it have a valid long password
@@ -641,7 +711,8 @@ Short Password Containing Characters From Sets [A-Z], [!?.], [0-9] and [a-z] Is 
     Register        ${registration_form_data}
 
 Minimum Length Password Containing Characters From Sets [A-Z], [!?.], [0-9] and [a-z] Is Indeed Accepted
-    [tags]  BAT     password    min-length   A-Z     !?.     0-9     a-z   
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
+    [tags]  BAT     password    min-length   A-Z     !?.     0-9     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
     # make it have a valid long password
@@ -649,7 +720,8 @@ Minimum Length Password Containing Characters From Sets [A-Z], [!?.], [0-9] and 
     Register        ${registration_form_data}
 
 Long Password Containing Characters From Sets [A-Z], [!?.], [0-9] and [a-z] Is Indeed Accepted
-    [tags]  BAT     password    long   A-Z     !?.     0-9     a-z   
+    [Documentation]     Password must be at least 8 characters. It must contain letters from [a-z], [A-Z], [0-9] and [!?.]
+    [tags]  BAT     password    long   A-Z     !?.     0-9     a-z
     ${registration_form_data} =     Get Valid User's Registration Form Data
     # at this stage, registration_form_data is valid
     # make it have a valid long password
