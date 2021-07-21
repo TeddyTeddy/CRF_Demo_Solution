@@ -735,6 +735,81 @@ Registering With Valid Registration Form Data
     ${valid_user_registration_form_data} =     Get Valid User's Registration Form Data
     Register            ${valid_user_registration_form_data}
 
+Empty First Name Is Not Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    An empty first name
+    Register        ${registration_form_data}
+
+First Name Containing More Than 2 Characters Is Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    A first name containing more than 2 characters
+    Register        ${registration_form_data}
+
+First Name Containing Numbers And Non-Aphanumeric Characters Is Not Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    A name containing numbers and non-alphanumeric characters
+    Register        ${registration_form_data}
+
+First Name Containing 2 Characters Is Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    A minimum 2 characters first name
+    Register        ${registration_form_data}
+
+First Name Having Two Words Each Containing 2 Characters Is Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    A minimum 2 characters first names for each first name
+    Register        ${registration_form_data}
+
+'H Xu' As First Name Is Not Accepted
+    [Documentation]     The first first name is invalid with only 1 letter, the second first name is valid
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    The first first name is invalid with only 1 letter, the second first name is valid
+    Register        ${registration_form_data}
+
+'Ha X' As First Name Is Not Accepted
+    [Documentation]     The second first name is invalid with only 1 letter, the first first name is valid
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    The second first name is invalid with only 1 letter, the first first name is valid
+    Register        ${registration_form_data}
+
+'H X' As First Name Is Not Accepted
+    [Documentation]     The both first names are invalid with only 1 letter
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    The both first names are invalid with only 1 letter
+    Register        ${registration_form_data}
+
+First Name Containing Numbers Is Not Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    First name does contain numbers, which makes it invalid
+    Register        ${registration_form_data}
+
+First Name Containing Non-Alphanumeric Characters Is Not Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    First name does contain non alphanumeric characters, which makes it invalid
+    Register        ${registration_form_data}
+
+First Name Having Two Words Seperated By A Single Space Is Indeed Accepted
+    [Tags]              BAT     first_name
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    Two valid first names seperated by a single space character
+    Register        ${registration_form_data}
+
+First Name Having Two Words Seperated By Multiple Spaces Is Not Accepted
+    [Tags]              BAT     first_name      run-me
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       first_name    Two valid first names seperated by multiple space characters making it invalid
+    Register        ${registration_form_data}
+
 Registering With Variety Of Registration Form Data
     [Documentation]     When username/password/first name/last name and phone number are randomly chosen
     ...                 then this keyword checks that registration is successful iff all of the fields are valid acc.to requirements.

@@ -45,11 +45,6 @@
         "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
     },
     {
-        "value": "Helena",
-        "isValid": true,
-        "description": "First name does not contain numbers nor it contains non-alphanumeric characters"
-    },
-    {
         "value": "Helena123",
         "isValid": false,
         "description": "First name does contain numbers, which makes it invalid",
