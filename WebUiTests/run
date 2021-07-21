@@ -1,3 +1,3 @@
 rm -rf ./Results
 mkdir Results
-robot -d Results/ -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:False  -v BROWSER:firefox -P CustomLibs Tests/
+robot -d Results/ -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:firefox -P CustomLibs Tests/
