@@ -882,9 +882,57 @@ Last Name Containing Two Words Seperated By A Space Is Accepted
     Register        ${registration_form_data}
 
 Last Name Containing Two Words Seperated By Many Spaces Is Not Accepted
-    [Tags]              BAT     last_name       run-me
+    [Tags]              BAT     last_name
     ${registration_form_data} =     Get Valid User's Registration Form Data
     Manipulate      ${registration_form_data}       last_name    Two valid last names seperated by many space characters
+    Register        ${registration_form_data}
+
+Empty Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    empty phone number
+    Register        ${registration_form_data}
+
+Valid Phone Number With Country Code Is Indeed Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    valid phone number with a country code +358
+    Register        ${registration_form_data}
+
+"+358+50666+2712" As Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    invalid phone number with a country code with second and third + signs misplaced
+    Register        ${registration_form_data}
+
+"0+506662712+" As Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    invalid phone number with two + signs misplaced
+    Register        ${registration_form_data}
+
+Valid Phone Number Without Country Code Is Indeed Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    valid phone number without a country code. This assumes Finland
+    Register        ${registration_form_data}
+
+"+358506abc!#662712" As Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    invalid phone number containing letters, non-alphanumeric characters
+    Register        ${registration_form_data}
+
+"050!?.#662712" As Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    invalid phone number containing non-alphanumeric characters
+    Register        ${registration_form_data}
+
+"+358abc662712xyz" As Phone Number Is Not Accepted
+    [Tags]              BAT     phone_number
+    ${registration_form_data} =     Get Valid User's Registration Form Data
+    Manipulate      ${registration_form_data}       phone_number    invalid phone number containing letters in between
     Register        ${registration_form_data}
 
 Registering With Variety Of Registration Form Data
