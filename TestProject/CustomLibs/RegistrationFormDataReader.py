@@ -35,6 +35,14 @@ class RegistrationFormDataReader:
 
     @keyword
     def read_random_registration_form_data(self):
+        """  Returns a registration_form_data instance whose fields may contain (in)valid data.
+             It uses a generator/iterator, so you can call many times to get new registration_form_data instances.
+             When the generator is exhausted, then it returns None to signal the end of registration_form_data instances
+             (and thus the end of test run).
+
+        Returns:
+            [dict]: registration_form_data or None
+        """
         try:
             registration_form_data = next(self._random_form_data_generator)
         except StopIteration:
@@ -45,6 +53,14 @@ class RegistrationFormDataReader:
 
     @keyword
     def read_one_valid_users_registration_form_data(self):
+        """  Returns a registration_form_data instance, whose fields are all valid. The data source file for the instances
+             is located in TestProject/TestData/ManyValidUsers.json. It reads the file in a cyclic fashion one
+             registration_form_data instance at a time. When end of file is reached, it returns to the begining of the file
+             and repeats the process.
+
+        Returns:
+            [dict]: registration_form_data
+        """
         try:
             registration_form_data = next(self._valid_form_data_generator)
         except StopIteration:
@@ -67,6 +83,18 @@ class RegistrationFormDataReader:
 
     @keyword
     def do_manipulate(self, registration_form_data, key, description):
+        """  Given a valid registration_form_data instance, if we are to change one of its fields (e.g. username)
+             then we provide the key to be the string "username". We also provide a description as a string,
+             which must match with one of the description fields in TestData/Usernames.json file. The username (in the file),
+             whose description is matching description parameter we provide, is used to replace the username
+             of the instance. This way, we can quickly create a new instance matching the requirements of the test case
+            (e.g. An Empty Username Is Not Accepted)
+
+        Args:
+            registration_form_data (dict): a registration_form_data (instance), whose field will be modified
+            key (str): the field's name. It must be one of the following: username, password, first_name, last_name, phone_number.
+            description (str): field's description (e.g. username's description or password's description etc)
+        """
         if key == 'username':
             if self._usernames is None:
                 self._usernames = load_data('Usernames.json')
