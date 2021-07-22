@@ -15,7 +15,7 @@ According to the instructions in [3]:
 2. sudo apt-get install -y nodejs
 3. node --version
 
-### 1.4 Installing The Testing Project
+### 1.4 Installing The CRF_Demo_Solution Containing The TestProject
 On bash terminal, in the given order:
 1. git clone https://github.com/TeddyTeddy/CRF_Demo_Solution.git
 2. cd CRF_Demo_Solution/
@@ -29,10 +29,10 @@ Continuing on the same bash terminal in CRF_Demo_Solution/ folder:
 7. rfbrowser init
 
 # 2. Running The UI Test Cases
-1. cd CRF_Demo_Solution/WebUiTests/
+1. cd CRF_Demo_Solution/TestProject/
 2. ./run
 
-The outcome of test results can be found under CRF_Demo_Solution/WebUiTests/Results/ folder
+The outcome of test results can be found under CRF_Demo_Solution/TestProject/Results/ folder
 
 # REFERENCES
 

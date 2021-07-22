@@ -1,0 +1,246 @@
+[
+    {
+        "value": "",
+        "isValid": false,
+        "description": "an empty username",
+        "expected_error": "Please fill out this field."
+    },
+    {
+        "value": "!#%&/¤%",
+        "isValid": false,
+        "description": "only 7 non-alphanumeric characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "!#%&/¤%=",
+        "isValid": true,
+        "description": "8 non-alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "!#%&/¤%=!()=?",
+        "isValid": true,
+        "description": "13 non-alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "1234567",
+        "isValid": false,
+        "description": "7 numeric characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "12345678",
+        "isValid": true,
+        "description": "8 numeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "12345678912345",
+        "isValid": true,
+        "description": "14 numeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "abcdefg",
+        "isValid": false,
+        "description": "7 alpha characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "abcdefgh",
+        "isValid": true,
+        "description": "8 alpha characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "abcdefghijklmnprstop",
+        "isValid": true,
+        "description": "20 alpha characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "hakan12",
+        "isValid": false,
+        "description": "7 alphanumeric characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "hakan123",
+        "isValid": true,
+        "description": "8 alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "hakan123456789123456789",
+        "isValid": true,
+        "description": "23 alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤%123!",
+        "isValid": false,
+        "description": "7 non-alphanumeric and numeric characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤%123!&",
+        "isValid": true,
+        "description": "8 non-alphanumeric and numeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤%123!&7683##()=?@#¤%&34567",
+        "isValid": true,
+        "description": "28 non-alphanumeric and numeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤123ab",
+        "isValid": false,
+        "description": "7 (non-)alphanumeric characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤123abc",
+        "isValid": true,
+        "description": "8 (non-)alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤/&¤!!123abc456hjk",
+        "isValid": true,
+        "description": "19 (non-)alphanumeric characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤/abc!",
+        "isValid": false,
+        "description": "7 non-alphanumeric and alpha characters forms username, minimum 8 characters required",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤/abc!g",
+        "isValid": true,
+        "description": "8 non-alphanumeric and alpha characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "#¤/abc!g()=&%¤fghjklQWERTY",
+        "isValid": true,
+        "description": "26 non-alphanumeric and alpha characters forms username, minimum 8 characters required"
+    },
+    {
+        "value": "!# &/¤%",
+        "isValid": false,
+        "description": "only 6 non-alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "!#%&/¤ =",
+        "isValid": false,
+        "description": "7 non-alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "!#%&/¤%= ()=?",
+        "isValid": false,
+        "description": "12 non-alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "1234 67",
+        "isValid": false,
+        "description": "6 numeric characters and a space form username, minimum 8 characters required. Space character not allowed.",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "123456 8",
+        "isValid": false,
+        "description": "7 numeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "12345678 12345",
+        "isValid": false,
+        "description": "13 numeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "abcd fg",
+        "isValid": false,
+        "description": "6 alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "ab defgh",
+        "isValid": false,
+        "description": "7 alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "abcdefghijklmnp stop",
+        "isValid": false,
+        "description": "19 alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "haka 12",
+        "isValid": false,
+        "description": "6 alphanumeric characters and space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "haka 123",
+        "isValid": false,
+        "description": "7 alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "haka 123456789123456789",
+        "isValid": false,
+        "description": "22 alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤% 23!",
+        "isValid": false,
+        "description": "6 non-alphanumeric, numeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "# %123!&",
+        "isValid": false,
+        "description": "7 non-alphanumeric, numeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤%123!&7683##() ?@#¤%&34567",
+        "isValid": false,
+        "description": "27 non-alphanumeric and numeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤12 ab",
+        "isValid": false,
+        "description": "6 (non-)alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "# 123abc",
+        "isValid": false,
+        "description": "7 (non-)alphanumeric characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤/&  !123abc456hjk",
+        "isValid": false,
+        "description": "17 (non-)alphanumeric characters and 2 spaces form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤ abc!",
+        "isValid": false,
+        "description": "6 non-alphanumeric and alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤ abc!g",
+        "isValid": false,
+        "description": "7 non-alphanumeric and alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    },
+    {
+        "value": "#¤/abc!g() &%¤fghjklQWERTY",
+        "isValid": false,
+        "description": "25 non-alphanumeric and alpha characters and a space form username, minimum 8 characters required. Space character not allowed",
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
+    }
+]

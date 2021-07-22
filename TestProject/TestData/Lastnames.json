@@ -1,0 +1,70 @@
+[
+    {
+        "value": "",
+        "isValid": false,
+        "description": "An empty last name",
+        "expected_error": "Please fill out this field."
+    },
+    {
+        "value": "Cuzdan",
+        "isValid": true,
+        "description": "A last name containing more than 2 characters"
+    },
+    {
+        "value": "Cuzdan123!?.",
+        "isValid": false,
+        "description": "A last name containing numbers and non-alphanumeric characters",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "Wi",
+        "isValid": true,
+        "description": "2 character last name with only one word"
+    },
+    {
+        "value": "Wi Xi",
+        "isValid": true,
+        "description": "2 characters last name with two words"
+    },
+    {
+        "value": "W Xi",
+        "isValid": false,
+        "description": "The first last name is invalid with only 1 letter, the second last name is valid",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "Wi X",
+        "isValid": false,
+        "description": "The second last name is invalid with only 1 letter, the first last name is valid",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "W X",
+        "isValid": false,
+        "description": "The both last names are invalid because they only have 1 letter",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "Holm123",
+        "isValid": false,
+        "description": "Last name does contain numbers, which makes it invalid",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "Holm!.?",
+        "isValid": false,
+        "description": "Last name does contain non alphanumeric characters, which makes it invalid",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    },
+    {
+        "value": "Holm Cuzdan",
+        "isValid": true,
+        "description": "Two valid last names seperated by a single space character"
+    },
+    {
+        "value": "Holm      Cuzdan",
+        "isValid": false,
+        "description": "Two valid last names seperated by many space characters",
+        "expected_error": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters"
+    }
+]
