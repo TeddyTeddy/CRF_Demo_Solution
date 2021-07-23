@@ -38,9 +38,10 @@ Continuing on the same bash terminal in CRF_Demo_Solution/ folder:
 
 # 2. Running The UI Test Cases
 1. cd CRF_Demo_Solution/TestProject/
-2. ./run
+2. ./run     >>> IMPORTANT! Deletes the previous runs test results in CRF_Demo_Solution/TestProject/Results/  folder
 
-The outcome of test results can be found under CRF_Demo_Solution/TestProject/Results/ folder
+IMPORTANT! The test reports are already provided under CRF_Demo_Solution/TestProject/Results/WebUI folder.
+If you execute the run command, these reports will be deleted and new test reports will be placed into that folder.
 
 # 2.1 Some Terminology Regarding TestProject
 
@@ -108,7 +109,7 @@ which are explained in the next section.
 
 The run command calls robot as such:
 
-robot -d Results/ -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:firefox -P CustomLibs Tests/
+robot -d Results/WebUI/Firefox -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:firefox -P CustomLibs Tests/
 
 ### 2.2.1 USE_EXISTING_FORM_DATA_SET AND DATA_SET_LENGTH parameters
 
