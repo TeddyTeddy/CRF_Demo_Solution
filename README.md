@@ -325,6 +325,7 @@ Referring to requirements.txt at the root of this repository, we can list the Py
 
 Note that the above dependences are mainly dependencies of the following main dependencies of TestProject:
 
++ Flask
 + robotframework
 + robotframework-browser
 + bpython (not a necessity, this and its dependencies can be removed)
