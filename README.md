@@ -283,51 +283,51 @@ Note that the verifiers uses heavily the page objects' keywords to do a complete
 
 Referring to requirements.txt at the root of this repository, we can list the PyPi project pages of each dependency as follows:
 
-backports.cached-property == 1.0.1            => https://pypi.org/project/backports.cached-property/
-blessings == 1.7                              => https://pypi.org/project/blessings/
-bpython == 0.21                               => https://pypi.org/project/bpython/
-certifi == 2020.12.5                          => https://pypi.org/project/certifi/2020.12.5/
-chardet == 4.0.0                              => https://pypi.org/project/chardet/
-click == 8.0.1                                => https://pypi.org/project/click/
-coverage == 5.5                               => https://pypi.org/project/coverage/
-curtsies == 0.3.5                             => https://pypi.org/project/curtsies/
-cwcwidth == 0.1.4                             => https://pypi.org/project/cwcwidth/
-demjson == 2.2.4                              => https://pypi.org/project/demjson/
-Flask == 1.0.2                                => https://pypi.org/project/Flask/1.0.2/
-greenlet == 1.0.0                             => https://pypi.org/project/greenlet/1.0.0/
-grpcio == 1.38.1                              => https://pypi.org/project/grpcio/1.38.1/
-grpcio-tools == 1.38.1                        => https://pypi.org/project/grpcio-tools/1.38.1/
-idna == 2.10                                  => https://pypi.org/project/idna/2.10/
-importlib-metadata == 4.0.1                   => https://pypi.org/project/importlib-metadata/4.0.1/
-itsdangerous == 2.0.1                         => https://pypi.org/project/itsdangerous/2.0.1/
-Jinja2 == 3.0.1                               => https://pypi.org/project/Jinja2/3.0.1/
-MarkupSafe == 2.0.1                           => https://pypi.org/project/MarkupSafe/2.0.1/
-mockito == 1.2.2                              => https://pypi.org/project/mockito/1.2.2/
-overrides == 6.1.0                            => https://pypi.org/project/overrides/6.1.0/
-protobuf == 3.17.3                            => https://pypi.org/project/protobuf/3.17.3/
-Pygments == 2.8.1                             => https://pypi.org/project/Pygments/2.8.1/
-pyxdg == 0.27                                 => https://pypi.org/project/pyxdg/0.27/
-requests == 2.25.1                            => https://pypi.org/project/requests/2.25.1/
-robotframework == 4.0.3                       => https://pypi.org/project/robotframework/4.0.3/
-robotframework-assertion-engine == 0.0.6      => https://pypi.org/project/robotframework-assertion-engine/0.0.6/
-robotframework-browser == 5.1.2               => https://pypi.org/project/robotframework-browser/5.1.2/
-robotframework-pythonlibcore == 3.0.0         => https://pypi.org/project/robotframework-pythonlibcore/3.0.0/
-robotframework-robocop == 1.7.1               => https://pypi.org/project/robotframework-robocop/1.7.1/
-robotframework-tidy == 1.1.1                  => https://pypi.org/project/robotframework-tidy/1.1.1/
-six == 1.15.0                                 => https://pypi.org/project/six/1.15.0/
-toml == 0.10.2                                => https://pypi.org/project/toml/0.10.2/
-typing-extensions == 3.10.0.0                 => https://pypi.org/project/typing-extensions/3.10.0.0/
-typing-utils == 0.0.3                         => https://pypi.org/project/typing-utils/0.0.3/
-urllib3 == 1.26.4                             => https://pypi.org/project/urllib3/1.26.4/
-Werkzeug == 0.14.1                            => https://pypi.org/project/Werkzeug/0.14.1/
-wrapt == 1.12.1                               => https://pypi.org/project/wrapt/1.12.1/
-zipp == 3.4.1                                 => https://pypi.org/project/zipp/3.4.1/
++ backports.cached-property == 1.0.1            => https://pypi.org/project/backports.cached-property/
++ blessings == 1.7                              => https://pypi.org/project/blessings/
++ bpython == 0.21                               => https://pypi.org/project/bpython/
++ certifi == 2020.12.5                          => https://pypi.org/project/certifi/2020.12.5/
++ chardet == 4.0.0                              => https://pypi.org/project/chardet/
++ click == 8.0.1                                => https://pypi.org/project/click/
++ coverage == 5.5                               => https://pypi.org/project/coverage/
++ curtsies == 0.3.5                             => https://pypi.org/project/curtsies/
++ cwcwidth == 0.1.4                             => https://pypi.org/project/cwcwidth/
++ demjson == 2.2.4                              => https://pypi.org/project/demjson/
++ Flask == 1.0.2                                => https://pypi.org/project/Flask/1.0.2/
++ greenlet == 1.0.0                             => https://pypi.org/project/greenlet/1.0.0/
++ grpcio == 1.38.1                              => https://pypi.org/project/grpcio/1.38.1/
++ grpcio-tools == 1.38.1                        => https://pypi.org/project/grpcio-tools/1.38.1/
++ idna == 2.10                                  => https://pypi.org/project/idna/2.10/
++ importlib-metadata == 4.0.1                   => https://pypi.org/project/importlib-metadata/4.0.1/
++ itsdangerous == 2.0.1                         => https://pypi.org/project/itsdangerous/2.0.1/
++ Jinja2 == 3.0.1                               => https://pypi.org/project/Jinja2/3.0.1/
++ MarkupSafe == 2.0.1                           => https://pypi.org/project/MarkupSafe/2.0.1/
++ mockito == 1.2.2                              => https://pypi.org/project/mockito/1.2.2/
++ overrides == 6.1.0                            => https://pypi.org/project/overrides/6.1.0/
++ protobuf == 3.17.3                            => https://pypi.org/project/protobuf/3.17.3/
++ Pygments == 2.8.1                             => https://pypi.org/project/Pygments/2.8.1/
++ pyxdg == 0.27                                 => https://pypi.org/project/pyxdg/0.27/
++ requests == 2.25.1                            => https://pypi.org/project/requests/2.25.1/
++ robotframework == 4.0.3                       => https://pypi.org/project/robotframework/4.0.3/
++ robotframework-assertion-engine == 0.0.6      => https://pypi.org/project/robotframework-assertion-engine/0.0.6/
++ robotframework-browser == 5.1.2               => https://pypi.org/project/robotframework-browser/5.1.2/
++ robotframework-pythonlibcore == 3.0.0         => https://pypi.org/project/robotframework-pythonlibcore/3.0.0/
++ robotframework-robocop == 1.7.1               => https://pypi.org/project/robotframework-robocop/1.7.1/
++ robotframework-tidy == 1.1.1                  => https://pypi.org/project/robotframework-tidy/1.1.1/
++ six == 1.15.0                                 => https://pypi.org/project/six/1.15.0/
++ toml == 0.10.2                                => https://pypi.org/project/toml/0.10.2/
++ typing-extensions == 3.10.0.0                 => https://pypi.org/project/typing-extensions/3.10.0.0/
++ typing-utils == 0.0.3                         => https://pypi.org/project/typing-utils/0.0.3/
++ urllib3 == 1.26.4                             => https://pypi.org/project/urllib3/1.26.4/
++ Werkzeug == 0.14.1                            => https://pypi.org/project/Werkzeug/0.14.1/
++ wrapt == 1.12.1                               => https://pypi.org/project/wrapt/1.12.1/
++ zipp == 3.4.1                                 => https://pypi.org/project/zipp/3.4.1/
 
 Note that the above dependences are mainly dependencies of the following main dependencies of TestProject:
 
-robotframework
-robotframework-browser
-bpython (not a necessity, this and its dependencies can be removed)
++ robotframework
++ robotframework-browser
++ bpython (not a necessity, this and its dependencies can be removed)
 
 # REFERENCES
 
