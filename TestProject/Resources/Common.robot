@@ -83,7 +83,7 @@ Stop Web Application
 	...						keyword.
 	Terminate All Processes
 
-Re-Start Web Application With No Users
+Kill Web Application
 	# First check if the user has started any flask process externally in a command line
 	# before running the "run" command, which runs robot command running the test suite
 	# if there are any, kill those processes because only one process can use port 8080
@@ -96,6 +96,19 @@ Re-Start Web Application With No Users
 			Run		kill ${pid}
 		END
 	END
+
+Start Web Application With No Init Procedure
+	# At this point, there is no system under test instance is running
+	# we can start a process running the system under test.
+	Start Process		export FLASK_APP\=demo_app;flask run --host\=0.0.0.0 --port\=8080
+	...					shell=True
+	...					alias=flasky
+	...					cwd=${EXECDIR}${/}..${/}Flasky
+	# let the system under test app to re-start in its own time
+	Sleep	1.5s
+
+Re-Start Web Application With No Users
+	Kill Web Application
 	# At this point, there is no system under test instance is running
 	# we can start a process running the system under test.
 	Start Process		export FLASK_APP\=demo_app;flask init-db;flask run --host\=0.0.0.0 --port\=8080
@@ -130,3 +143,4 @@ Log Result
 		Log		${error_message}				level=ERROR
 		Log		-------------------------		level=ERROR
 	END
+

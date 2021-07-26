@@ -1,0 +1,11 @@
+(.venv) (base) hakan@hakan-VirtualBox:~/Python/Robot/CRF_Demo_Solution/TestProject$ curl -u SuperDuperUser1 http://localhost:8080/api/auth/token
+Enter host password for user 'SuperDuperUser1':
+{"status":"SUCCESS","token":"MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2"}
+
+(.venv) (base) hakan@hakan-VirtualBox:~/Python/Robot/CRF_Demo_Solution/TestProject$ curl -u SuperDuperUser2 http://localhost:8080/api/auth/token
+Enter host password for user 'SuperDuperUser2':
+{"status":"SUCCESS","token":"MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4"}
+
+(.venv) (base) hakan@hakan-VirtualBox:~/Python/Robot/CRF_Demo_Solution/TestProject$ curl -u SuperDuperUser3 http://localhost:8080/api/auth/token
+Enter host password for user 'SuperDuperUser3':
+{"status":"SUCCESS","token":"MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3"}
