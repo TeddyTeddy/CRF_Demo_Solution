@@ -40,7 +40,13 @@ With Valid Token, Reading Users From API Should Return All System Users
 *** Test Cases ***
 With No Token, Reading Users From API Should Return Error
     ${response} =       GET     /users
-    # verify the content of the successful response
+    # verify the content of the failed response
+    Should Be Equal As Strings      ${response}[status]     FAILURE
+
+With Invalid Token, Reading Users From API Should Return Error
+    ${headers} =        Create Dictionary       Token=Invalid Token
+    ${response} =       GET     /users        headers=${headers}
+    # verify the content of the failed response
     Should Be Equal As Strings      ${response}[status]     FAILURE
 
 With Valid Token, Reading Users From API Matches With Users From DB
