@@ -1,6 +1,5 @@
 from robot.api.deco import keyword
 import requests
-import demjson
 
 class CRUD_Library:
 
@@ -11,7 +10,7 @@ class CRUD_Library:
 
         a full route                => http://0.0.0.0:8080/api/users
         the base_url of the route   => http://0.0.0.0:8080/api
-        the endpoint of the route       =>                    /users
+        the endpoint of the route   =>                        /users
 
         Args:
             base_url (str): base url of the routes provided by the API. May or may not end with /
@@ -19,6 +18,7 @@ class CRUD_Library:
         self._base_url = base_url
         self._session = requests.Session()
         self._response = None
+        self._default_headers = {'Content-Type': 'application/json'}
 
     def __del__(self):
         self._session.close()
@@ -43,14 +43,14 @@ class CRUD_Library:
         Args:
             endpoint (str): The endpoint is joined with the base_url given on library init to get the full route
             query_params (str/dict, optional): Request query parameters as a JSON object (str) or a dictionary. Defaults to None.
-            headers (str, optional): Headers as a JSON object (str) to add or override for the request. Defaults to None.
+            headers (dict, optional): Headers as dictionary to add. Defaults to None.
 
         Returns:
             dict: Returns the whole response body as dictionary
         """
         full_route = CRUD_Library.form_full_route(self._base_url, endpoint)
-        headers = demjson.decode(headers)
-        self._response = self._session.get(full_route, params=query_params, headers=headers)
+        request_headers = {**(self._default_headers), **headers}        # Python >= 3.5; a new dictionary containing the items from both headers and and default_headers
+        self._response = self._session.get(full_route, params=query_params, headers=request_headers)
         return self._response.json()  # returns a dictionary
 
 
