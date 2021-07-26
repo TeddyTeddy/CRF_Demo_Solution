@@ -18,7 +18,6 @@ Suite Setup             Run keywords   Kill Web Application  AND   Replace Datab
 
 Suite Teardown          Kill Web Application
 
-Test Template           With Valid Token, Reading Users From API Should Return All System Users
 
 *** Keywords ***
 Filter System Users By
@@ -37,7 +36,13 @@ With Valid Token, Reading Users From API Should Return All System Users
     Should Be Equal As Strings      ${response}[status]     SUCCESS
     Lists Should Be Equal       ${SYSTEM_USERS_USERNAMES}   ${response}[payload]
 
+
 *** Test Cases ***
+With No Token, Reading Users From API Should Return Error
+    ${response} =       GET     /users
+    # verify the content of the successful response
+    Should Be Equal As Strings      ${response}[status]     FAILURE
+
 With Valid Token, Reading Users From API Matches With Users From DB
     [Template]          With Valid Token, Reading Users From API Should Return All System Users
     FOR     ${system_user}      IN      @{SYSTEM_USERS}

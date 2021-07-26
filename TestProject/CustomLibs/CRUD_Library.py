@@ -49,7 +49,10 @@ class CRUD_Library:
             dict: Returns the whole response body as dictionary
         """
         full_route = CRUD_Library.form_full_route(self._base_url, endpoint)
-        request_headers = {**(self._default_headers), **headers}        # Python >= 3.5; a new dictionary containing the items from both headers and and default_headers
+        if headers:
+            request_headers = {**(self._default_headers), **headers}        # Python >= 3.5; a new dictionary containing the items from both headers and and default_headers
+        else:
+            request_headers = self._default_headers
         self._response = self._session.get(full_route, params=query_params, headers=request_headers)
         return self._response.json()  # returns a dictionary
 
