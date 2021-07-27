@@ -26,6 +26,7 @@ requests==2.25.1
 robotframework==4.0.3
 robotframework-assertion-engine==0.0.6
 robotframework-browser==5.1.2
+robotframework-databaselibrary==1.2.4
 robotframework-pythonlibcore==3.0.0
 robotframework-robocop==1.7.1
 robotframework-tidy==1.1.1
