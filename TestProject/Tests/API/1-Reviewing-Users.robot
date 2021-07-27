@@ -5,7 +5,6 @@ Documentation       This test suite contains test cases for CRF Demo API.
 ...                 The acceptance criteria we verify here is
 ...                 "1: As an API Consumer, I can review users registered in the system"
 
-Resource                ../../Resources/CrfDemoApp.robot
 Resource                ../../Resources/Common.robot
 Resource                ../../Resources/DbManager.robot
 Library                 ../../CustomLibs/CRUD_Library.py        base_url=http://0.0.0.0:8080/api
