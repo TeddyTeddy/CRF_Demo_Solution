@@ -14,19 +14,19 @@ Library                 ../../CustomLibs/CRUD_Library.py        base_url=http://
 Suite Setup             Run keywords   Kill Web Application  AND   Replace Database With New Database Having Users  AND
 ...                     Start Web Application With No Init Procedure  AND
 ...                     Initialize Database Connection    AND    Verify Tables   AND    Fetch All System Users From Db  AND
-...                     Filter System Users By  key=username
+...                     Filter System Users By  username    \${SYSTEM_USERS_USERNAMES}
 
 Suite Teardown          Kill Web Application
 
 
 *** Keywords ***
 Filter System Users By
-    [Arguments]         ${key}
-    ${SYSTEM_USERS_USERNAMES} =	    Create List
+    [Arguments]         ${key}      ${DYNAMIC_VARIABLE_NAME}
+    ${list} =	    Create List
     FOR     ${system_user}      IN    @{SYSTEM_USERS}
-        Append To List      ${SYSTEM_USERS_USERNAMES}       ${system_user}[${key}]
+        Append To List      ${list}        ${system_user}[${key}]
     END
-	Set Suite Variable		@{SYSTEM_USERS_USERNAMES}
+	Set Suite Variable		${DYNAMIC_VARIABLE_NAME}    ${list}
 
 With Valid Token, Reading Users From API Should Return All System Users
     [Arguments]         ${system_user}
