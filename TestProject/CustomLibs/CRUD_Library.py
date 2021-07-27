@@ -2,7 +2,8 @@ from robot.api.deco import keyword
 import requests
 
 class CRUD_Library:
-
+    """HTTP JSON API test library for Robot Framework.
+    """
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
     def __init__(self, base_url):
@@ -17,7 +18,6 @@ class CRUD_Library:
         """
         self._base_url = base_url
         self._session = requests.Session()
-        self._response = None
         self._default_headers = {'Content-Type': 'application/json'}
 
     def __del__(self):
@@ -25,6 +25,15 @@ class CRUD_Library:
 
     @staticmethod
     def form_full_route(base_url, endpoint):
+        """Adds endpoint to base_url and returns the full route as a result
+           If base_url ends with / it ignores it.
+        Args:
+            base_url (str): base url of the full route
+            endpoint (type): endpoint of the full route
+
+        Returns:
+            str: the full route
+        """
         if base_url.endswith('/'):
             return base_url[0:(len(base_url)-1)] + endpoint     # to prevent adding // to full route
         else:
@@ -53,7 +62,7 @@ class CRUD_Library:
             request_headers = {**(self._default_headers), **headers}        # Python >= 3.5; a new dictionary containing the items from both headers and and default_headers
         else:
             request_headers = self._default_headers
-        self._response = self._session.get(full_route, params=query_params, headers=request_headers)
-        return self._response.json()  # returns a dictionary
+        response = self._session.get(full_route, params=query_params, headers=request_headers)
+        return response.json()  # returns a dictionary
 
 
