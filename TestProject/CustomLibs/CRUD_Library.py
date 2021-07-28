@@ -72,14 +72,44 @@ class CRUD_Library:
         except HTTPError as http_err: #  for 4XX and 5XX codes
             if http_err.response.status_code in range(500, 600):  # for 5XX codes
                 logger.error(f'HTTP error occurred: {http_err}')
-                assert False    # Do not proceed with executing the rest of the test, because system under test has crashed with 5XX.
+                assert False, "System under test has crashed with 5XX"
             elif http_err.response.status_code in range(400, 500):  # for 4XX codes
                 return response.json()  # returns a dictionary
         except Exception as other_error:
             logger.error(f'Other error occurred: {other_error}')
+            assert False, "Do not proceed with executing the rest of the test, investigate this exception"
+
+
+    @keyword
+    def PUT(self, endpoint, body=None, headers=None):
+        """	Sends a PUT request to the endpoint.
+            The endpoint is joined with the base_url given on library init.
+
+        Args:
+            endpoint (str): The endpoint is joined with the base_url given on library init to get the full route
+            body (dict, optional): Request body parameters as a dictionary. Defaults to None.
+            headers (dict, optional): Headers as dictionary to add. Defaults to None.
+        """
+        full_route = CRUD_Library.form_full_route(self._base_url, endpoint)
+        if headers:
+            request_headers = {**(self._default_headers), **headers}        # Python >= 3.5; a new dictionary containing the items from both headers and and default_headers
+        else:
+            request_headers = self._default_headers
+        response = self._session.put(full_route, data=body, headers=request_headers)
+
+        try:
+            response.raise_for_status() # If the response was successful, no Exception will be raised
+            return response.json()  # returns a dictionary
+        except HTTPError as http_err: #  for 4XX and 5XX codes
+            logger.error(f'HTTP error occurred: {http_err}')
+            if http_err.response.status_code in range(500, 600):  # for 5XX codes
+                assert False, "System under test has crashed with 5XX."
+            elif http_err.response.status_code in range(400, 500):  # for 4XX codes
+                if response.headers.get('content-type') == 'application/json':
+                    return response.json()  # returns a dictionary
+                else:
+                    assert False, f"We expected a JSON, but received {response.headers.get('content-type')}"
+
+        except Exception as other_error:
+            logger.error(f'Other error occurred: {other_error}')
             assert False    # Do not proceed with executing the rest of the test, investigate this exception
-
-
-
-
-

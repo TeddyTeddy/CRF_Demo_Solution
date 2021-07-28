@@ -4,8 +4,6 @@
 # robot -d Results/WebUI/Webkit -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:webkit -P CustomLibs Tests/
 # robot -d Results/WebUI/Chromium -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:chromium -P CustomLibs Tests/
 
-# robot -d Results/API/ Tests/API/1-Reviewing-Users.robot
-
-robot -d Results/API/ Tests/API/2-Getting-Personal-Information.robot
+robot -d Results/API/ Tests/API/
 
 # robot -d Results/WebUI/Chromium -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True -v BROWSER:chromium -P CustomLibs Tests/WebUI/2-Login.robot

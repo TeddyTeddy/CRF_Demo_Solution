@@ -4,6 +4,9 @@ Documentation       This test suite contains test cases for CRF Demo API.
 ...                 https://github.com/Interview-demoapp/Flasky
 ...                 The acceptance criteria we verify here is
 ...                 "1: As an API Consumer, I can review users registered in the system"
+...                 Definitions
+...                 (1) System User: The user, who is registered to the system under test
+...                 (2) API User: The user, who calls the API to fetch information (i.e. username) about the system user
 
 Resource                ../../Resources/Common.robot
 Resource                ../../Resources/DbManager.robot
