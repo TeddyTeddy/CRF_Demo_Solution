@@ -1,5 +1,7 @@
 from robot.api.deco import keyword
+from robot.api import logger
 import requests
+from requests.exceptions import HTTPError
 
 class CRUD_Library:
     """HTTP JSON API test library for Robot Framework.
@@ -63,6 +65,21 @@ class CRUD_Library:
         else:
             request_headers = self._default_headers
         response = self._session.get(full_route, params=query_params, headers=request_headers)
-        return response.json()  # returns a dictionary
+
+        try:
+            response.raise_for_status() # If the response was successful, no Exception will be raised
+            return response.json()  # returns a dictionary
+        except HTTPError as http_err: #  for 4XX and 5XX codes
+            if http_err.response.status_code in range(500, 600):  # for 5XX codes
+                logger.error(f'HTTP error occurred: {http_err}')
+                assert False    # Do not proceed with executing the rest of the test, because system under test has crashed with 5XX.
+            elif http_err.response.status_code in range(400, 500):  # for 4XX codes
+                return response.json()  # returns a dictionary
+        except Exception as other_error:
+            logger.error(f'Other error occurred: {other_error}')
+            assert False    # Do not proceed with executing the rest of the test, investigate this exception
+
+
+
 
 
