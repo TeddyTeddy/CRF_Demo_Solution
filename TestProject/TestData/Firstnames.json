@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "An empty first name",
-        "expected_error": "Please fill out this field."
+        "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
     },
     {
         "value": "Hakan",

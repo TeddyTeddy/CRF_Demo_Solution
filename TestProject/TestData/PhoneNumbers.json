@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "An empty phone number",
-        "expected_error": "Please fill out this field."
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "+358506662712",
@@ -14,13 +14,13 @@
         "value": "+358+50666+2712",
         "isValid": false,
         "description": "An invalid phone number with a country code with second and third + signs misplaced",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "0+506662712+",
         "isValid": false,
         "description": "An invalid phone number with two + signs misplaced",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "0506662712",
@@ -31,24 +31,24 @@
         "value": "+358506abc!#662712",
         "isValid": false,
         "description": "An invalid phone number containing letters, non-alphanumeric characters",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "050!?.#662712",
         "isValid": false,
         "description": "An invalid phone number containing non-alphanumeric characters",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "+358abc662712xyz",
         "isValid": false,
         "description": "An invalid phone number containing letters in between",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     },
     {
         "value": "+35840 687 54 53",
         "isValid": false,
         "description": "An invalid phone number containing spaces in between digits",
-        "expected_error": "phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
+        "expected_error": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code"
     }
 ]

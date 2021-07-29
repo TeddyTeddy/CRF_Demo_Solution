@@ -3,7 +3,7 @@
         "value": "",
         "isValid": false,
         "description": "an empty username",
-        "expected_error": "Please fill out this field."
+        "expected_error": "Minimum 8 characters required. Space character is not allowed"
     },
     {
         "value": "!#%&/¤%",
