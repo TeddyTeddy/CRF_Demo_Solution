@@ -101,13 +101,14 @@ class CRUD_Library:
             response.raise_for_status() # If the response was successful, no Exception will be raised
             return response.json()  # returns a dictionary
         except HTTPError as http_err: #  for 4XX and 5XX codes
-            logger.error(f'HTTP error occurred: {http_err}')
             if http_err.response.status_code in range(500, 600):  # for 5XX codes
+                logger.error(f'HTTP error occurred: {http_err}')
                 assert False, "System under test has crashed with 5XX."
             elif http_err.response.status_code in range(400, 500):  # for 4XX codes
                 if response.headers.get('content-type') == 'application/json':
                     return response.json()  # returns a dictionary
                 else:
+                    logger.info(f'HTTP error occurred: {http_err}')
                     assert False, f"We expected a JSON, but received {response.headers.get('content-type')}"
 
         except Exception as other_error:
