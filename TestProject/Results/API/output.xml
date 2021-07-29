@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.0.3 (Python 3.7.4 on linux)" generated="20210729 07:37:55.293" rpa="false" schemaversion="2">
+<robot generator="Robot 4.0.3 (Python 3.7.4 on linux)" generated="20210729 08:04:56.093" rpa="false" schemaversion="2">
 <suite id="s1" name="API" source="/home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/Tests/API">
 <suite id="s1-s1" name="1-Reviewing-Users" source="/home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/Tests/API/1-Reviewing-Users.robot">
 <kw name="Run Keywords" library="BuiltIn" type="SETUP">
@@ -25,17 +25,17 @@
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:37:56.120" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:37:56.132" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:37:56.132" level="INFO">${pids} = 7792</msg>
-<status status="PASS" starttime="20210729 07:37:56.116" endtime="20210729 07:37:56.132"/>
+<msg timestamp="20210729 08:04:56.734" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:04:56.743" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:04:56.743" level="INFO">${pids} = 9637</msg>
+<status status="PASS" starttime="20210729 08:04:56.730" endtime="20210729 08:04:56.743"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:56.136" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:37:56.133" endtime="20210729 07:37:56.136"/>
+<msg timestamp="20210729 08:04:56.746" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:04:56.743" endtime="20210729 08:04:56.746"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -43,37 +43,37 @@
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:56.136" level="INFO">${pids} = ['7792']</msg>
-<status status="PASS" starttime="20210729 07:37:56.136" endtime="20210729 07:37:56.136"/>
+<msg timestamp="20210729 08:04:56.747" level="INFO">${pids} = ['9637']</msg>
+<status status="PASS" starttime="20210729 08:04:56.747" endtime="20210729 08:04:56.747"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7792</var>
+<var name="${pid}">9637</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:56.139" level="INFO">Running command 'kill 7792 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:56.137" endtime="20210729 07:37:56.140"/>
+<msg timestamp="20210729 08:04:56.750" level="INFO">Running command 'kill 9637 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:56.747" endtime="20210729 08:04:56.750"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:56.137" endtime="20210729 07:37:56.140"/>
+<status status="PASS" starttime="20210729 08:04:56.747" endtime="20210729 08:04:56.750"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:56.137" endtime="20210729 07:37:56.140"/>
+<status status="PASS" starttime="20210729 08:04:56.747" endtime="20210729 08:04:56.751"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:56.136" endtime="20210729 07:37:56.140"/>
+<status status="PASS" starttime="20210729 08:04:56.747" endtime="20210729 08:04:56.751"/>
 </branch>
-<status status="PASS" starttime="20210729 07:37:56.136" endtime="20210729 07:37:56.140"/>
+<status status="PASS" starttime="20210729 08:04:56.746" endtime="20210729 08:04:56.751"/>
 </if>
-<status status="PASS" starttime="20210729 07:37:56.116" endtime="20210729 07:37:56.140"/>
+<status status="PASS" starttime="20210729 08:04:56.730" endtime="20210729 08:04:56.751"/>
 </kw>
 <kw name="Replace Database With New Database Having Users" library="DbManager">
 <kw name="Set Variable" library="BuiltIn">
 <var>${source}</var>
 <arg>${EXECDIR}${/}TestData${/}demo_app_with_users.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:56.141" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:56.141" endtime="20210729 07:37:56.141"/>
+<msg timestamp="20210729 08:04:56.752" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:56.751" endtime="20210729 08:04:56.752"/>
 </kw>
 <kw name="Get Path To App Database" library="DbManager">
 <var>${target}</var>
@@ -81,34 +81,34 @@
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:56.141" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:37:56.141" endtime="20210729 07:37:56.141"/>
+<msg timestamp="20210729 08:04:56.752" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:04:56.752" endtime="20210729 08:04:56.752"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:37:56.142" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:37:56.142" endtime="20210729 07:37:56.142"/>
+<msg timestamp="20210729 08:04:56.753" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:04:56.752" endtime="20210729 08:04:56.753"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:56.142" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:56.142" endtime="20210729 07:37:56.142"/>
+<msg timestamp="20210729 08:04:56.753" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:56.753" endtime="20210729 08:04:56.753"/>
 </kw>
-<msg timestamp="20210729 07:37:56.142" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:56.141" endtime="20210729 07:37:56.142"/>
+<msg timestamp="20210729 08:04:56.753" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:56.752" endtime="20210729 08:04:56.753"/>
 </kw>
 <kw name="Run" library="OperatingSystem">
 <arg>cp ${source} ${target}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:56.145" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:56.142" endtime="20210729 07:37:56.154"/>
+<msg timestamp="20210729 08:04:56.756" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:56.753" endtime="20210729 08:04:56.757"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:56.140" endtime="20210729 07:37:56.154"/>
+<status status="PASS" starttime="20210729 08:04:56.751" endtime="20210729 08:04:56.757"/>
 </kw>
 <kw name="Start Web Application With No Init Procedure" library="Common">
 <kw name="Start Process" library="Process">
@@ -117,17 +117,17 @@
 <arg>alias=flasky</arg>
 <arg>cwd=${EXECDIR}${/}..${/}Flasky</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20210729 07:37:56.156" level="INFO">Starting process:
+<msg timestamp="20210729 08:04:56.758" level="INFO">Starting process:
 export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
-<status status="PASS" starttime="20210729 07:37:56.155" endtime="20210729 07:37:56.160"/>
+<status status="PASS" starttime="20210729 08:04:56.757" endtime="20210729 08:04:56.761"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20210729 07:37:57.661" level="INFO">Slept 1 second 500 milliseconds</msg>
-<status status="PASS" starttime="20210729 07:37:56.160" endtime="20210729 07:37:57.661"/>
+<msg timestamp="20210729 08:04:58.267" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20210729 08:04:56.761" endtime="20210729 08:04:58.267"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:56.155" endtime="20210729 07:37:57.662"/>
+<status status="PASS" starttime="20210729 08:04:56.757" endtime="20210729 08:04:58.268"/>
 </kw>
 <kw name="Initialize Database Connection" library="DbManager">
 <kw name="Get Path To App Database" library="DbManager">
@@ -136,47 +136,47 @@ export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:57.663" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:37:57.662" endtime="20210729 07:37:57.663"/>
+<msg timestamp="20210729 08:04:58.269" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:04:58.269" endtime="20210729 08:04:58.269"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:37:57.663" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:37:57.663" endtime="20210729 07:37:57.663"/>
+<msg timestamp="20210729 08:04:58.269" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:04:58.269" endtime="20210729 08:04:58.269"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:57.665" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:57.663" endtime="20210729 07:37:57.665"/>
+<msg timestamp="20210729 08:04:58.270" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:58.270" endtime="20210729 08:04:58.270"/>
 </kw>
-<msg timestamp="20210729 07:37:57.665" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:57.662" endtime="20210729 07:37:57.665"/>
+<msg timestamp="20210729 08:04:58.270" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:58.268" endtime="20210729 08:04:58.270"/>
 </kw>
 <kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
 <arg>sqlite3</arg>
 <arg>database='${path_to_database}'</arg>
 <doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
 connect to the database using the map string `db_custom_param_string`.</doc>
-<msg timestamp="20210729 07:37:57.666" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
-<status status="PASS" starttime="20210729 07:37:57.665" endtime="20210729 07:37:57.670"/>
+<msg timestamp="20210729 08:04:58.272" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
+<status status="PASS" starttime="20210729 08:04:58.270" endtime="20210729 08:04:58.272"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.662" endtime="20210729 07:37:57.670"/>
+<status status="PASS" starttime="20210729 08:04:58.268" endtime="20210729 08:04:58.272"/>
 </kw>
 <kw name="Verify Tables" library="DbManager">
 <kw name="Table Must Exist" library="DatabaseLibrary">
 <arg>user</arg>
 <doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
 explicit transaction commit or rollback.</doc>
-<msg timestamp="20210729 07:37:57.671" level="INFO">Executing : Table Must Exist  |  user </msg>
-<msg timestamp="20210729 07:37:57.671" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
-<status status="PASS" starttime="20210729 07:37:57.671" endtime="20210729 07:37:57.673"/>
+<msg timestamp="20210729 08:04:58.273" level="INFO">Executing : Table Must Exist  |  user </msg>
+<msg timestamp="20210729 08:04:58.273" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
+<status status="PASS" starttime="20210729 08:04:58.272" endtime="20210729 08:04:58.273"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.670" endtime="20210729 07:37:57.673"/>
+<status status="PASS" starttime="20210729 08:04:58.272" endtime="20210729 08:04:58.273"/>
 </kw>
 <kw name="Fetch All System Users From Db" library="DbManager">
 <kw name="Query" library="DatabaseLibrary">
@@ -185,15 +185,15 @@ explicit transaction commit or rollback.</doc>
 <doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
 input `sansTran` to True to run command without an explicit transaction commit or rollback.
 Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
-<msg timestamp="20210729 07:37:57.674" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
-<msg timestamp="20210729 07:37:57.674" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
-<status status="PASS" starttime="20210729 07:37:57.674" endtime="20210729 07:37:57.674"/>
+<msg timestamp="20210729 08:04:58.273" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
+<msg timestamp="20210729 08:04:58.274" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
+<status status="PASS" starttime="20210729 08:04:58.273" endtime="20210729 08:04:58.274"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>${SYSTEM_USERS}</var>
 <doc>Returns a list containing given items.</doc>
-<msg timestamp="20210729 07:37:57.675" level="INFO">${SYSTEM_USERS} = []</msg>
-<status status="PASS" starttime="20210729 07:37:57.674" endtime="20210729 07:37:57.675"/>
+<msg timestamp="20210729 08:04:58.274" level="INFO">${SYSTEM_USERS} = []</msg>
+<status status="PASS" starttime="20210729 08:04:58.274" endtime="20210729 08:04:58.274"/>
 </kw>
 <for flavor="IN">
 <var>${user}</var>
@@ -203,8 +203,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.675" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:57.675" endtime="20210729 07:37:57.675"/>
+<msg timestamp="20210729 08:04:58.275" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:58.274" endtime="20210729 08:04:58.275"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -214,23 +214,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.676" endtime="20210729 07:37:57.676"/>
+<status status="PASS" starttime="20210729 08:04:58.275" endtime="20210729 08:04:58.275"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.676" endtime="20210729 07:37:57.677"/>
+<status status="PASS" starttime="20210729 08:04:58.275" endtime="20210729 08:04:58.276"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.675" endtime="20210729 07:37:57.677"/>
+<status status="PASS" starttime="20210729 08:04:58.274" endtime="20210729 08:04:58.276"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.677" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:57.677" endtime="20210729 07:37:57.677"/>
+<msg timestamp="20210729 08:04:58.276" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:58.276" endtime="20210729 08:04:58.276"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -240,23 +240,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.677" endtime="20210729 07:37:57.678"/>
+<status status="PASS" starttime="20210729 08:04:58.276" endtime="20210729 08:04:58.277"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.678" endtime="20210729 07:37:57.678"/>
+<status status="PASS" starttime="20210729 08:04:58.277" endtime="20210729 08:04:58.277"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.677" endtime="20210729 07:37:57.678"/>
+<status status="PASS" starttime="20210729 08:04:58.276" endtime="20210729 08:04:58.277"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser3', 'John', 'Brown', '0508094677', 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.678" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:57.678" endtime="20210729 07:37:57.678"/>
+<msg timestamp="20210729 08:04:58.277" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:58.277" endtime="20210729 08:04:58.277"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -266,25 +266,25 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.678" endtime="20210729 07:37:57.679"/>
+<status status="PASS" starttime="20210729 08:04:58.277" endtime="20210729 08:04:58.278"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.679" endtime="20210729 07:37:57.679"/>
+<status status="PASS" starttime="20210729 08:04:58.278" endtime="20210729 08:04:58.279"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.678" endtime="20210729 07:37:57.679"/>
+<status status="PASS" starttime="20210729 08:04:58.277" endtime="20210729 08:04:58.279"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:57.675" endtime="20210729 07:37:57.679"/>
+<status status="PASS" starttime="20210729 08:04:58.274" endtime="20210729 08:04:58.279"/>
 </for>
 <kw name="Set Suite Variable" library="BuiltIn">
 <arg>@{SYSTEM_USERS}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<msg timestamp="20210729 07:37:57.680" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
-<status status="PASS" starttime="20210729 07:37:57.680" endtime="20210729 07:37:57.680"/>
+<msg timestamp="20210729 08:04:58.279" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
+<status status="PASS" starttime="20210729 08:04:58.279" endtime="20210729 08:04:58.279"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.673" endtime="20210729 07:37:57.680"/>
+<status status="PASS" starttime="20210729 08:04:58.273" endtime="20210729 08:04:58.280"/>
 </kw>
 <kw name="Filter System Users By">
 <arg>username</arg>
@@ -306,8 +306,8 @@ Filter System Users By lastname ${SYSTEM_USERS_LASTNAMES}</doc>
 <kw name="Create List" library="BuiltIn">
 <var>${list}</var>
 <doc>Returns a list containing given items.</doc>
-<msg timestamp="20210729 07:37:57.686" level="INFO">${list} = []</msg>
-<status status="PASS" starttime="20210729 07:37:57.680" endtime="20210729 07:37:57.686"/>
+<msg timestamp="20210729 08:04:58.280" level="INFO">${list} = []</msg>
+<status status="PASS" starttime="20210729 08:04:58.280" endtime="20210729 08:04:58.280"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -318,9 +318,9 @@ Filter System Users By lastname ${SYSTEM_USERS_LASTNAMES}</doc>
 <arg>${list}</arg>
 <arg>${system_user}[${key}]</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.686" endtime="20210729 07:37:57.687"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.281"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.686" endtime="20210729 07:37:57.687"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.281"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -328,9 +328,9 @@ Filter System Users By lastname ${SYSTEM_USERS_LASTNAMES}</doc>
 <arg>${list}</arg>
 <arg>${system_user}[${key}]</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.687" endtime="20210729 07:37:57.687"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.281"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.687" endtime="20210729 07:37:57.687"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.281"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -338,68 +338,68 @@ Filter System Users By lastname ${SYSTEM_USERS_LASTNAMES}</doc>
 <arg>${list}</arg>
 <arg>${system_user}[${key}]</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:57.687" endtime="20210729 07:37:57.688"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.282"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.687" endtime="20210729 07:37:57.688"/>
+<status status="PASS" starttime="20210729 08:04:58.281" endtime="20210729 08:04:58.282"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:57.686" endtime="20210729 07:37:57.688"/>
+<status status="PASS" starttime="20210729 08:04:58.280" endtime="20210729 08:04:58.282"/>
 </for>
 <kw name="Set Suite Variable" library="BuiltIn">
 <arg>${DYNAMIC_VARIABLE_NAME}</arg>
 <arg>${list}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<msg timestamp="20210729 07:37:57.688" level="INFO">${SYSTEM_USERS_USERNAMES} = ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3']</msg>
-<status status="PASS" starttime="20210729 07:37:57.688" endtime="20210729 07:37:57.688"/>
+<msg timestamp="20210729 08:04:58.282" level="INFO">${SYSTEM_USERS_USERNAMES} = ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3']</msg>
+<status status="PASS" starttime="20210729 08:04:58.282" endtime="20210729 08:04:58.282"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.680" endtime="20210729 07:37:57.688"/>
+<status status="PASS" starttime="20210729 08:04:58.280" endtime="20210729 08:04:58.282"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:56.115" endtime="20210729 07:37:57.688"/>
+<status status="PASS" starttime="20210729 08:04:56.730" endtime="20210729 08:04:58.282"/>
 </kw>
 <test id="s1-s1-t1" name="With No Token, Reading Users From API Should Return Error">
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:57.695" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.689" endtime="20210729 07:37:57.695"/>
+<msg timestamp="20210729 08:04:58.290" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.283" endtime="20210729 08:04:58.290"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20210729 07:37:57.696" level="FAIL">SUCCESS != FAILURE</msg>
-<status status="FAIL" starttime="20210729 07:37:57.696" endtime="20210729 07:37:57.696"/>
+<msg timestamp="20210729 08:04:58.291" level="FAIL">SUCCESS != FAILURE</msg>
+<status status="FAIL" starttime="20210729 08:04:58.290" endtime="20210729 08:04:58.291"/>
 </kw>
 <doc>Given no token, when reading usernames from API, the api
 must return FAILURE in its response status</doc>
-<status status="FAIL" starttime="20210729 07:37:57.688" endtime="20210729 07:37:57.696">SUCCESS != FAILURE</status>
+<status status="FAIL" starttime="20210729 08:04:58.282" endtime="20210729 08:04:58.291">SUCCESS != FAILURE</status>
 </test>
 <test id="s1-s1-t2" name="With Invalid Token, Reading Users From API Should Return Error">
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${headers}</var>
 <arg>Token=Invalid Token</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.698" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.697" endtime="20210729 07:37:57.698"/>
+<msg timestamp="20210729 08:04:58.292" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.292" endtime="20210729 08:04:58.292"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:57.701" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.698" endtime="20210729 07:37:57.701"/>
+<msg timestamp="20210729 08:04:58.296" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.292" endtime="20210729 08:04:58.296"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<msg timestamp="20210729 07:37:57.702" level="FAIL">SUCCESS != FAILURE</msg>
-<status status="FAIL" starttime="20210729 07:37:57.702" endtime="20210729 07:37:57.702"/>
+<msg timestamp="20210729 08:04:58.297" level="FAIL">SUCCESS != FAILURE</msg>
+<status status="FAIL" starttime="20210729 08:04:58.296" endtime="20210729 08:04:58.297"/>
 </kw>
 <doc>Given an invalid token, when reading usernames from API, the api
 must return FAILURE in its response status</doc>
-<status status="FAIL" starttime="20210729 07:37:57.697" endtime="20210729 07:37:57.702">SUCCESS != FAILURE</status>
+<status status="FAIL" starttime="20210729 08:04:58.291" endtime="20210729 08:04:58.297">SUCCESS != FAILURE</status>
 </test>
 <test id="s1-s1-t3" name="With Valid Token, Reading Users From API Matches With Users From DB">
 <for flavor="IN">
@@ -418,32 +418,32 @@ contains usernames (i.e. SYSTEM_USERS_USERNAMES) read from the database.</doc>
 <var>${headers}</var>
 <arg>Token=${system_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.704" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.704" endtime="20210729 07:37:57.704"/>
+<msg timestamp="20210729 08:04:58.299" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.299" endtime="20210729 08:04:58.299"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:57.708" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.704" endtime="20210729 07:37:57.708"/>
+<msg timestamp="20210729 08:04:58.303" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.299" endtime="20210729 08:04:58.303"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:57.709" endtime="20210729 07:37:57.709"/>
+<status status="PASS" starttime="20210729 08:04:58.303" endtime="20210729 08:04:58.304"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Collections">
 <arg>${SYSTEM_USERS_USERNAMES}</arg>
 <arg>${response}[payload]</arg>
 <doc>Fails if given lists are unequal.</doc>
-<status status="PASS" starttime="20210729 07:37:57.709" endtime="20210729 07:37:57.709"/>
+<status status="PASS" starttime="20210729 08:04:58.304" endtime="20210729 08:04:58.304"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.704" endtime="20210729 07:37:57.709"/>
+<status status="PASS" starttime="20210729 08:04:58.298" endtime="20210729 08:04:58.304"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.703" endtime="20210729 07:37:57.709"/>
+<status status="PASS" starttime="20210729 08:04:58.298" endtime="20210729 08:04:58.304"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -458,32 +458,32 @@ contains usernames (i.e. SYSTEM_USERS_USERNAMES) read from the database.</doc>
 <var>${headers}</var>
 <arg>Token=${system_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.711" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.710" endtime="20210729 07:37:57.711"/>
+<msg timestamp="20210729 08:04:58.305" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.305" endtime="20210729 08:04:58.305"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:57.715" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.711" endtime="20210729 07:37:57.715"/>
+<msg timestamp="20210729 08:04:58.308" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.305" endtime="20210729 08:04:58.309"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:57.715" endtime="20210729 07:37:57.719"/>
+<status status="PASS" starttime="20210729 08:04:58.309" endtime="20210729 08:04:58.309"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Collections">
 <arg>${SYSTEM_USERS_USERNAMES}</arg>
 <arg>${response}[payload]</arg>
 <doc>Fails if given lists are unequal.</doc>
-<status status="PASS" starttime="20210729 07:37:57.719" endtime="20210729 07:37:57.720"/>
+<status status="PASS" starttime="20210729 08:04:58.309" endtime="20210729 08:04:58.309"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.710" endtime="20210729 07:37:57.726"/>
+<status status="PASS" starttime="20210729 08:04:58.304" endtime="20210729 08:04:58.310"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.709" endtime="20210729 07:37:57.728"/>
+<status status="PASS" starttime="20210729 08:04:58.304" endtime="20210729 08:04:58.310"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -498,38 +498,38 @@ contains usernames (i.e. SYSTEM_USERS_USERNAMES) read from the database.</doc>
 <var>${headers}</var>
 <arg>Token=${system_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:57.730" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.729" endtime="20210729 07:37:57.730"/>
+<msg timestamp="20210729 08:04:58.310" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.310" endtime="20210729 08:04:58.310"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:57.734" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:57.730" endtime="20210729 07:37:57.734"/>
+<msg timestamp="20210729 08:04:58.315" level="INFO">${response} = {'payload': ['SuperDuperUser1', 'SuperDuperUser2', 'SuperDuperUser3'], 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:58.311" endtime="20210729 08:04:58.315"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:57.735" endtime="20210729 07:37:57.735"/>
+<status status="PASS" starttime="20210729 08:04:58.318" endtime="20210729 08:04:58.318"/>
 </kw>
 <kw name="Lists Should Be Equal" library="Collections">
 <arg>${SYSTEM_USERS_USERNAMES}</arg>
 <arg>${response}[payload]</arg>
 <doc>Fails if given lists are unequal.</doc>
-<status status="PASS" starttime="20210729 07:37:57.735" endtime="20210729 07:37:57.735"/>
+<status status="PASS" starttime="20210729 08:04:58.318" endtime="20210729 08:04:58.319"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.729" endtime="20210729 07:37:57.735"/>
+<status status="PASS" starttime="20210729 08:04:58.310" endtime="20210729 08:04:58.319"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.728" endtime="20210729 07:37:57.735"/>
+<status status="PASS" starttime="20210729 08:04:58.310" endtime="20210729 08:04:58.319"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:57.703" endtime="20210729 07:37:57.736"/>
+<status status="PASS" starttime="20210729 08:04:58.298" endtime="20210729 08:04:58.319"/>
 </for>
 <doc>Valid token results in reading all users from the database regardless of the system_user
 That is, as long as system_user has a valid token, it can retrive usernames from the API.</doc>
-<status status="PASS" starttime="20210729 07:37:57.702" endtime="20210729 07:37:57.736"/>
+<status status="PASS" starttime="20210729 08:04:58.297" endtime="20210729 08:04:58.319"/>
 </test>
 <kw name="Kill Web Application" library="Common" type="TEARDOWN">
 <kw name="Run And Return Rc And Output" library="OperatingSystem">
@@ -537,19 +537,19 @@ That is, as long as system_user has a valid token, it can retrive usernames from
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:37:57.739" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:37:57.747" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:37:57.747" level="INFO">${pids} = 7815
-7823
-7830</msg>
-<status status="PASS" starttime="20210729 07:37:57.736" endtime="20210729 07:37:57.747"/>
+<msg timestamp="20210729 08:04:58.323" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:04:58.330" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:04:58.330" level="INFO">${pids} = 9660
+9667
+9674</msg>
+<status status="PASS" starttime="20210729 08:04:58.320" endtime="20210729 08:04:58.330"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:57.762" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:37:57.761" endtime="20210729 07:37:57.762"/>
+<msg timestamp="20210729 08:04:58.331" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:04:58.331" endtime="20210729 08:04:58.331"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -557,49 +557,49 @@ That is, as long as system_user has a valid token, it can retrive usernames from
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:57.763" level="INFO">${pids} = ['7815', '7823', '7830']</msg>
-<status status="PASS" starttime="20210729 07:37:57.763" endtime="20210729 07:37:57.763"/>
+<msg timestamp="20210729 08:04:58.332" level="INFO">${pids} = ['9660', '9667', '9674']</msg>
+<status status="PASS" starttime="20210729 08:04:58.332" endtime="20210729 08:04:58.332"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7815</var>
+<var name="${pid}">9660</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:57.766" level="INFO">Running command 'kill 7815 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:57.763" endtime="20210729 07:37:57.766"/>
+<msg timestamp="20210729 08:04:58.336" level="INFO">Running command 'kill 9660 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:58.332" endtime="20210729 08:04:58.336"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.763" endtime="20210729 07:37:57.766"/>
+<status status="PASS" starttime="20210729 08:04:58.332" endtime="20210729 08:04:58.337"/>
 </iter>
 <iter>
-<var name="${pid}">7823</var>
+<var name="${pid}">9667</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:57.769" level="INFO">Running command 'kill 7823 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:57.767" endtime="20210729 07:37:57.769"/>
+<msg timestamp="20210729 08:04:58.340" level="INFO">Running command 'kill 9667 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:58.337" endtime="20210729 08:04:58.340"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.766" endtime="20210729 07:37:57.769"/>
+<status status="PASS" starttime="20210729 08:04:58.337" endtime="20210729 08:04:58.340"/>
 </iter>
 <iter>
-<var name="${pid}">7830</var>
+<var name="${pid}">9674</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:57.772" level="INFO">Running command 'kill 7830 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:57.769" endtime="20210729 07:37:57.772"/>
+<msg timestamp="20210729 08:04:58.347" level="INFO">Running command 'kill 9674 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:58.341" endtime="20210729 08:04:58.348"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.769" endtime="20210729 07:37:57.772"/>
+<status status="PASS" starttime="20210729 08:04:58.340" endtime="20210729 08:04:58.348"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:57.763" endtime="20210729 07:37:57.772"/>
+<status status="PASS" starttime="20210729 08:04:58.332" endtime="20210729 08:04:58.348"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:57.762" endtime="20210729 07:37:57.772"/>
+<status status="PASS" starttime="20210729 08:04:58.332" endtime="20210729 08:04:58.348"/>
 </branch>
-<status status="PASS" starttime="20210729 07:37:57.762" endtime="20210729 07:37:57.772"/>
+<status status="PASS" starttime="20210729 08:04:58.331" endtime="20210729 08:04:58.348"/>
 </if>
-<status status="PASS" starttime="20210729 07:37:57.736" endtime="20210729 07:37:57.772"/>
+<status status="PASS" starttime="20210729 08:04:58.320" endtime="20210729 08:04:58.348"/>
 </kw>
 <doc>This test suite contains test cases for CRF Demo API.
 Documentation for the API can be found:
@@ -609,7 +609,7 @@ The acceptance criteria we verify here is
 Definitions
 (1) System User: The user, who is registered to the system under test
 (2) API User: The user, who calls the API to fetch information (i.e. username) about the system user</doc>
-<status status="FAIL" starttime="20210729 07:37:55.315" endtime="20210729 07:37:57.772"/>
+<status status="FAIL" starttime="20210729 08:04:56.121" endtime="20210729 08:04:58.348"/>
 </suite>
 <suite id="s1-s2" name="2-Getting-Personal-Information" source="/home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/Tests/API/2-Getting-Personal-Information.robot">
 <kw name="Run Keywords" library="BuiltIn" type="SETUP">
@@ -631,17 +631,17 @@ Definitions
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:37:57.801" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:37:57.809" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:37:57.809" level="INFO">${pids} = 7859</msg>
-<status status="PASS" starttime="20210729 07:37:57.788" endtime="20210729 07:37:57.809"/>
+<msg timestamp="20210729 08:04:58.366" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:04:58.377" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:04:58.377" level="INFO">${pids} = 9703</msg>
+<status status="PASS" starttime="20210729 08:04:58.362" endtime="20210729 08:04:58.377"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:57.810" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:37:57.809" endtime="20210729 07:37:57.810"/>
+<msg timestamp="20210729 08:04:58.379" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:04:58.378" endtime="20210729 08:04:58.379"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -649,37 +649,37 @@ Definitions
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:57.811" level="INFO">${pids} = ['7859']</msg>
-<status status="PASS" starttime="20210729 07:37:57.811" endtime="20210729 07:37:57.811"/>
+<msg timestamp="20210729 08:04:58.380" level="INFO">${pids} = ['9703']</msg>
+<status status="PASS" starttime="20210729 08:04:58.379" endtime="20210729 08:04:58.380"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7859</var>
+<var name="${pid}">9703</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:57.816" level="INFO">Running command 'kill 7859 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:57.812" endtime="20210729 07:37:57.816"/>
+<msg timestamp="20210729 08:04:58.386" level="INFO">Running command 'kill 9703 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:58.381" endtime="20210729 08:04:58.386"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.811" endtime="20210729 07:37:57.817"/>
+<status status="PASS" starttime="20210729 08:04:58.380" endtime="20210729 08:04:58.386"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:57.811" endtime="20210729 07:37:57.817"/>
+<status status="PASS" starttime="20210729 08:04:58.380" endtime="20210729 08:04:58.386"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:57.810" endtime="20210729 07:37:57.817"/>
+<status status="PASS" starttime="20210729 08:04:58.379" endtime="20210729 08:04:58.386"/>
 </branch>
-<status status="PASS" starttime="20210729 07:37:57.810" endtime="20210729 07:37:57.817"/>
+<status status="PASS" starttime="20210729 08:04:58.379" endtime="20210729 08:04:58.387"/>
 </if>
-<status status="PASS" starttime="20210729 07:37:57.787" endtime="20210729 07:37:57.817"/>
+<status status="PASS" starttime="20210729 08:04:58.362" endtime="20210729 08:04:58.387"/>
 </kw>
 <kw name="Replace Database With New Database Having Users" library="DbManager">
 <kw name="Set Variable" library="BuiltIn">
 <var>${source}</var>
 <arg>${EXECDIR}${/}TestData${/}demo_app_with_users.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:57.818" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:57.818" endtime="20210729 07:37:57.818"/>
+<msg timestamp="20210729 08:04:58.388" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:58.387" endtime="20210729 08:04:58.388"/>
 </kw>
 <kw name="Get Path To App Database" library="DbManager">
 <var>${target}</var>
@@ -687,34 +687,34 @@ Definitions
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:57.819" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:37:57.819" endtime="20210729 07:37:57.819"/>
+<msg timestamp="20210729 08:04:58.388" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:04:58.388" endtime="20210729 08:04:58.388"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:37:57.819" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:37:57.819" endtime="20210729 07:37:57.819"/>
+<msg timestamp="20210729 08:04:58.389" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:04:58.389" endtime="20210729 08:04:58.389"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:57.820" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:57.819" endtime="20210729 07:37:57.820"/>
+<msg timestamp="20210729 08:04:58.390" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:58.389" endtime="20210729 08:04:58.390"/>
 </kw>
-<msg timestamp="20210729 07:37:57.820" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:57.818" endtime="20210729 07:37:57.820"/>
+<msg timestamp="20210729 08:04:58.390" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:58.388" endtime="20210729 08:04:58.390"/>
 </kw>
 <kw name="Run" library="OperatingSystem">
 <arg>cp ${source} ${target}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:57.823" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:57.820" endtime="20210729 07:37:57.824"/>
+<msg timestamp="20210729 08:04:58.392" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:04:58.390" endtime="20210729 08:04:58.394"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.817" endtime="20210729 07:37:57.825"/>
+<status status="PASS" starttime="20210729 08:04:58.387" endtime="20210729 08:04:58.394"/>
 </kw>
 <kw name="Start Web Application With No Init Procedure" library="Common">
 <kw name="Start Process" library="Process">
@@ -723,17 +723,17 @@ Definitions
 <arg>alias=flasky</arg>
 <arg>cwd=${EXECDIR}${/}..${/}Flasky</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20210729 07:37:57.826" level="INFO">Starting process:
+<msg timestamp="20210729 08:04:58.395" level="INFO">Starting process:
 export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
-<status status="PASS" starttime="20210729 07:37:57.825" endtime="20210729 07:37:57.830"/>
+<status status="PASS" starttime="20210729 08:04:58.395" endtime="20210729 08:04:58.403"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20210729 07:37:59.332" level="INFO">Slept 1 second 500 milliseconds</msg>
-<status status="PASS" starttime="20210729 07:37:57.830" endtime="20210729 07:37:59.332"/>
+<msg timestamp="20210729 08:04:59.906" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20210729 08:04:58.404" endtime="20210729 08:04:59.906"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.825" endtime="20210729 07:37:59.332"/>
+<status status="PASS" starttime="20210729 08:04:58.394" endtime="20210729 08:04:59.906"/>
 </kw>
 <kw name="Initialize Database Connection" library="DbManager">
 <kw name="Get Path To App Database" library="DbManager">
@@ -742,47 +742,47 @@ export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:59.334" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:37:59.333" endtime="20210729 07:37:59.334"/>
+<msg timestamp="20210729 08:04:59.907" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:04:59.907" endtime="20210729 08:04:59.907"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:37:59.334" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:37:59.334" endtime="20210729 07:37:59.334"/>
+<msg timestamp="20210729 08:04:59.908" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:04:59.907" endtime="20210729 08:04:59.908"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:59.335" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:59.334" endtime="20210729 07:37:59.335"/>
+<msg timestamp="20210729 08:04:59.908" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:59.908" endtime="20210729 08:04:59.908"/>
 </kw>
-<msg timestamp="20210729 07:37:59.335" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:59.332" endtime="20210729 07:37:59.335"/>
+<msg timestamp="20210729 08:04:59.908" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:04:59.907" endtime="20210729 08:04:59.908"/>
 </kw>
 <kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
 <arg>sqlite3</arg>
 <arg>database='${path_to_database}'</arg>
 <doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
 connect to the database using the map string `db_custom_param_string`.</doc>
-<msg timestamp="20210729 07:37:59.337" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
-<status status="PASS" starttime="20210729 07:37:59.335" endtime="20210729 07:37:59.337"/>
+<msg timestamp="20210729 08:04:59.909" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
+<status status="PASS" starttime="20210729 08:04:59.909" endtime="20210729 08:04:59.909"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.332" endtime="20210729 07:37:59.337"/>
+<status status="PASS" starttime="20210729 08:04:59.906" endtime="20210729 08:04:59.909"/>
 </kw>
 <kw name="Verify Tables" library="DbManager">
 <kw name="Table Must Exist" library="DatabaseLibrary">
 <arg>user</arg>
 <doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
 explicit transaction commit or rollback.</doc>
-<msg timestamp="20210729 07:37:59.338" level="INFO">Executing : Table Must Exist  |  user </msg>
-<msg timestamp="20210729 07:37:59.338" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
-<status status="PASS" starttime="20210729 07:37:59.338" endtime="20210729 07:37:59.338"/>
+<msg timestamp="20210729 08:04:59.910" level="INFO">Executing : Table Must Exist  |  user </msg>
+<msg timestamp="20210729 08:04:59.910" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
+<status status="PASS" starttime="20210729 08:04:59.910" endtime="20210729 08:04:59.910"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.337" endtime="20210729 07:37:59.338"/>
+<status status="PASS" starttime="20210729 08:04:59.909" endtime="20210729 08:04:59.910"/>
 </kw>
 <kw name="Fetch All System Users From Db" library="DbManager">
 <kw name="Query" library="DatabaseLibrary">
@@ -791,15 +791,15 @@ explicit transaction commit or rollback.</doc>
 <doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
 input `sansTran` to True to run command without an explicit transaction commit or rollback.
 Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
-<msg timestamp="20210729 07:37:59.339" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
-<msg timestamp="20210729 07:37:59.339" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
-<status status="PASS" starttime="20210729 07:37:59.338" endtime="20210729 07:37:59.339"/>
+<msg timestamp="20210729 08:04:59.910" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
+<msg timestamp="20210729 08:04:59.910" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
+<status status="PASS" starttime="20210729 08:04:59.910" endtime="20210729 08:04:59.910"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>${SYSTEM_USERS}</var>
 <doc>Returns a list containing given items.</doc>
-<msg timestamp="20210729 07:37:59.339" level="INFO">${SYSTEM_USERS} = []</msg>
-<status status="PASS" starttime="20210729 07:37:59.339" endtime="20210729 07:37:59.339"/>
+<msg timestamp="20210729 08:04:59.911" level="INFO">${SYSTEM_USERS} = []</msg>
+<status status="PASS" starttime="20210729 08:04:59.911" endtime="20210729 08:04:59.911"/>
 </kw>
 <for flavor="IN">
 <var>${user}</var>
@@ -809,8 +809,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.340" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:59.339" endtime="20210729 07:37:59.340"/>
+<msg timestamp="20210729 08:04:59.911" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:59.911" endtime="20210729 08:04:59.911"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -820,23 +820,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.340" endtime="20210729 07:37:59.340"/>
+<status status="PASS" starttime="20210729 08:04:59.911" endtime="20210729 08:04:59.912"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.340" endtime="20210729 07:37:59.341"/>
+<status status="PASS" starttime="20210729 08:04:59.912" endtime="20210729 08:04:59.912"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.339" endtime="20210729 07:37:59.341"/>
+<status status="PASS" starttime="20210729 08:04:59.911" endtime="20210729 08:04:59.912"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.341" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:59.341" endtime="20210729 07:37:59.341"/>
+<msg timestamp="20210729 08:04:59.913" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:59.912" endtime="20210729 08:04:59.913"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -846,23 +846,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.341" endtime="20210729 07:37:59.342"/>
+<status status="PASS" starttime="20210729 08:04:59.913" endtime="20210729 08:04:59.913"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.342" endtime="20210729 07:37:59.342"/>
+<status status="PASS" starttime="20210729 08:04:59.913" endtime="20210729 08:04:59.914"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.341" endtime="20210729 07:37:59.342"/>
+<status status="PASS" starttime="20210729 08:04:59.912" endtime="20210729 08:04:59.914"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser3', 'John', 'Brown', '0508094677', 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.342" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:37:59.342" endtime="20210729 07:37:59.342"/>
+<msg timestamp="20210729 08:04:59.914" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:04:59.914" endtime="20210729 08:04:59.914"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -872,27 +872,27 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.342" endtime="20210729 07:37:59.343"/>
+<status status="PASS" starttime="20210729 08:04:59.914" endtime="20210729 08:04:59.915"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.343" endtime="20210729 07:37:59.344"/>
+<status status="PASS" starttime="20210729 08:04:59.915" endtime="20210729 08:04:59.915"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.342" endtime="20210729 07:37:59.344"/>
+<status status="PASS" starttime="20210729 08:04:59.914" endtime="20210729 08:04:59.915"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.339" endtime="20210729 07:37:59.344"/>
+<status status="PASS" starttime="20210729 08:04:59.911" endtime="20210729 08:04:59.915"/>
 </for>
 <kw name="Set Suite Variable" library="BuiltIn">
 <arg>@{SYSTEM_USERS}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<msg timestamp="20210729 07:37:59.344" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
-<status status="PASS" starttime="20210729 07:37:59.344" endtime="20210729 07:37:59.344"/>
+<msg timestamp="20210729 08:04:59.915" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
+<status status="PASS" starttime="20210729 08:04:59.915" endtime="20210729 08:04:59.915"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.338" endtime="20210729 07:37:59.345"/>
+<status status="PASS" starttime="20210729 08:04:59.910" endtime="20210729 08:04:59.916"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:57.787" endtime="20210729 07:37:59.345"/>
+<status status="PASS" starttime="20210729 08:04:58.362" endtime="20210729 08:04:59.916"/>
 </kw>
 <test id="s1-s2-t1" name="Fetching Personal Info Of System Users Without Token, API User Gets Error">
 <for flavor="IN">
@@ -913,24 +913,24 @@ This test case check that the message &amp; the status returned are correct</doc
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.355" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.346" endtime="20210729 07:37:59.355"/>
+<msg timestamp="20210729 08:04:59.922" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.917" endtime="20210729 08:04:59.922"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.355" endtime="20210729 07:37:59.355"/>
+<status status="PASS" starttime="20210729 08:04:59.922" endtime="20210729 08:04:59.922"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Token authentication required</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.356" endtime="20210729 07:37:59.356"/>
+<status status="PASS" starttime="20210729 08:04:59.922" endtime="20210729 08:04:59.923"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.346" endtime="20210729 07:37:59.356"/>
+<status status="PASS" starttime="20210729 08:04:59.917" endtime="20210729 08:04:59.923"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.346" endtime="20210729 07:37:59.356"/>
+<status status="PASS" starttime="20210729 08:04:59.916" endtime="20210729 08:04:59.923"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -947,24 +947,24 @@ This test case check that the message &amp; the status returned are correct</doc
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.360" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.357" endtime="20210729 07:37:59.360"/>
+<msg timestamp="20210729 08:04:59.926" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.923" endtime="20210729 08:04:59.927"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.361" endtime="20210729 07:37:59.361"/>
+<status status="PASS" starttime="20210729 08:04:59.927" endtime="20210729 08:04:59.930"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Token authentication required</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.362" endtime="20210729 07:37:59.362"/>
+<status status="PASS" starttime="20210729 08:04:59.931" endtime="20210729 08:04:59.931"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.356" endtime="20210729 07:37:59.362"/>
+<status status="PASS" starttime="20210729 08:04:59.923" endtime="20210729 08:04:59.931"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.356" endtime="20210729 07:37:59.362"/>
+<status status="PASS" starttime="20210729 08:04:59.923" endtime="20210729 08:04:59.931"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -981,31 +981,31 @@ This test case check that the message &amp; the status returned are correct</doc
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.371" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.363" endtime="20210729 07:37:59.371"/>
+<msg timestamp="20210729 08:04:59.936" level="INFO">${response} = {'message': 'Token authentication required', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.932" endtime="20210729 08:04:59.936"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.371" endtime="20210729 07:37:59.372"/>
+<status status="PASS" starttime="20210729 08:04:59.937" endtime="20210729 08:04:59.937"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Token authentication required</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.373" endtime="20210729 07:37:59.374"/>
+<status status="PASS" starttime="20210729 08:04:59.937" endtime="20210729 08:04:59.937"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.362" endtime="20210729 07:37:59.374"/>
+<status status="PASS" starttime="20210729 08:04:59.931" endtime="20210729 08:04:59.937"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.362" endtime="20210729 07:37:59.374"/>
+<status status="PASS" starttime="20210729 08:04:59.931" endtime="20210729 08:04:59.937"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.346" endtime="20210729 07:37:59.374"/>
+<status status="PASS" starttime="20210729 08:04:59.916" endtime="20210729 08:04:59.937"/>
 </for>
 <doc>If a 3.rd party unknown user, who is not a system user with a valid token,
 attempts to read personal information of system users without a token, then he will get an error.
 The unknown user will receive the error regardless of which system user he queries.</doc>
-<status status="PASS" starttime="20210729 07:37:59.345" endtime="20210729 07:37:59.375"/>
+<status status="PASS" starttime="20210729 08:04:59.916" endtime="20210729 08:04:59.938"/>
 </test>
 <test id="s1-s2-t2" name="Fetching Personal Info Of System Users With Invalid Token, API User Gets Error">
 <for flavor="IN">
@@ -1026,32 +1026,32 @@ must return the following in its response body:
 <var>${headers}</var>
 <arg>Token=Invalid Token</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.378" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.377" endtime="20210729 07:37:59.378"/>
+<msg timestamp="20210729 08:04:59.939" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.939" endtime="20210729 08:04:59.939"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.383" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.378" endtime="20210729 07:37:59.383"/>
+<msg timestamp="20210729 08:04:59.943" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.939" endtime="20210729 08:04:59.943"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.383" endtime="20210729 07:37:59.383"/>
+<status status="PASS" starttime="20210729 08:04:59.943" endtime="20210729 08:04:59.943"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Invalid Token</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.384" endtime="20210729 07:37:59.384"/>
+<status status="PASS" starttime="20210729 08:04:59.943" endtime="20210729 08:04:59.944"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.377" endtime="20210729 07:37:59.384"/>
+<status status="PASS" starttime="20210729 08:04:59.938" endtime="20210729 08:04:59.944"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.376" endtime="20210729 07:37:59.384"/>
+<status status="PASS" starttime="20210729 08:04:59.938" endtime="20210729 08:04:59.944"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1068,32 +1068,32 @@ must return the following in its response body:
 <var>${headers}</var>
 <arg>Token=Invalid Token</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.386" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.385" endtime="20210729 07:37:59.386"/>
+<msg timestamp="20210729 08:04:59.945" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.944" endtime="20210729 08:04:59.945"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.391" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.386" endtime="20210729 07:37:59.391"/>
+<msg timestamp="20210729 08:04:59.949" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.945" endtime="20210729 08:04:59.949"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.391" endtime="20210729 07:37:59.391"/>
+<status status="PASS" starttime="20210729 08:04:59.949" endtime="20210729 08:04:59.950"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Invalid Token</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.392" endtime="20210729 07:37:59.392"/>
+<status status="PASS" starttime="20210729 08:04:59.950" endtime="20210729 08:04:59.950"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.384" endtime="20210729 07:37:59.392"/>
+<status status="PASS" starttime="20210729 08:04:59.944" endtime="20210729 08:04:59.950"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.384" endtime="20210729 07:37:59.392"/>
+<status status="PASS" starttime="20210729 08:04:59.944" endtime="20210729 08:04:59.950"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1110,39 +1110,39 @@ must return the following in its response body:
 <var>${headers}</var>
 <arg>Token=Invalid Token</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.393" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.393" endtime="20210729 07:37:59.393"/>
+<msg timestamp="20210729 08:04:59.952" level="INFO">${headers} = {'Token': 'Invalid Token'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.951" endtime="20210729 08:04:59.952"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/${username}</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.398" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.393" endtime="20210729 07:37:59.398"/>
+<msg timestamp="20210729 08:04:59.955" level="INFO">${response} = {'message': 'Invalid Token', 'status': 'FAILURE'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.952" endtime="20210729 08:04:59.955"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.398" endtime="20210729 07:37:59.398"/>
+<status status="PASS" starttime="20210729 08:04:59.956" endtime="20210729 08:04:59.956"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>Invalid Token</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.398" endtime="20210729 07:37:59.398"/>
+<status status="PASS" starttime="20210729 08:04:59.956" endtime="20210729 08:04:59.956"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.392" endtime="20210729 07:37:59.398"/>
+<status status="PASS" starttime="20210729 08:04:59.951" endtime="20210729 08:04:59.956"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.392" endtime="20210729 07:37:59.399"/>
+<status status="PASS" starttime="20210729 08:04:59.951" endtime="20210729 08:04:59.956"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.376" endtime="20210729 07:37:59.399"/>
+<status status="PASS" starttime="20210729 08:04:59.938" endtime="20210729 08:04:59.956"/>
 </for>
 <doc>If a 3.rd party unknown user, who is not a system user with a valid token,
 attempts to read personal information of system users with an invalid token, then he will get an error.
 The unknown user will receive the error regardless of which system user he queries.</doc>
-<status status="PASS" starttime="20210729 07:37:59.376" endtime="20210729 07:37:59.399"/>
+<status status="PASS" starttime="20210729 08:04:59.938" endtime="20210729 08:04:59.957"/>
 </test>
 <test id="s1-s2-t3" name="Fetching Personal Info Of System User With Valid Token, API User Indeed Gets The Personal Info Of That System User">
 <for flavor="IN">
@@ -1163,8 +1163,8 @@ with his token using this keyword.</doc>
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.401" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.400" endtime="20210729 07:37:59.401"/>
+<msg timestamp="20210729 08:04:59.958" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.958" endtime="20210729 08:04:59.958"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -1176,8 +1176,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.408" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.401" endtime="20210729 07:37:59.408"/>
+<msg timestamp="20210729 08:04:59.962" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.959" endtime="20210729 08:04:59.962"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1186,47 +1186,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.409" endtime="20210729 07:37:59.409"/>
+<status status="PASS" starttime="20210729 08:04:59.963" endtime="20210729 08:04:59.963"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.410" endtime="20210729 07:37:59.410"/>
+<status status="PASS" starttime="20210729 08:04:59.963" endtime="20210729 08:04:59.963"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.410" endtime="20210729 07:37:59.411"/>
+<status status="PASS" starttime="20210729 08:04:59.963" endtime="20210729 08:04:59.964"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.411" endtime="20210729 07:37:59.412"/>
+<status status="PASS" starttime="20210729 08:04:59.964" endtime="20210729 08:04:59.964"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.412" endtime="20210729 07:37:59.413"/>
+<status status="PASS" starttime="20210729 08:04:59.964" endtime="20210729 08:04:59.964"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.413" endtime="20210729 07:37:59.413"/>
+<status status="PASS" starttime="20210729 08:04:59.964" endtime="20210729 08:04:59.965"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.413" endtime="20210729 07:37:59.414"/>
+<status status="PASS" starttime="20210729 08:04:59.965" endtime="20210729 08:04:59.965"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.408" endtime="20210729 07:37:59.414"/>
+<status status="PASS" starttime="20210729 08:04:59.962" endtime="20210729 08:04:59.965"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.401" endtime="20210729 07:37:59.414"/>
+<status status="PASS" starttime="20210729 08:04:59.959" endtime="20210729 08:04:59.965"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1235,8 +1235,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.420" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.414" endtime="20210729 07:37:59.420"/>
+<msg timestamp="20210729 08:04:59.970" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.965" endtime="20210729 08:04:59.970"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1245,47 +1245,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.421" endtime="20210729 07:37:59.422"/>
+<status status="PASS" starttime="20210729 08:04:59.971" endtime="20210729 08:04:59.971"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.422" endtime="20210729 07:37:59.423"/>
+<status status="PASS" starttime="20210729 08:04:59.971" endtime="20210729 08:04:59.971"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.423" endtime="20210729 07:37:59.423"/>
+<status status="PASS" starttime="20210729 08:04:59.972" endtime="20210729 08:04:59.972"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.423" endtime="20210729 07:37:59.428"/>
+<status status="PASS" starttime="20210729 08:04:59.972" endtime="20210729 08:04:59.972"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.428" endtime="20210729 07:37:59.429"/>
+<status status="PASS" starttime="20210729 08:04:59.972" endtime="20210729 08:04:59.973"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.430" endtime="20210729 07:37:59.430"/>
+<status status="PASS" starttime="20210729 08:04:59.973" endtime="20210729 08:04:59.973"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.430" endtime="20210729 07:37:59.431"/>
+<status status="PASS" starttime="20210729 08:04:59.973" endtime="20210729 08:04:59.973"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.420" endtime="20210729 07:37:59.431"/>
+<status status="PASS" starttime="20210729 08:04:59.970" endtime="20210729 08:04:59.973"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.414" endtime="20210729 07:37:59.432"/>
+<status status="PASS" starttime="20210729 08:04:59.965" endtime="20210729 08:04:59.973"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1294,8 +1294,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.445" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.434" endtime="20210729 07:37:59.445"/>
+<msg timestamp="20210729 08:04:59.977" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.973" endtime="20210729 08:04:59.977"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1304,53 +1304,53 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.446" endtime="20210729 07:37:59.446"/>
+<status status="PASS" starttime="20210729 08:04:59.978" endtime="20210729 08:04:59.978"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.446" endtime="20210729 07:37:59.447"/>
+<status status="PASS" starttime="20210729 08:04:59.978" endtime="20210729 08:04:59.978"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.447" endtime="20210729 07:37:59.447"/>
+<status status="PASS" starttime="20210729 08:04:59.978" endtime="20210729 08:04:59.979"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.447" endtime="20210729 07:37:59.447"/>
+<status status="PASS" starttime="20210729 08:04:59.979" endtime="20210729 08:04:59.979"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.448" endtime="20210729 07:37:59.448"/>
+<status status="PASS" starttime="20210729 08:04:59.979" endtime="20210729 08:04:59.979"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.448" endtime="20210729 07:37:59.448"/>
+<status status="PASS" starttime="20210729 08:04:59.979" endtime="20210729 08:04:59.980"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.448" endtime="20210729 07:37:59.448"/>
+<status status="PASS" starttime="20210729 08:04:59.980" endtime="20210729 08:04:59.980"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.445" endtime="20210729 07:37:59.449"/>
+<status status="PASS" starttime="20210729 08:04:59.977" endtime="20210729 08:04:59.980"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.434" endtime="20210729 07:37:59.449"/>
+<status status="PASS" starttime="20210729 08:04:59.973" endtime="20210729 08:04:59.980"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.401" endtime="20210729 07:37:59.449"/>
+<status status="PASS" starttime="20210729 08:04:59.958" endtime="20210729 08:04:59.980"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:59.400" endtime="20210729 07:37:59.449"/>
+<status status="PASS" starttime="20210729 08:04:59.957" endtime="20210729 08:04:59.980"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.400" endtime="20210729 07:37:59.449"/>
+<status status="PASS" starttime="20210729 08:04:59.957" endtime="20210729 08:04:59.980"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1367,8 +1367,8 @@ with his token using this keyword.</doc>
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.450" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.449" endtime="20210729 07:37:59.450"/>
+<msg timestamp="20210729 08:04:59.981" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.981" endtime="20210729 08:04:59.981"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -1380,8 +1380,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.456" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.450" endtime="20210729 07:37:59.456"/>
+<msg timestamp="20210729 08:04:59.985" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.981" endtime="20210729 08:04:59.985"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1390,47 +1390,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.457" endtime="20210729 07:37:59.457"/>
+<status status="PASS" starttime="20210729 08:04:59.986" endtime="20210729 08:04:59.986"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.457" endtime="20210729 07:37:59.457"/>
+<status status="PASS" starttime="20210729 08:04:59.986" endtime="20210729 08:04:59.986"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.457" endtime="20210729 07:37:59.458"/>
+<status status="PASS" starttime="20210729 08:04:59.987" endtime="20210729 08:04:59.987"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.458" endtime="20210729 07:37:59.458"/>
+<status status="PASS" starttime="20210729 08:04:59.987" endtime="20210729 08:04:59.987"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.458" endtime="20210729 07:37:59.458"/>
+<status status="PASS" starttime="20210729 08:04:59.987" endtime="20210729 08:04:59.988"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.459" endtime="20210729 07:37:59.459"/>
+<status status="PASS" starttime="20210729 08:04:59.988" endtime="20210729 08:04:59.988"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.459" endtime="20210729 07:37:59.459"/>
+<status status="PASS" starttime="20210729 08:04:59.988" endtime="20210729 08:04:59.988"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.456" endtime="20210729 07:37:59.459"/>
+<status status="PASS" starttime="20210729 08:04:59.985" endtime="20210729 08:04:59.988"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.450" endtime="20210729 07:37:59.459"/>
+<status status="PASS" starttime="20210729 08:04:59.981" endtime="20210729 08:04:59.988"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1439,8 +1439,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.466" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.460" endtime="20210729 07:37:59.466"/>
+<msg timestamp="20210729 08:04:59.993" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.989" endtime="20210729 08:04:59.993"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1449,47 +1449,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.469" endtime="20210729 07:37:59.469"/>
+<status status="PASS" starttime="20210729 08:04:59.994" endtime="20210729 08:04:59.994"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.469" endtime="20210729 07:37:59.470"/>
+<status status="PASS" starttime="20210729 08:04:59.994" endtime="20210729 08:04:59.994"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.470" endtime="20210729 07:37:59.471"/>
+<status status="PASS" starttime="20210729 08:04:59.994" endtime="20210729 08:04:59.995"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.471" endtime="20210729 07:37:59.471"/>
+<status status="PASS" starttime="20210729 08:04:59.995" endtime="20210729 08:04:59.995"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.471" endtime="20210729 07:37:59.472"/>
+<status status="PASS" starttime="20210729 08:04:59.995" endtime="20210729 08:04:59.996"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.472" endtime="20210729 07:37:59.472"/>
+<status status="PASS" starttime="20210729 08:04:59.996" endtime="20210729 08:04:59.996"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.472" endtime="20210729 07:37:59.473"/>
+<status status="PASS" starttime="20210729 08:04:59.996" endtime="20210729 08:04:59.997"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.466" endtime="20210729 07:37:59.473"/>
+<status status="PASS" starttime="20210729 08:04:59.993" endtime="20210729 08:04:59.997"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.459" endtime="20210729 07:37:59.473"/>
+<status status="PASS" starttime="20210729 08:04:59.989" endtime="20210729 08:04:59.997"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1498,8 +1498,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.479" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.473" endtime="20210729 07:37:59.479"/>
+<msg timestamp="20210729 08:05:00.003" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:04:59.997" endtime="20210729 08:05:00.003"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1508,53 +1508,53 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.480" endtime="20210729 07:37:59.480"/>
+<status status="PASS" starttime="20210729 08:05:00.003" endtime="20210729 08:05:00.004"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.480" endtime="20210729 07:37:59.481"/>
+<status status="PASS" starttime="20210729 08:05:00.004" endtime="20210729 08:05:00.004"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.481" endtime="20210729 07:37:59.481"/>
+<status status="PASS" starttime="20210729 08:05:00.004" endtime="20210729 08:05:00.004"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.481" endtime="20210729 07:37:59.481"/>
+<status status="PASS" starttime="20210729 08:05:00.005" endtime="20210729 08:05:00.005"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.482" endtime="20210729 07:37:59.482"/>
+<status status="PASS" starttime="20210729 08:05:00.005" endtime="20210729 08:05:00.005"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.482" endtime="20210729 07:37:59.482"/>
+<status status="PASS" starttime="20210729 08:05:00.005" endtime="20210729 08:05:00.005"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.483" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:05:00.006" endtime="20210729 08:05:00.006"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.480" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:05:00.003" endtime="20210729 08:05:00.006"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.473" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:04:59.997" endtime="20210729 08:05:00.006"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.450" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:04:59.981" endtime="20210729 08:05:00.006"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:59.449" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:04:59.980" endtime="20210729 08:05:00.006"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.449" endtime="20210729 07:37:59.484"/>
+<status status="PASS" starttime="20210729 08:04:59.980" endtime="20210729 08:05:00.006"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1571,8 +1571,8 @@ with his token using this keyword.</doc>
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.486" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.485" endtime="20210729 07:37:59.486"/>
+<msg timestamp="20210729 08:05:00.007" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.007" endtime="20210729 08:05:00.007"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -1584,8 +1584,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.490" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.486" endtime="20210729 07:37:59.490"/>
+<msg timestamp="20210729 08:05:00.011" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.007" endtime="20210729 08:05:00.011"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1594,47 +1594,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.491" endtime="20210729 07:37:59.491"/>
+<status status="PASS" starttime="20210729 08:05:00.012" endtime="20210729 08:05:00.012"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.491" endtime="20210729 07:37:59.491"/>
+<status status="PASS" starttime="20210729 08:05:00.012" endtime="20210729 08:05:00.012"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.492" endtime="20210729 07:37:59.492"/>
+<status status="PASS" starttime="20210729 08:05:00.012" endtime="20210729 08:05:00.013"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.492" endtime="20210729 07:37:59.492"/>
+<status status="PASS" starttime="20210729 08:05:00.013" endtime="20210729 08:05:00.013"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.492" endtime="20210729 07:37:59.493"/>
+<status status="PASS" starttime="20210729 08:05:00.013" endtime="20210729 08:05:00.013"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.493" endtime="20210729 07:37:59.493"/>
+<status status="PASS" starttime="20210729 08:05:00.013" endtime="20210729 08:05:00.014"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.493" endtime="20210729 07:37:59.493"/>
+<status status="PASS" starttime="20210729 08:05:00.014" endtime="20210729 08:05:00.014"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.490" endtime="20210729 07:37:59.493"/>
+<status status="PASS" starttime="20210729 08:05:00.011" endtime="20210729 08:05:00.014"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.486" endtime="20210729 07:37:59.493"/>
+<status status="PASS" starttime="20210729 08:05:00.007" endtime="20210729 08:05:00.014"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1643,8 +1643,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.499" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.494" endtime="20210729 07:37:59.499"/>
+<msg timestamp="20210729 08:05:00.018" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.014" endtime="20210729 08:05:00.018"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1653,47 +1653,47 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.500" endtime="20210729 07:37:59.500"/>
+<status status="PASS" starttime="20210729 08:05:00.019" endtime="20210729 08:05:00.019"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.500" endtime="20210729 07:37:59.501"/>
+<status status="PASS" starttime="20210729 08:05:00.019" endtime="20210729 08:05:00.019"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.501" endtime="20210729 07:37:59.501"/>
+<status status="PASS" starttime="20210729 08:05:00.019" endtime="20210729 08:05:00.020"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.501" endtime="20210729 07:37:59.502"/>
+<status status="PASS" starttime="20210729 08:05:00.020" endtime="20210729 08:05:00.020"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.502" endtime="20210729 07:37:59.503"/>
+<status status="PASS" starttime="20210729 08:05:00.020" endtime="20210729 08:05:00.020"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.503" endtime="20210729 07:37:59.503"/>
+<status status="PASS" starttime="20210729 08:05:00.020" endtime="20210729 08:05:00.021"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.503" endtime="20210729 07:37:59.503"/>
+<status status="PASS" starttime="20210729 08:05:00.021" endtime="20210729 08:05:00.021"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.499" endtime="20210729 07:37:59.503"/>
+<status status="PASS" starttime="20210729 08:05:00.018" endtime="20210729 08:05:00.021"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.494" endtime="20210729 07:37:59.503"/>
+<status status="PASS" starttime="20210729 08:05:00.014" endtime="20210729 08:05:00.021"/>
 </iter>
 <iter>
 <var name="${system_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1702,8 +1702,8 @@ with his token using this keyword.</doc>
 <arg>/users/${system_user}[username]</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.513" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.508" endtime="20210729 07:37:59.513"/>
+<msg timestamp="20210729 08:05:00.025" level="INFO">${response} = {'message': 'retrieval succesful', 'payload': {'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677'}, 'status': 'SUCCESS'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.021" endtime="20210729 08:05:00.025"/>
 </kw>
 <kw name="Verify Response Contains Personal Info">
 <arg>${system_user}</arg>
@@ -1712,59 +1712,59 @@ with his token using this keyword.</doc>
 <arg>${response}[status]</arg>
 <arg>SUCCESS</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.513" endtime="20210729 07:37:59.514"/>
+<status status="PASS" starttime="20210729 08:05:00.026" endtime="20210729 08:05:00.026"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>retrieval succesful</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.514" endtime="20210729 07:37:59.514"/>
+<status status="PASS" starttime="20210729 08:05:00.026" endtime="20210729 08:05:00.026"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][firstname]</arg>
 <arg>${system_user}[firstname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.514" endtime="20210729 07:37:59.514"/>
+<status status="PASS" starttime="20210729 08:05:00.026" endtime="20210729 08:05:00.027"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][lastname]</arg>
 <arg>${system_user}[lastname]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.515" endtime="20210729 07:37:59.515"/>
+<status status="PASS" starttime="20210729 08:05:00.027" endtime="20210729 08:05:00.027"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[payload][phone]</arg>
 <arg>${system_user}[phone]</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20210729 07:37:59.515" endtime="20210729 07:37:59.515"/>
+<status status="PASS" starttime="20210729 08:05:00.027" endtime="20210729 08:05:00.028"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>username</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.516" endtime="20210729 07:37:59.516"/>
+<status status="PASS" starttime="20210729 08:05:00.028" endtime="20210729 08:05:00.028"/>
 </kw>
 <kw name="Dictionary Should Not Contain Key" library="Collections">
 <arg>${response}[payload]</arg>
 <arg>password</arg>
 <doc>Fails if ``key`` is found from ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:37:59.516" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.028" endtime="20210729 08:05:00.028"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.513" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.025" endtime="20210729 08:05:00.028"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.506" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.021" endtime="20210729 08:05:00.028"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.486" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.007" endtime="20210729 08:05:00.028"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:59.485" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.006" endtime="20210729 08:05:00.028"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.484" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:05:00.006" endtime="20210729 08:05:00.029"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.400" endtime="20210729 07:37:59.517"/>
+<status status="PASS" starttime="20210729 08:04:59.957" endtime="20210729 08:05:00.029"/>
 </for>
 <doc>Imagine we have three system users X, Y, Z. This test case checks that
 X, Y, Z can query the personal info of X, Y, Z with a their own respective keys.</doc>
-<status status="PASS" starttime="20210729 07:37:59.399" endtime="20210729 07:37:59.518"/>
+<status status="PASS" starttime="20210729 08:04:59.957" endtime="20210729 08:05:00.029"/>
 </test>
 <test id="s1-s2-t4" name="Fetching Personal Info Of Non-Existing User With Valid Token, API User Gets Error">
 <for flavor="IN">
@@ -1778,33 +1778,33 @@ X, Y, Z can query the personal info of X, Y, Z with a their own respective keys.
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.521" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.520" endtime="20210729 07:37:59.521"/>
+<msg timestamp="20210729 08:05:00.030" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.030" endtime="20210729 08:05:00.030"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/non-existing-user</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.529" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
-<msg timestamp="20210729 07:37:59.530" level="FAIL">System under test has crashed with 5XX</msg>
-<status status="FAIL" starttime="20210729 07:37:59.521" endtime="20210729 07:37:59.530"/>
+<msg timestamp="20210729 08:05:00.042" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.043" level="FAIL">System under test has crashed with 5XX</msg>
+<status status="FAIL" starttime="20210729 08:05:00.031" endtime="20210729 08:05:00.043"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.530" endtime="20210729 07:37:59.530"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.043" endtime="20210729 08:05:00.043"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>user does not exist</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.530" endtime="20210729 07:37:59.530"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.043" endtime="20210729 08:05:00.043"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.520" endtime="20210729 07:37:59.531"/>
+<status status="FAIL" starttime="20210729 08:05:00.030" endtime="20210729 08:05:00.044"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.519" endtime="20210729 07:37:59.531"/>
+<status status="FAIL" starttime="20210729 08:05:00.030" endtime="20210729 08:05:00.044"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
@@ -1814,33 +1814,33 @@ X, Y, Z can query the personal info of X, Y, Z with a their own respective keys.
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.532" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.531" endtime="20210729 07:37:59.532"/>
+<msg timestamp="20210729 08:05:00.044" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.044" endtime="20210729 08:05:00.044"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/non-existing-user</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.538" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
-<msg timestamp="20210729 07:37:59.538" level="FAIL">System under test has crashed with 5XX</msg>
-<status status="FAIL" starttime="20210729 07:37:59.532" endtime="20210729 07:37:59.538"/>
+<msg timestamp="20210729 08:05:00.048" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.048" level="FAIL">System under test has crashed with 5XX</msg>
+<status status="FAIL" starttime="20210729 08:05:00.044" endtime="20210729 08:05:00.048"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.538" endtime="20210729 07:37:59.538"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.048" endtime="20210729 08:05:00.048"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>user does not exist</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.538" endtime="20210729 07:37:59.538"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.049" endtime="20210729 08:05:00.049"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.531" endtime="20210729 07:37:59.538"/>
+<status status="FAIL" starttime="20210729 08:05:00.044" endtime="20210729 08:05:00.049"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.531" endtime="20210729 07:37:59.539"/>
+<status status="FAIL" starttime="20210729 08:05:00.044" endtime="20210729 08:05:00.049"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
@@ -1850,40 +1850,40 @@ X, Y, Z can query the personal info of X, Y, Z with a their own respective keys.
 <var>${headers}</var>
 <arg>Token=${api_user}[token]</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:37:59.541" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
-<status status="PASS" starttime="20210729 07:37:59.539" endtime="20210729 07:37:59.541"/>
+<msg timestamp="20210729 08:05:00.050" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
+<status status="PASS" starttime="20210729 08:05:00.049" endtime="20210729 08:05:00.050"/>
 </kw>
 <kw name="GET" library="CRUD_Library">
 <var>${response}</var>
 <arg>/users/non-existing-user</arg>
 <arg>headers=${headers}</arg>
 <doc>Sends a GET request to the endpoint.</doc>
-<msg timestamp="20210729 07:37:59.547" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
-<msg timestamp="20210729 07:37:59.547" level="FAIL">System under test has crashed with 5XX</msg>
-<status status="FAIL" starttime="20210729 07:37:59.541" endtime="20210729 07:37:59.547"/>
+<msg timestamp="20210729 08:05:00.054" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.054" level="FAIL">System under test has crashed with 5XX</msg>
+<status status="FAIL" starttime="20210729 08:05:00.050" endtime="20210729 08:05:00.054"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[status]</arg>
 <arg>FAILURE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.547" endtime="20210729 07:37:59.547"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.054" endtime="20210729 08:05:00.054"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${response}[message]</arg>
 <arg>user does not exist</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="NOT RUN" starttime="20210729 07:37:59.548" endtime="20210729 07:37:59.548"/>
+<status status="NOT RUN" starttime="20210729 08:05:00.055" endtime="20210729 08:05:00.055"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.539" endtime="20210729 07:37:59.548"/>
+<status status="FAIL" starttime="20210729 08:05:00.049" endtime="20210729 08:05:00.055"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:37:59.539" endtime="20210729 07:37:59.548"/>
+<status status="FAIL" starttime="20210729 08:05:00.049" endtime="20210729 08:05:00.055"/>
 </iter>
-<status status="FAIL" starttime="20210729 07:37:59.519" endtime="20210729 07:37:59.548"/>
+<status status="FAIL" starttime="20210729 08:05:00.029" endtime="20210729 08:05:00.055"/>
 </for>
 <doc>Imagine we have three system users X, Y, Z. Each of them wants to query personal
 information of non-existing system user A. The system should return a response
 having a message "user does not exist" with status FAILURE</doc>
-<status status="FAIL" starttime="20210729 07:37:59.518" endtime="20210729 07:37:59.548">Several failures occurred:
+<status status="FAIL" starttime="20210729 08:05:00.029" endtime="20210729 08:05:00.055">Several failures occurred:
 
 1) System under test has crashed with 5XX
 
@@ -1897,19 +1897,19 @@ having a message "user does not exist" with status FAILURE</doc>
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:37:59.552" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:37:59.578" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:37:59.578" level="INFO">${pids} = 7882
-7889
-7913</msg>
-<status status="PASS" starttime="20210729 07:37:59.549" endtime="20210729 07:37:59.578"/>
+<msg timestamp="20210729 08:05:00.059" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:05:00.066" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:05:00.066" level="INFO">${pids} = 9726
+9733
+9758</msg>
+<status status="PASS" starttime="20210729 08:05:00.056" endtime="20210729 08:05:00.066"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:59.579" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:37:59.579" endtime="20210729 07:37:59.579"/>
+<msg timestamp="20210729 08:05:00.067" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:05:00.066" endtime="20210729 08:05:00.067"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -1917,49 +1917,49 @@ having a message "user does not exist" with status FAILURE</doc>
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:59.580" level="INFO">${pids} = ['7882', '7889', '7913']</msg>
-<status status="PASS" starttime="20210729 07:37:59.580" endtime="20210729 07:37:59.580"/>
+<msg timestamp="20210729 08:05:00.068" level="INFO">${pids} = ['9726', '9733', '9758']</msg>
+<status status="PASS" starttime="20210729 08:05:00.068" endtime="20210729 08:05:00.068"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7882</var>
+<var name="${pid}">9726</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:59.609" level="INFO">Running command 'kill 7882 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:59.581" endtime="20210729 07:37:59.609"/>
+<msg timestamp="20210729 08:05:00.072" level="INFO">Running command 'kill 9726 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:00.069" endtime="20210729 08:05:00.072"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.580" endtime="20210729 07:37:59.609"/>
+<status status="PASS" starttime="20210729 08:05:00.069" endtime="20210729 08:05:00.072"/>
 </iter>
 <iter>
-<var name="${pid}">7889</var>
+<var name="${pid}">9733</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:59.639" level="INFO">Running command 'kill 7889 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:59.610" endtime="20210729 07:37:59.640"/>
+<msg timestamp="20210729 08:05:00.076" level="INFO">Running command 'kill 9733 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:00.072" endtime="20210729 08:05:00.078"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.609" endtime="20210729 07:37:59.640"/>
+<status status="PASS" starttime="20210729 08:05:00.072" endtime="20210729 08:05:00.078"/>
 </iter>
 <iter>
-<var name="${pid}">7913</var>
+<var name="${pid}">9758</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:59.645" level="INFO">Running command 'kill 7913 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:59.641" endtime="20210729 07:37:59.645"/>
+<msg timestamp="20210729 08:05:00.082" level="INFO">Running command 'kill 9758 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:00.078" endtime="20210729 08:05:00.082"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.640" endtime="20210729 07:37:59.645"/>
+<status status="PASS" starttime="20210729 08:05:00.078" endtime="20210729 08:05:00.082"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.580" endtime="20210729 07:37:59.645"/>
+<status status="PASS" starttime="20210729 08:05:00.068" endtime="20210729 08:05:00.082"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:59.580" endtime="20210729 07:37:59.645"/>
+<status status="PASS" starttime="20210729 08:05:00.067" endtime="20210729 08:05:00.082"/>
 </branch>
-<status status="PASS" starttime="20210729 07:37:59.579" endtime="20210729 07:37:59.645"/>
+<status status="PASS" starttime="20210729 08:05:00.067" endtime="20210729 08:05:00.082"/>
 </if>
-<status status="PASS" starttime="20210729 07:37:59.549" endtime="20210729 07:37:59.646"/>
+<status status="PASS" starttime="20210729 08:05:00.056" endtime="20210729 08:05:00.083"/>
 </kw>
 <doc>This test suite contains test cases for CRF Demo API.
 Documentation for the API can be found:
@@ -1969,10 +1969,10 @@ The acceptance criteria we verify here is
 Definitions
 (1) System User: The user, who is registered to the system under test
 (2) API User: The user, who calls the API to fetch personal information about the system user</doc>
-<status status="FAIL" starttime="20210729 07:37:57.776" endtime="20210729 07:37:59.646"/>
+<status status="FAIL" starttime="20210729 08:04:58.353" endtime="20210729 08:05:00.083"/>
 </suite>
 <suite id="s1-s3" name="3-Updating-Personal-Information" source="/home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/Tests/API/3-Updating-Personal-Information.robot">
-<test id="s1-s3-t1" name="With Any Valid Token, Attempting To Update Username Of Each System User With Empty String Should Fail">
+<test id="s1-s3-t1" name="With Any Valid Token, Updating Username Of Each System User With '' Results In &quot;Field update not allowed&quot;">
 <kw name="Run Keywords" library="BuiltIn" type="SETUP">
 <arg>Kill Web Application</arg>
 <arg>AND</arg>
@@ -1992,17 +1992,17 @@ Definitions
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:37:59.668" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:37:59.679" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:37:59.679" level="INFO">${pids} = 7942</msg>
-<status status="PASS" starttime="20210729 07:37:59.665" endtime="20210729 07:37:59.679"/>
+<msg timestamp="20210729 08:05:00.103" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:05:00.111" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:05:00.111" level="INFO">${pids} = 9787</msg>
+<status status="PASS" starttime="20210729 08:05:00.099" endtime="20210729 08:05:00.111"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:59.680" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:37:59.679" endtime="20210729 07:37:59.680"/>
+<msg timestamp="20210729 08:05:00.112" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:05:00.111" endtime="20210729 08:05:00.112"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -2010,37 +2010,37 @@ Definitions
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:37:59.681" level="INFO">${pids} = ['7942']</msg>
-<status status="PASS" starttime="20210729 07:37:59.680" endtime="20210729 07:37:59.681"/>
+<msg timestamp="20210729 08:05:00.112" level="INFO">${pids} = ['9787']</msg>
+<status status="PASS" starttime="20210729 08:05:00.112" endtime="20210729 08:05:00.112"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7942</var>
+<var name="${pid}">9787</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:59.687" level="INFO">Running command 'kill 7942 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:59.681" endtime="20210729 07:37:59.688"/>
+<msg timestamp="20210729 08:05:00.115" level="INFO">Running command 'kill 9787 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:00.113" endtime="20210729 08:05:00.116"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.681" endtime="20210729 07:37:59.688"/>
+<status status="PASS" starttime="20210729 08:05:00.113" endtime="20210729 08:05:00.116"/>
 </iter>
-<status status="PASS" starttime="20210729 07:37:59.681" endtime="20210729 07:37:59.688"/>
+<status status="PASS" starttime="20210729 08:05:00.113" endtime="20210729 08:05:00.116"/>
 </for>
-<status status="PASS" starttime="20210729 07:37:59.680" endtime="20210729 07:37:59.688"/>
+<status status="PASS" starttime="20210729 08:05:00.112" endtime="20210729 08:05:00.116"/>
 </branch>
-<status status="PASS" starttime="20210729 07:37:59.680" endtime="20210729 07:37:59.688"/>
+<status status="PASS" starttime="20210729 08:05:00.112" endtime="20210729 08:05:00.116"/>
 </if>
-<status status="PASS" starttime="20210729 07:37:59.663" endtime="20210729 07:37:59.688"/>
+<status status="PASS" starttime="20210729 08:05:00.099" endtime="20210729 08:05:00.116"/>
 </kw>
 <kw name="Replace Database With New Database Having Users" library="DbManager">
 <kw name="Set Variable" library="BuiltIn">
 <var>${source}</var>
 <arg>${EXECDIR}${/}TestData${/}demo_app_with_users.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:59.689" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:59.689" endtime="20210729 07:37:59.689"/>
+<msg timestamp="20210729 08:05:00.118" level="INFO">${source} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite</msg>
+<status status="PASS" starttime="20210729 08:05:00.117" endtime="20210729 08:05:00.118"/>
 </kw>
 <kw name="Get Path To App Database" library="DbManager">
 <var>${target}</var>
@@ -2048,34 +2048,34 @@ Definitions
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:59.690" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:37:59.690" endtime="20210729 07:37:59.690"/>
+<msg timestamp="20210729 08:05:00.118" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:05:00.118" endtime="20210729 08:05:00.118"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:37:59.690" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:37:59.690" endtime="20210729 07:37:59.690"/>
+<msg timestamp="20210729 08:05:00.119" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:05:00.119" endtime="20210729 08:05:00.119"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:37:59.691" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:59.690" endtime="20210729 07:37:59.691"/>
+<msg timestamp="20210729 08:05:00.120" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:05:00.119" endtime="20210729 08:05:00.120"/>
 </kw>
-<msg timestamp="20210729 07:37:59.691" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:37:59.690" endtime="20210729 07:37:59.691"/>
+<msg timestamp="20210729 08:05:00.120" level="INFO">${target} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:05:00.118" endtime="20210729 08:05:00.120"/>
 </kw>
 <kw name="Run" library="OperatingSystem">
 <arg>cp ${source} ${target}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:37:59.693" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:37:59.691" endtime="20210729 07:37:59.696"/>
+<msg timestamp="20210729 08:05:00.127" level="INFO">Running command 'cp /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject/TestData/demo_app_with_users.sqlite /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:00.120" endtime="20210729 08:05:00.129"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.689" endtime="20210729 07:37:59.697"/>
+<status status="PASS" starttime="20210729 08:05:00.116" endtime="20210729 08:05:00.129"/>
 </kw>
 <kw name="Start Web Application With No Init Procedure" library="Common">
 <kw name="Start Process" library="Process">
@@ -2084,17 +2084,17 @@ Definitions
 <arg>alias=flasky</arg>
 <arg>cwd=${EXECDIR}${/}..${/}Flasky</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20210729 07:37:59.698" level="INFO">Starting process:
+<msg timestamp="20210729 08:05:00.130" level="INFO">Starting process:
 export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
-<status status="PASS" starttime="20210729 07:37:59.698" endtime="20210729 07:37:59.705"/>
+<status status="PASS" starttime="20210729 08:05:00.130" endtime="20210729 08:05:00.135"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>1.5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20210729 07:38:01.206" level="INFO">Slept 1 second 500 milliseconds</msg>
-<status status="PASS" starttime="20210729 07:37:59.706" endtime="20210729 07:38:01.207"/>
+<msg timestamp="20210729 08:05:01.644" level="INFO">Slept 1 second 500 milliseconds</msg>
+<status status="PASS" starttime="20210729 08:05:00.135" endtime="20210729 08:05:01.644"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.697" endtime="20210729 07:38:01.207"/>
+<status status="PASS" starttime="20210729 08:05:00.130" endtime="20210729 08:05:01.644"/>
 </kw>
 <kw name="Initialize Database Connection" library="DbManager">
 <kw name="Get Path To App Database" library="DbManager">
@@ -2103,47 +2103,47 @@ export FLASK_APP=demo_app;flask run --host=0.0.0.0 --port=8080</msg>
 <var>${path_to_database}</var>
 <arg>${EXECDIR}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:38:01.208" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
-<status status="PASS" starttime="20210729 07:38:01.207" endtime="20210729 07:38:01.208"/>
+<msg timestamp="20210729 08:05:01.646" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/TestProject</msg>
+<status status="PASS" starttime="20210729 08:05:01.645" endtime="20210729 08:05:01.646"/>
 </kw>
 <kw name="Fetch From Left" library="String">
 <var>${path_to_database}</var>
 <arg>${path_to_database}</arg>
 <arg>TestProject</arg>
 <doc>Returns contents of the ``string`` before the first occurrence of ``marker``.</doc>
-<msg timestamp="20210729 07:38:01.208" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
-<status status="PASS" starttime="20210729 07:38:01.208" endtime="20210729 07:38:01.208"/>
+<msg timestamp="20210729 08:05:01.646" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/</msg>
+<status status="PASS" starttime="20210729 08:05:01.646" endtime="20210729 08:05:01.646"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${path_to_database}</var>
 <arg>${path_to_database}Flasky${/}instance${/}demo_app.sqlite</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20210729 07:38:01.208" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:38:01.208" endtime="20210729 07:38:01.208"/>
+<msg timestamp="20210729 08:05:01.647" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:05:01.646" endtime="20210729 08:05:01.647"/>
 </kw>
-<msg timestamp="20210729 07:38:01.209" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
-<status status="PASS" starttime="20210729 07:38:01.207" endtime="20210729 07:38:01.209"/>
+<msg timestamp="20210729 08:05:01.647" level="INFO">${path_to_database} = /home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite</msg>
+<status status="PASS" starttime="20210729 08:05:01.645" endtime="20210729 08:05:01.647"/>
 </kw>
 <kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
 <arg>sqlite3</arg>
 <arg>database='${path_to_database}'</arg>
 <doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
 connect to the database using the map string `db_custom_param_string`.</doc>
-<msg timestamp="20210729 07:38:01.209" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
-<status status="PASS" starttime="20210729 07:38:01.209" endtime="20210729 07:38:01.209"/>
+<msg timestamp="20210729 08:05:01.647" level="INFO">Executing : Connect To Database Using Custom Params : sqlite3.connect(db_api_2.connect(database='/home/hakan/Python/Robot/CRF_Demo_Solution/Flasky/instance/demo_app.sqlite')) </msg>
+<status status="PASS" starttime="20210729 08:05:01.647" endtime="20210729 08:05:01.647"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.207" endtime="20210729 07:38:01.210"/>
+<status status="PASS" starttime="20210729 08:05:01.644" endtime="20210729 08:05:01.648"/>
 </kw>
 <kw name="Verify Tables" library="DbManager">
 <kw name="Table Must Exist" library="DatabaseLibrary">
 <arg>user</arg>
 <doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
 explicit transaction commit or rollback.</doc>
-<msg timestamp="20210729 07:38:01.211" level="INFO">Executing : Table Must Exist  |  user </msg>
-<msg timestamp="20210729 07:38:01.211" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
-<status status="PASS" starttime="20210729 07:38:01.210" endtime="20210729 07:38:01.211"/>
+<msg timestamp="20210729 08:05:01.648" level="INFO">Executing : Table Must Exist  |  user </msg>
+<msg timestamp="20210729 08:05:01.648" level="INFO">Executing : Row Count  |  SELECT name FROM sqlite_master WHERE type='table' AND name='user' COLLATE NOCASE </msg>
+<status status="PASS" starttime="20210729 08:05:01.648" endtime="20210729 08:05:01.648"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.210" endtime="20210729 07:38:01.211"/>
+<status status="PASS" starttime="20210729 08:05:01.648" endtime="20210729 08:05:01.649"/>
 </kw>
 <kw name="Fetch All System Users From Db" library="DbManager">
 <kw name="Query" library="DatabaseLibrary">
@@ -2152,15 +2152,15 @@ explicit transaction commit or rollback.</doc>
 <doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
 input `sansTran` to True to run command without an explicit transaction commit or rollback.
 Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
-<msg timestamp="20210729 07:38:01.213" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
-<msg timestamp="20210729 07:38:01.213" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
-<status status="PASS" starttime="20210729 07:38:01.212" endtime="20210729 07:38:01.213"/>
+<msg timestamp="20210729 08:05:01.649" level="INFO">Executing : Query  |  select username, firstname, lastname, phone, token from user; </msg>
+<msg timestamp="20210729 08:05:01.649" level="INFO">${users} = [('SuperDuperUser1', 'David', 'Holm', '0506627124', 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'), ('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTU...</msg>
+<status status="PASS" starttime="20210729 08:05:01.649" endtime="20210729 08:05:01.649"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>${SYSTEM_USERS}</var>
 <doc>Returns a list containing given items.</doc>
-<msg timestamp="20210729 07:38:01.215" level="INFO">${SYSTEM_USERS} = []</msg>
-<status status="PASS" starttime="20210729 07:38:01.214" endtime="20210729 07:38:01.215"/>
+<msg timestamp="20210729 08:05:01.650" level="INFO">${SYSTEM_USERS} = []</msg>
+<status status="PASS" starttime="20210729 08:05:01.650" endtime="20210729 08:05:01.650"/>
 </kw>
 <for flavor="IN">
 <var>${user}</var>
@@ -2170,8 +2170,8 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.216" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:38:01.215" endtime="20210729 07:38:01.216"/>
+<msg timestamp="20210729 08:05:01.651" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:05:01.650" endtime="20210729 08:05:01.651"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -2181,23 +2181,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.216" endtime="20210729 07:38:01.216"/>
+<status status="PASS" starttime="20210729 08:05:01.651" endtime="20210729 08:05:01.651"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.217" endtime="20210729 07:38:01.217"/>
+<status status="PASS" starttime="20210729 08:05:01.651" endtime="20210729 08:05:01.652"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.215" endtime="20210729 07:38:01.217"/>
+<status status="PASS" starttime="20210729 08:05:01.650" endtime="20210729 08:05:01.652"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser2', 'Hakan', 'Holm', '0407563452', 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.217" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:38:01.217" endtime="20210729 07:38:01.217"/>
+<msg timestamp="20210729 08:05:01.652" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:05:01.652" endtime="20210729 08:05:01.652"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -2207,23 +2207,23 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.218" endtime="20210729 07:38:01.218"/>
+<status status="PASS" starttime="20210729 08:05:01.652" endtime="20210729 08:05:01.653"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.218" endtime="20210729 07:38:01.219"/>
+<status status="PASS" starttime="20210729 08:05:01.653" endtime="20210729 08:05:01.653"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.217" endtime="20210729 07:38:01.219"/>
+<status status="PASS" starttime="20210729 08:05:01.652" endtime="20210729 08:05:01.653"/>
 </iter>
 <iter>
 <var name="${user}">('SuperDuperUser3', 'John', 'Brown', '0508094677', 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3')</var>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{new_user}</var>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.219" level="INFO">&amp;{new_user} = { }</msg>
-<status status="PASS" starttime="20210729 07:38:01.219" endtime="20210729 07:38:01.219"/>
+<msg timestamp="20210729 08:05:01.654" level="INFO">&amp;{new_user} = { }</msg>
+<status status="PASS" starttime="20210729 08:05:01.653" endtime="20210729 08:05:01.654"/>
 </kw>
 <kw name="Set To Dictionary" library="Collections">
 <arg>${new_user}</arg>
@@ -2233,48 +2233,49 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>phone=${user}[3]</arg>
 <arg>token=${user}[4]</arg>
 <doc>Adds the given ``key_value_pairs`` and ``items`` to the ``dictionary``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.219" endtime="20210729 07:38:01.220"/>
+<status status="PASS" starttime="20210729 08:05:01.654" endtime="20210729 08:05:01.654"/>
 </kw>
 <kw name="Append To List" library="Collections">
 <arg>${SYSTEM_USERS}</arg>
 <arg>${new_user}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" starttime="20210729 07:38:01.220" endtime="20210729 07:38:01.220"/>
+<status status="PASS" starttime="20210729 08:05:01.654" endtime="20210729 08:05:01.655"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.219" endtime="20210729 07:38:01.220"/>
+<status status="PASS" starttime="20210729 08:05:01.653" endtime="20210729 08:05:01.655"/>
 </iter>
-<status status="PASS" starttime="20210729 07:38:01.215" endtime="20210729 07:38:01.220"/>
+<status status="PASS" starttime="20210729 08:05:01.650" endtime="20210729 08:05:01.655"/>
 </for>
 <kw name="Set Suite Variable" library="BuiltIn">
 <arg>@{SYSTEM_USERS}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<msg timestamp="20210729 07:38:01.221" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
-<status status="PASS" starttime="20210729 07:38:01.220" endtime="20210729 07:38:01.221"/>
+<msg timestamp="20210729 08:05:01.655" level="INFO">@{SYSTEM_USERS} = [ {'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'} | {'username': 'SuperDuperUser2', 'f...</msg>
+<status status="PASS" starttime="20210729 08:05:01.655" endtime="20210729 08:05:01.655"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.212" endtime="20210729 07:38:01.221"/>
+<status status="PASS" starttime="20210729 08:05:01.649" endtime="20210729 08:05:01.655"/>
 </kw>
-<status status="PASS" starttime="20210729 07:37:59.662" endtime="20210729 07:38:01.221"/>
+<status status="PASS" starttime="20210729 08:05:00.098" endtime="20210729 08:05:01.655"/>
 </kw>
 <for flavor="IN">
 <var>${api_user}</var>
 <value>@{SYSTEM_USERS}</value>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser1', 'firstname': 'David', 'lastname': 'Holm', 'phone': '0506627124', 'token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</var>
-<kw name="Even With Valid Token, Cannot Set Empty Username To Any System User">
-<arg>${api_user}</arg>
+<kw name="With Valid Token, Attempt to Set Username To All System Users">
+<arg>token=${api_user}[token]</arg>
+<arg>username_value=${EMPTY}</arg>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${headers}</var>
-<arg>Token=${api_user}[token]</arg>
+<arg>Token=${token}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.222" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
-<status status="PASS" starttime="20210729 07:38:01.222" endtime="20210729 07:38:01.222"/>
+<msg timestamp="20210729 08:05:01.657" level="INFO">${headers} = {'Token': 'MTczNzAyNjc5NDg4Mzc1MzcwNDIwODAyOTM1NTExMjU4NzkzNDM2'}</msg>
+<status status="PASS" starttime="20210729 08:05:01.656" endtime="20210729 08:05:01.657"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${payload}</var>
-<arg>username=${EMPTY}</arg>
+<arg>username=${username_value}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.223" level="INFO">${payload} = {'username': ''}</msg>
-<status status="PASS" starttime="20210729 07:38:01.222" endtime="20210729 07:38:01.223"/>
+<msg timestamp="20210729 08:05:01.657" level="INFO">${payload} = {'username': ''}</msg>
+<status status="PASS" starttime="20210729 08:05:01.657" endtime="20210729 08:05:01.657"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -2288,41 +2289,42 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>body=${payload}</arg>
 <doc>Sends a PUT request to the endpoint.
     The endpoint is joined with the base_url given on library init.</doc>
-<msg timestamp="20210729 07:38:01.244" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
-<msg timestamp="20210729 07:38:01.244" level="FAIL">We expected a JSON, but received text/html</msg>
-<status status="FAIL" starttime="20210729 07:38:01.223" endtime="20210729 07:38:01.244"/>
+<msg timestamp="20210729 08:05:01.670" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
+<msg timestamp="20210729 08:05:01.671" level="FAIL">We expected a JSON, but received text/html</msg>
+<status status="FAIL" starttime="20210729 08:05:01.657" endtime="20210729 08:05:01.671"/>
 </kw>
 <kw name="Verify Response">
 <arg>${response}</arg>
 <arg>message=Field update not allowed</arg>
 <arg>status=FAILURE</arg>
-<status status="NOT RUN" starttime="20210729 07:38:01.244" endtime="20210729 07:38:01.244"/>
+<status status="NOT RUN" starttime="20210729 08:05:01.671" endtime="20210729 08:05:01.671"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.223" endtime="20210729 07:38:01.245"/>
+<status status="FAIL" starttime="20210729 08:05:01.657" endtime="20210729 08:05:01.671"/>
 </iter>
-<status status="FAIL" starttime="20210729 07:38:01.223" endtime="20210729 07:38:01.245"/>
+<status status="FAIL" starttime="20210729 08:05:01.657" endtime="20210729 08:05:01.671"/>
 </for>
-<status status="FAIL" starttime="20210729 07:38:01.221" endtime="20210729 07:38:01.245"/>
+<status status="FAIL" starttime="20210729 08:05:01.656" endtime="20210729 08:05:01.671"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.221" endtime="20210729 07:38:01.245"/>
+<status status="FAIL" starttime="20210729 08:05:01.656" endtime="20210729 08:05:01.671"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser2', 'firstname': 'Hakan', 'lastname': 'Holm', 'phone': '0407563452', 'token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</var>
-<kw name="Even With Valid Token, Cannot Set Empty Username To Any System User">
-<arg>${api_user}</arg>
+<kw name="With Valid Token, Attempt to Set Username To All System Users">
+<arg>token=${api_user}[token]</arg>
+<arg>username_value=${EMPTY}</arg>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${headers}</var>
-<arg>Token=${api_user}[token]</arg>
+<arg>Token=${token}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.247" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
-<status status="PASS" starttime="20210729 07:38:01.247" endtime="20210729 07:38:01.247"/>
+<msg timestamp="20210729 08:05:01.673" level="INFO">${headers} = {'Token': 'MzI2MTg2NjIyMDY0OTk3NTc1ODcxMjEwNDQ2OTUxMTUzMTQxOTY4'}</msg>
+<status status="PASS" starttime="20210729 08:05:01.672" endtime="20210729 08:05:01.673"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${payload}</var>
-<arg>username=${EMPTY}</arg>
+<arg>username=${username_value}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.249" level="INFO">${payload} = {'username': ''}</msg>
-<status status="PASS" starttime="20210729 07:38:01.248" endtime="20210729 07:38:01.249"/>
+<msg timestamp="20210729 08:05:01.673" level="INFO">${payload} = {'username': ''}</msg>
+<status status="PASS" starttime="20210729 08:05:01.673" endtime="20210729 08:05:01.673"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -2336,41 +2338,42 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>body=${payload}</arg>
 <doc>Sends a PUT request to the endpoint.
     The endpoint is joined with the base_url given on library init.</doc>
-<msg timestamp="20210729 07:38:01.255" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
-<msg timestamp="20210729 07:38:01.255" level="FAIL">We expected a JSON, but received text/html</msg>
-<status status="FAIL" starttime="20210729 07:38:01.249" endtime="20210729 07:38:01.255"/>
+<msg timestamp="20210729 08:05:01.677" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
+<msg timestamp="20210729 08:05:01.677" level="FAIL">We expected a JSON, but received text/html</msg>
+<status status="FAIL" starttime="20210729 08:05:01.673" endtime="20210729 08:05:01.677"/>
 </kw>
 <kw name="Verify Response">
 <arg>${response}</arg>
 <arg>message=Field update not allowed</arg>
 <arg>status=FAILURE</arg>
-<status status="NOT RUN" starttime="20210729 07:38:01.255" endtime="20210729 07:38:01.255"/>
+<status status="NOT RUN" starttime="20210729 08:05:01.677" endtime="20210729 08:05:01.677"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.249" endtime="20210729 07:38:01.256"/>
+<status status="FAIL" starttime="20210729 08:05:01.673" endtime="20210729 08:05:01.677"/>
 </iter>
-<status status="FAIL" starttime="20210729 07:38:01.249" endtime="20210729 07:38:01.256"/>
+<status status="FAIL" starttime="20210729 08:05:01.673" endtime="20210729 08:05:01.677"/>
 </for>
-<status status="FAIL" starttime="20210729 07:38:01.245" endtime="20210729 07:38:01.256"/>
+<status status="FAIL" starttime="20210729 08:05:01.672" endtime="20210729 08:05:01.677"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.245" endtime="20210729 07:38:01.256"/>
+<status status="FAIL" starttime="20210729 08:05:01.671" endtime="20210729 08:05:01.677"/>
 </iter>
 <iter>
 <var name="${api_user}">{'username': 'SuperDuperUser3', 'firstname': 'John', 'lastname': 'Brown', 'phone': '0508094677', 'token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</var>
-<kw name="Even With Valid Token, Cannot Set Empty Username To Any System User">
-<arg>${api_user}</arg>
+<kw name="With Valid Token, Attempt to Set Username To All System Users">
+<arg>token=${api_user}[token]</arg>
+<arg>username_value=${EMPTY}</arg>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${headers}</var>
-<arg>Token=${api_user}[token]</arg>
+<arg>Token=${token}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.257" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
-<status status="PASS" starttime="20210729 07:38:01.257" endtime="20210729 07:38:01.257"/>
+<msg timestamp="20210729 08:05:01.679" level="INFO">${headers} = {'Token': 'MTgxMjcxNDM1OTIzNTUzNjMyMzIxNTgzNjY0MTg1MzU4MTg0MTA3'}</msg>
+<status status="PASS" starttime="20210729 08:05:01.679" endtime="20210729 08:05:01.679"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${payload}</var>
-<arg>username=${EMPTY}</arg>
+<arg>username=${username_value}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20210729 07:38:01.258" level="INFO">${payload} = {'username': ''}</msg>
-<status status="PASS" starttime="20210729 07:38:01.257" endtime="20210729 07:38:01.258"/>
+<msg timestamp="20210729 08:05:01.679" level="INFO">${payload} = {'username': ''}</msg>
+<status status="PASS" starttime="20210729 08:05:01.679" endtime="20210729 08:05:01.679"/>
 </kw>
 <for flavor="IN">
 <var>${system_user}</var>
@@ -2384,25 +2387,25 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <arg>body=${payload}</arg>
 <doc>Sends a PUT request to the endpoint.
     The endpoint is joined with the base_url given on library init.</doc>
-<msg timestamp="20210729 07:38:01.266" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
-<msg timestamp="20210729 07:38:01.266" level="FAIL">We expected a JSON, but received text/html</msg>
-<status status="FAIL" starttime="20210729 07:38:01.258" endtime="20210729 07:38:01.266"/>
+<msg timestamp="20210729 08:05:01.684" level="INFO">HTTP error occurred: 400 Client Error: BAD REQUEST for url: http://0.0.0.0:8080/api/users/SuperDuperUser1</msg>
+<msg timestamp="20210729 08:05:01.685" level="FAIL">We expected a JSON, but received text/html</msg>
+<status status="FAIL" starttime="20210729 08:05:01.680" endtime="20210729 08:05:01.685"/>
 </kw>
 <kw name="Verify Response">
 <arg>${response}</arg>
 <arg>message=Field update not allowed</arg>
 <arg>status=FAILURE</arg>
-<status status="NOT RUN" starttime="20210729 07:38:01.266" endtime="20210729 07:38:01.266"/>
+<status status="NOT RUN" starttime="20210729 08:05:01.685" endtime="20210729 08:05:01.685"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.258" endtime="20210729 07:38:01.266"/>
+<status status="FAIL" starttime="20210729 08:05:01.679" endtime="20210729 08:05:01.685"/>
 </iter>
-<status status="FAIL" starttime="20210729 07:38:01.258" endtime="20210729 07:38:01.266"/>
+<status status="FAIL" starttime="20210729 08:05:01.679" endtime="20210729 08:05:01.685"/>
 </for>
-<status status="FAIL" starttime="20210729 07:38:01.256" endtime="20210729 07:38:01.266"/>
+<status status="FAIL" starttime="20210729 08:05:01.678" endtime="20210729 08:05:01.685"/>
 </kw>
-<status status="FAIL" starttime="20210729 07:38:01.256" endtime="20210729 07:38:01.267"/>
+<status status="FAIL" starttime="20210729 08:05:01.678" endtime="20210729 08:05:01.685"/>
 </iter>
-<status status="FAIL" starttime="20210729 07:38:01.221" endtime="20210729 07:38:01.267"/>
+<status status="FAIL" starttime="20210729 08:05:01.655" endtime="20210729 08:05:01.685"/>
 </for>
 <kw name="Kill Web Application" library="Common" type="TEARDOWN">
 <kw name="Run And Return Rc And Output" library="OperatingSystem">
@@ -2410,19 +2413,19 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <var>${pids}</var>
 <arg>pgrep -f 'flask run --host=0.0.0.0 --port=8080'</arg>
 <doc>Runs the given command in the system and returns the RC and output.</doc>
-<msg timestamp="20210729 07:38:01.274" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
-<msg timestamp="20210729 07:38:01.286" level="INFO">${rc} = 0</msg>
-<msg timestamp="20210729 07:38:01.286" level="INFO">${pids} = 7965
-7972
-7978</msg>
-<status status="PASS" starttime="20210729 07:38:01.267" endtime="20210729 07:38:01.286"/>
+<msg timestamp="20210729 08:05:01.692" level="INFO">Running command 'pgrep -f 'flask run --host=0.0.0.0 --port=8080' 2&gt;&amp;1'.</msg>
+<msg timestamp="20210729 08:05:01.701" level="INFO">${rc} = 0</msg>
+<msg timestamp="20210729 08:05:01.701" level="INFO">${pids} = 9810
+9817
+9825</msg>
+<status status="PASS" starttime="20210729 08:05:01.686" endtime="20210729 08:05:01.701"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${is_not_empty}</var>
 <arg>$pids!=''</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:38:01.287" level="INFO">${is_not_empty} = True</msg>
-<status status="PASS" starttime="20210729 07:38:01.286" endtime="20210729 07:38:01.287"/>
+<msg timestamp="20210729 08:05:01.702" level="INFO">${is_not_empty} = True</msg>
+<status status="PASS" starttime="20210729 08:05:01.701" endtime="20210729 08:05:01.702"/>
 </kw>
 <if>
 <branch type="IF" condition="${is_not_empty}">
@@ -2430,58 +2433,62 @@ Set optional input `returnAsDict` to True to return values as a list of dictiona
 <var>${pids}</var>
 <arg>$pids.split('\\n')</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20210729 07:38:01.287" level="INFO">${pids} = ['7965', '7972', '7978']</msg>
-<status status="PASS" starttime="20210729 07:38:01.287" endtime="20210729 07:38:01.287"/>
+<msg timestamp="20210729 08:05:01.702" level="INFO">${pids} = ['9810', '9817', '9825']</msg>
+<status status="PASS" starttime="20210729 08:05:01.702" endtime="20210729 08:05:01.702"/>
 </kw>
 <for flavor="IN">
 <var>${pid}</var>
 <value>@{pids}</value>
 <iter>
-<var name="${pid}">7965</var>
+<var name="${pid}">9810</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:38:01.290" level="INFO">Running command 'kill 7965 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:38:01.288" endtime="20210729 07:38:01.290"/>
+<msg timestamp="20210729 08:05:01.706" level="INFO">Running command 'kill 9810 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:01.703" endtime="20210729 08:05:01.706"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.288" endtime="20210729 07:38:01.290"/>
+<status status="PASS" starttime="20210729 08:05:01.703" endtime="20210729 08:05:01.706"/>
 </iter>
 <iter>
-<var name="${pid}">7972</var>
+<var name="${pid}">9817</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:38:01.293" level="INFO">Running command 'kill 7972 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:38:01.290" endtime="20210729 07:38:01.293"/>
+<msg timestamp="20210729 08:05:01.709" level="INFO">Running command 'kill 9817 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:01.706" endtime="20210729 08:05:01.709"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.290" endtime="20210729 07:38:01.293"/>
+<status status="PASS" starttime="20210729 08:05:01.706" endtime="20210729 08:05:01.709"/>
 </iter>
 <iter>
-<var name="${pid}">7978</var>
+<var name="${pid}">9825</var>
 <kw name="Run" library="OperatingSystem">
 <arg>kill ${pid}</arg>
 <doc>Runs the given command in the system and returns the output.</doc>
-<msg timestamp="20210729 07:38:01.300" level="INFO">Running command 'kill 7978 2&gt;&amp;1'.</msg>
-<status status="PASS" starttime="20210729 07:38:01.294" endtime="20210729 07:38:01.300"/>
+<msg timestamp="20210729 08:05:01.712" level="INFO">Running command 'kill 9825 2&gt;&amp;1'.</msg>
+<status status="PASS" starttime="20210729 08:05:01.710" endtime="20210729 08:05:01.712"/>
 </kw>
-<status status="PASS" starttime="20210729 07:38:01.293" endtime="20210729 07:38:01.300"/>
+<status status="PASS" starttime="20210729 08:05:01.710" endtime="20210729 08:05:01.712"/>
 </iter>
-<status status="PASS" starttime="20210729 07:38:01.287" endtime="20210729 07:38:01.300"/>
+<status status="PASS" starttime="20210729 08:05:01.702" endtime="20210729 08:05:01.712"/>
 </for>
-<status status="PASS" starttime="20210729 07:38:01.287" endtime="20210729 07:38:01.300"/>
+<status status="PASS" starttime="20210729 08:05:01.702" endtime="20210729 08:05:01.712"/>
 </branch>
-<status status="PASS" starttime="20210729 07:38:01.287" endtime="20210729 07:38:01.300"/>
+<status status="PASS" starttime="20210729 08:05:01.702" endtime="20210729 08:05:01.712"/>
 </if>
-<status status="PASS" starttime="20210729 07:38:01.267" endtime="20210729 07:38:01.301"/>
+<status status="PASS" starttime="20210729 08:05:01.686" endtime="20210729 08:05:01.713"/>
 </kw>
 <doc>Imagine we have three system users X, Y, Z. We make PUT requests to /api/users/&lt;username&gt;
 where &lt;username&gt; is any registered user's username. In the requests' body, we set an empty
-username. Each time, the request should fail each time with the following response body:
+username as such:
+{
+"username": ''
+}
+Then, Each time, the request should fail each time with the following response body:
 {
 "message": "Field update not allowed",
 "status": "FAILURE"
 }</doc>
-<status status="FAIL" starttime="20210729 07:37:59.661" endtime="20210729 07:38:01.301">Several failures occurred:
+<status status="FAIL" starttime="20210729 08:05:00.097" endtime="20210729 08:05:01.713">Several failures occurred:
 
 1) We expected a JSON, but received text/html
 
@@ -2497,9 +2504,9 @@ The acceptance criteria we verify here is
 Definitions
 (1) System User: The user, who is registered to the system under test
 (2) API User: The user, who calls the API to update personal information of the system user</doc>
-<status status="FAIL" starttime="20210729 07:37:59.650" endtime="20210729 07:38:01.302"/>
+<status status="FAIL" starttime="20210729 08:05:00.087" endtime="20210729 08:05:01.714"/>
 </suite>
-<status status="FAIL" starttime="20210729 07:37:55.294" endtime="20210729 07:38:01.310"/>
+<status status="FAIL" starttime="20210729 08:04:56.094" endtime="20210729 08:05:01.719"/>
 </suite>
 <statistics>
 <total>
@@ -2515,8 +2522,8 @@ Definitions
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20210729 07:37:59.529" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
-<msg timestamp="20210729 07:37:59.538" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
-<msg timestamp="20210729 07:37:59.547" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.042" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.048" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
+<msg timestamp="20210729 08:05:00.054" level="ERROR">HTTP error occurred: 500 Server Error: INTERNAL SERVER ERROR for url: http://0.0.0.0:8080/api/users/non-existing-user</msg>
 </errors>
 </robot>

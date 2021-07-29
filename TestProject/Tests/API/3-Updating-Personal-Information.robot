@@ -26,26 +26,30 @@ Verify Response
     Should Be Equal As Strings      ${response}[status]     ${status}
     Should Be Equal As Strings      ${response}[message]    ${message}
 
-Even With Valid Token, Cannot Set Empty Username To Any System User
-    [Arguments]         ${api_user}
-    ${headers} =        Create Dictionary       Token=${api_user}[token]
-    ${payload} =        Create Dictionary       username=${EMPTY}
+With Valid Token, Attempt to Set Username To All System Users
+    [Arguments]         ${token}     ${username_value}
+    ${headers} =        Create Dictionary       Token=${token}
+    ${payload} =        Create Dictionary       username=${username_value}
     FOR     ${system_user}      IN      @{SYSTEM_USERS}
             ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
             Verify Response     ${response}     message=Field update not allowed    status=FAILURE
     END
 
 *** Test Cases ***
-With Any Valid Token, Attempting To Update Username Of Each System User With Empty String Should Fail
+With Any Valid Token, Updating Username Of Each System User With '' Results In "Field update not allowed"
     [Documentation]     Imagine we have three system users X, Y, Z. We make PUT requests to /api/users/<username>
     ...                 where <username> is any registered user's username. In the requests' body, we set an empty
-    ...                 username. Each time, the request should fail each time with the following response body:
+    ...                 username as such:
+    ...                 {
+    ...                     "username": ''
+    ...                 }
+    ...                 Then, Each time, the request should fail each time with the following response body:
     ...                 {
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
-    [Template]          Even With Valid Token, Cannot Set Empty Username To Any System User
+    [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            ${api_user}
+            token=${api_user}[token]      username_value=${EMPTY}
     END
 
