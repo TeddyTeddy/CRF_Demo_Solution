@@ -1878,7 +1878,6 @@ With Each Valid Token, Updating First Name Of Each System User With '' Results I
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
-    [Tags]      run-me
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2121,7 +2120,6 @@ With Each Valid Token, Updating First Name Of Each System User With Helena\ \ \ 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
-    [Tags]          run-me
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2131,3 +2129,266 @@ With Each Valid Token, Updating First Name Of Each System User With Helena\ \ \ 
             ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
+With Each Valid Token, Updating Last Name Of Each System User With '' Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": ''
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    An empty last name
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Cuzdan Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Cuzdan'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    A last name containing more than 2 characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Cuzdan123!?. Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Cuzdan123!?.'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    A last name containing numbers and non-alphanumeric characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Wi Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Wi'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    2 character last name with only one word
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Wi Xi Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Wi Xi'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    2 characters last name with two words
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With W Xi Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'W Xi'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    The first last name is invalid with only 1 letter, the second last name is valid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Wi X Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Wi X'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    The second last name is invalid with only 1 letter, the first last name is valid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With W X Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'W X'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    The both last names are invalid because they only have 1 letter
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Holm123 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Holm123'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    Last name does contain numbers, which makes it invalid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Holm!.? Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Holm!.?'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    Last name does contain non alphanumeric characters, which makes it invalid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Holm Cuzdan Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Holm Cuzdan'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    Two valid last names seperated by a single space character
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Last Name Of Each System User With Holm\ \ \ \ \ \ Cuzdan Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 lastname as such:
+    ...                 {
+    ...                     "lastname": 'Holm      Cuzdan'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each last name must contain only characters from the set [a-zA-Z]. Last names must be seperated by a a single space. Last names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right lastname for testing purposes
+    Manipulate      ${user_data}       last_name    Two valid last names seperated by many space characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
