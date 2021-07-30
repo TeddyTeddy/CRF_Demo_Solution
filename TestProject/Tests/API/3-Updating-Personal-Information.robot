@@ -1894,7 +1894,7 @@ With Each Valid Token, Updating First Name Of Each System User With Hakan Result
     ...                 {
     ...                     "firstname": 'Hakan'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -1960,7 +1960,7 @@ With Each Valid Token, Updating First Name Of Each System User With Ha Xu Result
     ...                 {
     ...                     "firstname": 'Ha Xu'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -2092,7 +2092,7 @@ With Each Valid Token, Updating First Name Of Each System User With Helena Marga
     ...                 {
     ...                     "firstname": 'Helena Margaretha'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -2158,7 +2158,7 @@ With Each Valid Token, Updating Last Name Of Each System User With Cuzdan Result
     ...                 {
     ...                     "lastname": 'Cuzdan'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -2224,7 +2224,7 @@ With Each Valid Token, Updating Last Name Of Each System User With Wi Xi Results
     ...                 {
     ...                     "lastname": 'Wi Xi'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -2356,7 +2356,7 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm Cuzdan R
     ...                 {
     ...                     "lastname": 'Holm Cuzdan'
     ...                 }
-    ...                 Then, each request should fail with the following response body:
+    ...                 Then, each request should succeed with the following response body:
     ...                 {
     ...                     "message": "Updated",
     ...                     "status": "SUCCESS"
@@ -2391,4 +2391,202 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm\ \ \ \ \
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             With Valid Token, Attempt to Set A Field For All System Users
             ...     token=${api_user}[token]     field_name=lastname   field_data=${user_data}[last_name]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With Empty String Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": ''
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An empty phone number
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With +358506662712 Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '+358506662712'
+    ...                 }
+    ...                 Then, each request should succeed with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    A valid phone number with a country code +358
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With +358+50666+2712 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '+358+50666+2712'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number with a country code with second and third + signs misplaced
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With 0+506662712+ Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '0+506662712+'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number with two + signs misplaced
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With 0506662712 Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '0506662712'
+    ...                 }
+    ...                 Then, each request should succeed with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    A valid phone number without a country code. This assumes Finland
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With +358506abc!#662712 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '+358506abc!#662712'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number containing letters, non-alphanumeric characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With 050!?.#662712 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '050!?.#662712'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number containing non-alphanumeric characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With +358abc662712xyz Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '+358abc662712xyz'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number containing letters in between
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Phone Number Of Each System User With +35840 687 54 53 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 phone number as such:
+    ...                 {
+    ...                     "phone": '+35840 687 54 53'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "mandatory phone number can only contain numbers [0-9] and optionally a single plus sign at the beginning indicating the country code",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right phone number for testing purposes
+    Manipulate      ${user_data}       phone_number    An invalid phone number containing spaces in between digits
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
     END
