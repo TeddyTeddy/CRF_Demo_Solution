@@ -51,12 +51,12 @@ With Valid Token, Attempt to Set Password To All System Users
             Verify System Users In Database Are Intact
     END
 
-Verify Response Based On Firstname
-    [Arguments]         ${response}     ${firstname}
-        IF  ${firstname}[isValid]   # if valid, firstname must be updated for system user
+Verify Response Based On Field Data
+    [Arguments]         ${response}     ${field_data}
+        IF  ${field_data}[isValid]   # if valid, firstname must be updated for system user
             Verify Response     ${response}     message=Updated    status=SUCCESS
         ELSE
-            Verify Response     ${response}     message=${firstname}[expected_error]    status=FAILURE
+            Verify Response     ${response}     message=${field_data}[expected_error]    status=FAILURE
         END
 
 Verify System User's Data Updated In Database
@@ -65,7 +65,7 @@ Verify System User's Data Updated In Database
     ${is_updated} =     Set Variable    ${False}
     ${is_found} =       Set Variable    ${False}
     FOR     ${system_user}  IN      @{SYSTEM_USERS}
-        IF  ${system_user}[username]==${target_user}[username]      # this is the system user we are looking for
+        IF  $system_user['username']==$target_user['username']      # this is the system user we are looking for
             ${is_found} =       Set Variable    ${True}
             ${is_updated} =     Evaluate    $system_user[$field_name]==$value
         END
@@ -81,18 +81,27 @@ Verify System User's Data In Database
         Verify System Users In Database Are Intact
     END
 
-With Valid Token, Attempt to Set First Name To All System Users
-    [Arguments]         ${token}     ${firstname}
+With Valid Token, Attempt to Set A Field For All System Users
+    [Documentation]  A field_data is a dictionary. An example:
+    ...     {
+    ...         "value": "Helena!.?",
+    ...         "isValid": false,
+    ...         "description": "First name does contain non alphanumeric characters, which makes it invalid",
+    ...         "expected_error": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters"
+    ...     }
+    ...     With the above field_data, say we want to change a system_user's firstname field.
+    ...     To indicate that we are to change the firstname field, we set field_name argument to firstname
+    [Arguments]         ${token}     ${field_name}    ${field_data}
     ${headers} =        Create Dictionary       Token=${token}
-    ${payload} =        Create Dictionary       firstname=${firstname}[value]
+    ${payload} =        Create Dictionary       ${field_name}=${field_data}[value]
     FOR     ${system_user}      IN      @{SYSTEM_USERS}
             ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
-            Verify Response Based On Firstname    ${response}     ${firstname}
-            Verify System User's Data In Database  ${firstname}    ${system_user}
+            Verify Response Based On Field Data    ${response}     ${field_data}
+            Verify System User's Data In Database  ${field_data}    ${system_user}
     END
 
 *** Test Cases ***
-With Any Valid Token, Updating Username Of Each System User With '' Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With '' Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 username as such:
@@ -110,7 +119,7 @@ With Any Valid Token, Updating Username Of Each System User With '' Results In "
             token=${api_user}[token]      username=${EMPTY}
     END
 
-With Any Valid Token, Updating Username Of Each System User With !#%&/¤% Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !#%&/¤% Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -128,7 +137,7 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤% Result
             token=${api_user}[token]      username=!#%&/¤%
     END
 
-With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !#%&/¤%= Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -146,7 +155,7 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= Resul
             token=${api_user}[token]      username=!#%&/¤%=
     END
 
-With Any Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=? Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -164,7 +173,7 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=? 
             token=${api_user}[token]      username=!#%&/¤%=!()=?
     END
 
-With Any Valid Token, Updating Username Of Each System User With 1234567 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 1234567 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -182,7 +191,7 @@ With Any Valid Token, Updating Username Of Each System User With 1234567 Results
             token=${api_user}[token]      username=1234567
     END
 
-With Any Valid Token, Updating Username Of Each System User With 12345678 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 12345678 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -200,7 +209,7 @@ With Any Valid Token, Updating Username Of Each System User With 12345678 Result
             token=${api_user}[token]      username=12345678
     END
 
-With Any Valid Token, Updating Username Of Each System User With 12345678912345 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 12345678912345 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -218,7 +227,7 @@ With Any Valid Token, Updating Username Of Each System User With 12345678912345 
             token=${api_user}[token]      username=12345678912345
     END
 
-With Any Valid Token, Updating Username Of Each System User With abcdefg Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With abcdefg Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -236,7 +245,7 @@ With Any Valid Token, Updating Username Of Each System User With abcdefg Results
             token=${api_user}[token]      username=abcdefg
     END
 
-With Any Valid Token, Updating Username Of Each System User With abcdefgh Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With abcdefgh Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -254,7 +263,7 @@ With Any Valid Token, Updating Username Of Each System User With abcdefgh Result
             token=${api_user}[token]      username=abcdefgh
     END
 
-With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnprstop Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With abcdefghijklmnprstop Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -272,7 +281,7 @@ With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp
             token=${api_user}[token]      username=abcdefghijklmnprstop
     END
 
-With Any Valid Token, Updating Username Of Each System User With hakan12 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With hakan12 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -290,7 +299,7 @@ With Any Valid Token, Updating Username Of Each System User With hakan12 Results
             token=${api_user}[token]      username=hakan12
     END
 
-With Any Valid Token, Updating Username Of Each System User With hakan123 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With hakan123 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -308,7 +317,7 @@ With Any Valid Token, Updating Username Of Each System User With hakan123 Result
             token=${api_user}[token]      username=hakan123
     END
 
-With Any Valid Token, Updating Username Of Each System User With hakan123456789123456789 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With hakan123456789123456789 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -326,7 +335,7 @@ With Any Valid Token, Updating Username Of Each System User With hakan1234567891
             token=${api_user}[token]      username=hakan123456789123456789
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤%123! Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤%123! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -344,7 +353,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123! Result
             token=${api_user}[token]      username=#¤%123!
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤%123!& Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤%123!& Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -362,7 +371,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!& Resul
             token=${api_user}[token]      username=#¤%123!&
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##()=?@#¤%&34567 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤%123!&7683##()=?@#¤%&34567 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -380,7 +389,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##
             token=${api_user}[token]      username=#¤%123!&7683##()=?@#¤%&34567
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤123ab Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤123ab Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -398,7 +407,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤123ab Result
             token=${api_user}[token]      username=#¤123ab
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤123abc Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤123abc Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -416,7 +425,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤123abc Resul
             token=${api_user}[token]      username=#¤123abc
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/&¤!!123abc456hjk Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/&¤!!123abc456hjk Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -434,7 +443,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/&¤!!123abc
             token=${api_user}[token]      username=#¤/&¤!!123abc456hjk
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/abc! Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/abc! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -452,7 +461,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc! Result
             token=${api_user}[token]      username=#¤/abc!
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/abc!g Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/abc!g Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -470,7 +479,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g Resul
             token=${api_user}[token]      username=#¤/abc!g
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%¤fghjklQWERTY Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%¤fghjklQWERTY Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -488,7 +497,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%�
             token=${api_user}[token]      username=#¤/abc!g()=&%¤fghjklQWERTY
     END
 
-With Any Valid Token, Updating Username Of Each System User With !# &/¤% Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !# &/¤% Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -506,7 +515,7 @@ With Any Valid Token, Updating Username Of Each System User With !# &/¤% Result
             token=${api_user}[token]      username=!# &/¤%
     END
 
-With Any Valid Token, Updating Username Of Each System User With !#%&/¤ = Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !#%&/¤ = Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -524,7 +533,7 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤ = Resul
             token=${api_user}[token]      username=!#%&/¤ =
     END
 
-With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=? Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -542,7 +551,7 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=? 
             token=${api_user}[token]      username=!#%&/¤%= ()=?
     END
 
-With Any Valid Token, Updating Username Of Each System User With 1234 67 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 1234 67 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -560,7 +569,7 @@ With Any Valid Token, Updating Username Of Each System User With 1234 67 Results
             token=${api_user}[token]      username=1234 67
     END
 
-With Any Valid Token, Updating Username Of Each System User With 123456 8 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 123456 8 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -578,7 +587,7 @@ With Any Valid Token, Updating Username Of Each System User With 123456 8 Result
             token=${api_user}[token]      username=123456 8
     END
 
-With Any Valid Token, Updating Username Of Each System User With 12345678 12345 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With 12345678 12345 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -596,7 +605,7 @@ With Any Valid Token, Updating Username Of Each System User With 12345678 12345 
             token=${api_user}[token]      username=12345678 12345
     END
 
-With Any Valid Token, Updating Username Of Each System User With abcd fg Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With abcd fg Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -614,7 +623,7 @@ With Any Valid Token, Updating Username Of Each System User With abcd fg Results
             token=${api_user}[token]      username=abcd fg
     END
 
-With Any Valid Token, Updating Username Of Each System User With ab defgh Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With ab defgh Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -632,7 +641,7 @@ With Any Valid Token, Updating Username Of Each System User With ab defgh Result
             token=${api_user}[token]      username=ab defgh
     END
 
-With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp stop Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With abcdefghijklmnp stop Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -650,7 +659,7 @@ With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp
             token=${api_user}[token]      username=abcdefghijklmnp stop
     END
 
-With Any Valid Token, Updating Username Of Each System User With haka 12 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With haka 12 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -668,7 +677,7 @@ With Any Valid Token, Updating Username Of Each System User With haka 12 Results
             token=${api_user}[token]      username=haka 12
     END
 
-With Any Valid Token, Updating Username Of Each System User With haka 123 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With haka 123 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -686,7 +695,7 @@ With Any Valid Token, Updating Username Of Each System User With haka 123 Result
             token=${api_user}[token]      username=haka 123
     END
 
-With Any Valid Token, Updating Username Of Each System User With haka 123456789123456789 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With haka 123456789123456789 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -704,7 +713,7 @@ With Any Valid Token, Updating Username Of Each System User With haka 1234567891
             token=${api_user}[token]      username=haka 123456789123456789
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤% 23! Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤% 23! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -722,7 +731,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤% 23! Result
             token=${api_user}[token]      username=#¤% 23!
     END
 
-With Any Valid Token, Updating Username Of Each System User With # %123!& Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With # %123!& Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -740,7 +749,7 @@ With Any Valid Token, Updating Username Of Each System User With # %123!& Result
             token=${api_user}[token]      username=# %123!&
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##() ?@#¤%&34567 Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤%123!&7683##() ?@#¤%&34567 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -758,7 +767,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##
             token=${api_user}[token]      username=#¤%123!&7683##() ?@#¤%&34567
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤12 ab Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤12 ab Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -776,7 +785,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤12 ab Result
             token=${api_user}[token]      username=#¤12 ab
     END
 
-With Any Valid Token, Updating Username Of Each System User With # 123abc Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With # 123abc Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -794,7 +803,7 @@ With Any Valid Token, Updating Username Of Each System User With # 123abc Result
             token=${api_user}[token]      username=# 123abc
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/&\ \ !123abc456hjk Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/&\ \ !123abc456hjk Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -812,7 +821,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/&\ \ !123ab
             token=${api_user}[token]      username=#¤/&\ \ !123abc456hjk
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤ abc! Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤ abc! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -830,7 +839,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤ abc! Result
             token=${api_user}[token]      username=#¤ abc!
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤ abc!g Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤ abc!g Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -848,7 +857,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤ abc!g Resul
             token=${api_user}[token]      username=#¤ abc!g
     END
 
-With Any Valid Token, Updating Username Of Each System User With #¤/abc!g() &%¤fghjklQWERTY Results In "Field update not allowed"
+With Each Valid Token, Updating Username Of Each System User With #¤/abc!g() &%¤fghjklQWERTY Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
@@ -866,7 +875,7 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g() &%�
             token=${api_user}[token]      username=#¤/abc!g() &%¤fghjklQWERTY
     END
 
-With Any Valid Token, Updating Password Of Each System User With '' Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With '' Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -884,7 +893,7 @@ With Any Valid Token, Updating Password Of Each System User With '' Results In "
             token=${api_user}[token]      password=${EMPTY}
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdefg Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdefg Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -902,7 +911,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdefg Results
             token=${api_user}[token]      password=abcdefg
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdefgh Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdefgh Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -920,7 +929,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdefgh Result
             token=${api_user}[token]      password=abcdefgh
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdefghjklmnprstoöuüvyz Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdefghjklmnprstoöuüvyz Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -938,7 +947,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdefghjklmnpr
             token=${api_user}[token]      password=abcdefghjklmnprstoöuüvyz
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCDEFG Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCDEFG Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -956,7 +965,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFG Results
             token=${api_user}[token]      password=ABCDEFG
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCDEFGH Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCDEFGH Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -974,7 +983,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFGH Result
             token=${api_user}[token]      password=ABCDEFGH
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNPRSTOÖUÜVYZ Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNPRSTOÖUÜVYZ Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -992,7 +1001,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNPR
             token=${api_user}[token]      password=ABCDEFGHJKLMNPRSTOÖUÜVYZ
     END
 
-With Any Valid Token, Updating Password Of Each System User With 0123456 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 0123456 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1010,7 +1019,7 @@ With Any Valid Token, Updating Password Of Each System User With 0123456 Results
             token=${api_user}[token]      password=0123456
     END
 
-With Any Valid Token, Updating Password Of Each System User With 01234567 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 01234567 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1028,7 +1037,7 @@ With Any Valid Token, Updating Password Of Each System User With 01234567 Result
             token=${api_user}[token]      password=01234567
     END
 
-With Any Valid Token, Updating Password Of Each System User With 01234567890123456789 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 01234567890123456789 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1046,7 +1055,7 @@ With Any Valid Token, Updating Password Of Each System User With 012345678901234
             token=${api_user}[token]      password=01234567890123456789
     END
 
-With Any Valid Token, Updating Password Of Each System User With !?.?!.! Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With !?.?!.! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1064,7 +1073,7 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.! Results
             token=${api_user}[token]      password=!?.?!.!
     END
 
-With Any Valid Token, Updating Password Of Each System User With !?.?!.!? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With !?.?!.!? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1082,7 +1091,7 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.!? Result
             token=${api_user}[token]      password=!?.?!.!?
     END
 
-With Any Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.!?!.!. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.!?!.!. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1100,7 +1109,7 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.!
             token=${api_user}[token]      password=!?.?!.!?!?.?!.!?!.!.
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdABC Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdABC Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1118,7 +1127,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdABC Results
             token=${api_user}[token]      password=abcdABC
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdABCD Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdABCD Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1136,7 +1145,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdABCD Result
             token=${api_user}[token]      password=abcdABCD
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdABCDefgjklmnprstoö Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdABCDefgjklmnprstoö Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1154,7 +1163,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdABCDefgjklm
             token=${api_user}[token]      password=abcdABCDefgjklmnprstoö
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd012 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd012 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1172,7 +1181,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd012 Results
             token=${api_user}[token]      password=abcd012
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd0123 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd0123 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1190,7 +1199,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd0123 Result
             token=${api_user}[token]      password=abcd0123
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd0123456789defghjk4 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd0123456789defghjk4 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1208,7 +1217,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd0123456789d
             token=${api_user}[token]      password=abcd0123456789defghjk4
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1226,7 +1235,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?. Results
             token=${api_user}[token]      password=abcd!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd!?.! Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd!?.! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1244,7 +1253,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?.! Result
             token=${api_user}[token]      password=abcd!?.!
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?.!abcd?? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?.!abcd?? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1262,7 +1271,7 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?.
             token=${api_user}[token]      password=abcd!?.!abcd!?.!abcd??
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD012 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD012 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1280,7 +1289,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD012 Results
             token=${api_user}[token]      password=ABCD012
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD0123 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD0123 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1298,7 +1307,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD0123 Result
             token=${api_user}[token]      password=ABCD0123
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD0123ABCD0123ABCD01 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD0123ABCD0123ABCD01 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1316,7 +1325,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD0123ABCD012
             token=${api_user}[token]      password=ABCD0123ABCD0123ABCD01
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1334,7 +1343,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?. Results
             token=${api_user}[token]      password=ABCD!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD!?.. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD!?.. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1352,7 +1361,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?.. Result
             token=${api_user}[token]      password=ABCD!?..
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?..ABCD!? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?..ABCD!? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1370,7 +1379,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?.
             token=${api_user}[token]      password=ABCD!?..ABCD!?..ABCD!?
     END
 
-With Any Valid Token, Updating Password Of Each System User With 0123!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 0123!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1388,7 +1397,7 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?. Results
             token=${api_user}[token]      password=0123!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With 0123!?.0 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 0123!?.0 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1406,7 +1415,7 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?.0 Result
             token=${api_user}[token]      password=0123!?.0
     END
 
-With Any Valid Token, Updating Password Of Each System User With 0123!?.00123!?.00123!? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 0123!?.00123!?.00123!? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1424,7 +1433,7 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?.00123!?.
             token=${api_user}[token]      password=0123!?.00123!?.00123!?
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdAB9 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdAB9 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1442,7 +1451,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB9 Results
             token=${api_user}[token]      password=abcdAB9
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdAB90 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdAB90 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1460,7 +1469,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB90 Result
             token=${api_user}[token]      password=abcdAB90
     END
 
-With Any Valid Token, Updating Password Of Each System User With abcdAB90abcdAB90abcdAB Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abcdAB90abcdAB90abcdAB Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1478,7 +1487,7 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB90abcdAB9
             token=${api_user}[token]      password=abcdAB90abcdAB90abcdAB
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCabc! Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCabc! Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1496,7 +1505,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc! Results
             token=${api_user}[token]      password=ABCabc!
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCabc!? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCabc!? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1514,7 +1523,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc!? Result
             token=${api_user}[token]      password=ABCabc!?
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc!?ABCab. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc!?ABCab. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1532,7 +1541,7 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc!
             token=${api_user}[token]      password=ABCabc!?ABCabc!?ABCab.
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc012. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc012. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1550,7 +1559,7 @@ With Any Valid Token, Updating Password Of Each System User With abc012. Results
             token=${api_user}[token]      password=abc012.
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc012!? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc012!? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1568,7 +1577,7 @@ With Any Valid Token, Updating Password Of Each System User With abc012!? Result
             token=${api_user}[token]      password=abc012!?
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc012!?abc012!?abc012 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc012!?abc012!?abc012 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1586,7 +1595,7 @@ With Any Valid Token, Updating Password Of Each System User With abc012!?abc012!
             token=${api_user}[token]      password=abc012!?abc012!?abc012
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.Z Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.Z Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1604,7 +1613,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.Z Results
             token=${api_user}[token]      password=abc!?.Z
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.ZA Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.ZA Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1622,7 +1631,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.ZA Result
             token=${api_user}[token]      password=abc!?.ZA
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.ZAabc!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.ZAabc!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1640,7 +1649,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.Z
             token=${api_user}[token]      password=abc!?.ZAabc!?.ZAabc!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.6 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.6 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1658,7 +1667,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.6 Results
             token=${api_user}[token]      password=abc!?.6
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.67 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.67 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1676,7 +1685,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.67 Result
             token=${api_user}[token]      password=abc!?.67
     END
 
-With Any Valid Token, Updating Password Of Each System User With abc!?.67abc!?.67abc!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With abc!?.67abc!?.67abc!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1694,7 +1703,7 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.67abc!?.6
             token=${api_user}[token]      password=abc!?.67abc!?.67abc!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC456. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC456. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1712,7 +1721,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC456. Results
             token=${api_user}[token]      password=ABC456.
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC456.? Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC456.? Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1730,7 +1739,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC456.? Result
             token=${api_user}[token]      password=ABC456.?
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC456.?ABC456.?ABC456 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC456.?ABC456.?ABC456 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1748,7 +1757,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC456.?ABC456.
             token=${api_user}[token]      password=ABC456.?ABC456.?ABC456
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC!?.0 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC!?.0 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1766,7 +1775,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.0 Results
             token=${api_user}[token]      password=ABC!?.0
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC!?.01 Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC!?.01 Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1784,7 +1793,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.01 Result
             token=${api_user}[token]      password=ABC!?.01
     END
 
-With Any Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.01ABC!?. Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.01ABC!?. Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1802,7 +1811,7 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.0
             token=${api_user}[token]      password=ABC!?.01ABC!?.01ABC!?.
     END
 
-With Any Valid Token, Updating Password Of Each System User With 012!.Aa Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 012!.Aa Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1820,7 +1829,7 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aa Results
             token=${api_user}[token]      password=012!.Aa
     END
 
-With Any Valid Token, Updating Password Of Each System User With 012!.Aab Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 012!.Aab Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1838,7 +1847,7 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aab Result
             token=${api_user}[token]      password=012!.Aab
     END
 
-With Any Valid Token, Updating Password Of Each System User With 012!.Aab012!.Aab012!.A Results In "Field update not allowed"
+With Each Valid Token, Updating Password Of Each System User With 012!.Aab012!.Aab012!.A Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
@@ -1856,7 +1865,7 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aab012!.Aa
             token=${api_user}[token]      password=012!.Aab012!.Aab012!.A
     END
 
-With Any Valid Token, Updating First Name Of Each System User With '' Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With '' Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1869,16 +1878,17 @@ With Any Valid Token, Updating First Name Of Each System User With '' Results In
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      run-me
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    An empty first name
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]     field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Hakan Results In Success
+With Each Valid Token, Updating First Name Of Each System User With Hakan Results In Success
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1896,11 +1906,11 @@ With Any Valid Token, Updating First Name Of Each System User With Hakan Results
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    A first name containing more than 2 characters
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Hakan123!?. Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With Hakan123!?. Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1918,11 +1928,11 @@ With Any Valid Token, Updating First Name Of Each System User With Hakan123!?. R
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    A name containing numbers and non-alphanumeric characters
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Ha Results In Success
+With Each Valid Token, Updating First Name Of Each System User With Ha Results In Success
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1940,11 +1950,11 @@ With Any Valid Token, Updating First Name Of Each System User With Ha Results In
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    A minimum 2 characters first name
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Ha Xu Results In Success
+With Each Valid Token, Updating First Name Of Each System User With Ha Xu Results In Success
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1962,11 +1972,11 @@ With Any Valid Token, Updating First Name Of Each System User With Ha Xu Results
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    minimum 2 characters first names for each first name
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With H Xu Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With H Xu Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -1984,11 +1994,11 @@ With Any Valid Token, Updating First Name Of Each System User With H Xu Results 
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    The first first name is invalid with only 1 letter, the second first name is valid
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Ha X Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With Ha X Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2006,11 +2016,11 @@ With Any Valid Token, Updating First Name Of Each System User With Ha X Results 
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    The second first name is invalid with only 1 letter, the first first name is valid
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With H X Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With H X Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2028,11 +2038,11 @@ With Any Valid Token, Updating First Name Of Each System User With H X Results I
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    The both first names are invalid with only 1 letter
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Helena123 Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With Helena123 Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2050,11 +2060,11 @@ With Any Valid Token, Updating First Name Of Each System User With Helena123 Res
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    First name does contain numbers, which makes it invalid
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Helena!.? Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With Helena!.? Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2072,11 +2082,11 @@ With Any Valid Token, Updating First Name Of Each System User With Helena!.? Res
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    First name does contain non alphanumeric characters, which makes it invalid
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Helena Margaretha Results In Success
+With Each Valid Token, Updating First Name Of Each System User With Helena Margaretha Results In Success
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2094,11 +2104,11 @@ With Any Valid Token, Updating First Name Of Each System User With Helena Margar
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    Two valid first names seperated by a single space character
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
-With Any Valid Token, Updating First Name Of Each System User With Helena\ \ \ \ \ \ Margaretha Results In Failure Status With Right Error Message
+With Each Valid Token, Updating First Name Of Each System User With Helena\ \ \ \ \ \ Margaretha Results In Failure Status With Right Error Message
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
     ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 firstname as such:
@@ -2117,7 +2127,7 @@ With Any Valid Token, Updating First Name Of Each System User With Helena\ \ \ \
     # make it have the right firstname for testing purposes
     Manipulate      ${user_data}       first_name    Two valid first names seperated by multiple space characters making it invalid
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            With Valid Token, Attempt to Set First Name To All System Users
-            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+            With Valid Token, Attempt to Set A Field For All System Users
+            ...     token=${api_user}[token]      field_name=firstname   field_data=${user_data}[first_name]
     END
 
