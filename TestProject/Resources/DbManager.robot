@@ -6,7 +6,7 @@ Library				OperatingSystem
 Library				Collections
 
 *** Variables ***
-${QUERY_ALL_USERS}		select username, firstname, lastname, phone, token from user;
+${QUERY_ALL_USERS}		select username, password, firstname, lastname, phone, token from user;
 
 *** Keywords ***
 Get Path To App Database
@@ -28,7 +28,8 @@ Fetch All System Users From Db
 	${SYSTEM_USERS} =	Create List
 	FOR     ${user}  	  IN 	@{users}
 		&{new_user} = 		Create Dictionary
-		Set To Dictionary	${new_user}		username=${user}[0]		firstname=${user}[1]	lastname=${user}[2]		phone=${user}[3]		token=${user}[4]
+		Set To Dictionary	${new_user}		username=${user}[0]		password=${user}[1]
+		... 								firstname=${user}[2]	lastname=${user}[3]		phone=${user}[4]	token=${user}[5]
 		Append to List		${SYSTEM_USERS}		${new_user}
 	END
 	Set Suite Variable		@{SYSTEM_USERS}

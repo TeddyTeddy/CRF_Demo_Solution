@@ -12,6 +12,7 @@ Resource                ../../Resources/Common.robot
 Resource                ../../Resources/DbManager.robot
 Library                 ../../CustomLibs/CRUD_Library.py        base_url=http://0.0.0.0:8080/api
 
+Suite Setup             Import DataManager
 Test Setup              Run keywords   Kill Web Application  AND   Replace Database With New Database Having Users  AND
 ...                     Start Web Application With No Init Procedure  AND
 ...                     Initialize Database Connection    AND    Verify Tables   AND    Fetch All System Users From Db
@@ -31,9 +32,9 @@ Verify System Users In Database Are Intact
     Lists Should Be Equal    ${old_system_users}     ${SYSTEM_USERS}
 
 With Valid Token, Attempt to Set Username To All System Users
-    [Arguments]         ${token}     ${username_value}
+    [Arguments]         ${token}     ${username}
     ${headers} =        Create Dictionary       Token=${token}
-    ${payload} =        Create Dictionary       username=${username_value}
+    ${payload} =        Create Dictionary       username=${username}
     FOR     ${system_user}      IN      @{SYSTEM_USERS}
             ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
             Verify Response     ${response}     message=Field update not allowed    status=FAILURE
@@ -41,19 +42,59 @@ With Valid Token, Attempt to Set Username To All System Users
     END
 
 With Valid Token, Attempt to Set Password To All System Users
-    [Arguments]         ${token}     ${password_value}
+    [Arguments]         ${token}     ${password}
     ${headers} =        Create Dictionary       Token=${token}
-    ${payload} =        Create Dictionary       password=${password_value}
+    ${payload} =        Create Dictionary       password=${password}
     FOR     ${system_user}      IN      @{SYSTEM_USERS}
             ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
             Verify Response     ${response}     message=Field update not allowed    status=FAILURE
             Verify System Users In Database Are Intact
     END
 
+Verify Response Based On Firstname
+    [Arguments]         ${response}     ${firstname}
+        IF  ${firstname}[isValid]   # if valid, firstname must be updated for system user
+            Verify Response     ${response}     message=Updated    status=SUCCESS
+        ELSE
+            Verify Response     ${response}     message=${firstname}[expected_error]    status=FAILURE
+        END
+
+Verify System User's Data Updated In Database
+    [Arguments]         ${target_user}      ${field_name}    ${value}
+    Fetch All System Users From Db      # updates SYSTEM_USERS
+    ${is_updated} =     Set Variable    ${False}
+    ${is_found} =       Set Variable    ${False}
+    FOR     ${system_user}  IN      @{SYSTEM_USERS}
+        IF  ${system_user}[username]==${target_user}[username]      # this is the system user we are looking for
+            ${is_found} =       Set Variable    ${True}
+            ${is_updated} =     Evaluate    $system_user[$field_name]==$value
+        END
+    END
+    Should Be True  ${is_found}
+    Should Be True  ${is_updated}
+
+Verify System User's Data In Database
+    [Arguments]     ${firstname}        ${system_user}
+    IF  ${firstname}[isValid]   # if valid, firstname must be updated for system user
+        Verify System User's Data Updated In Database    ${system_user}      firstname    ${firstname}[value]
+    ELSE
+        Verify System Users In Database Are Intact
+    END
+
+With Valid Token, Attempt to Set First Name To All System Users
+    [Arguments]         ${token}     ${firstname}
+    ${headers} =        Create Dictionary       Token=${token}
+    ${payload} =        Create Dictionary       firstname=${firstname}[value]
+    FOR     ${system_user}      IN      @{SYSTEM_USERS}
+            ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
+            Verify Response Based On Firstname    ${response}     ${firstname}
+            Verify System User's Data In Database  ${firstname}    ${system_user}
+    END
+
 *** Test Cases ***
 With Any Valid Token, Updating Username Of Each System User With '' Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 username as such:
     ...                 {
     ...                     "username": ''
@@ -63,14 +104,15 @@ With Any Valid Token, Updating Username Of Each System User With '' Results In "
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=${EMPTY}
+            token=${api_user}[token]      username=${EMPTY}
     END
 
 With Any Valid Token, Updating Username Of Each System User With !#%&/¤% Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!#%&/¤%'
@@ -80,14 +122,15 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤% Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!#%&/¤%
+            token=${api_user}[token]      username=!#%&/¤%
     END
 
 With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!#%&/¤%='
@@ -97,14 +140,15 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!#%&/¤%=
+            token=${api_user}[token]      username=!#%&/¤%=
     END
 
 With Any Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!#%&/¤%=!()=?'
@@ -114,14 +158,15 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=? 
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!#%&/¤%=!()=?
+            token=${api_user}[token]      username=!#%&/¤%=!()=?
     END
 
 With Any Valid Token, Updating Username Of Each System User With 1234567 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '1234567'
@@ -131,14 +176,15 @@ With Any Valid Token, Updating Username Of Each System User With 1234567 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=1234567
+            token=${api_user}[token]      username=1234567
     END
 
 With Any Valid Token, Updating Username Of Each System User With 12345678 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '12345678'
@@ -148,14 +194,15 @@ With Any Valid Token, Updating Username Of Each System User With 12345678 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=12345678
+            token=${api_user}[token]      username=12345678
     END
 
 With Any Valid Token, Updating Username Of Each System User With 12345678912345 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '12345678912345'
@@ -165,14 +212,15 @@ With Any Valid Token, Updating Username Of Each System User With 12345678912345 
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=12345678912345
+            token=${api_user}[token]      username=12345678912345
     END
 
 With Any Valid Token, Updating Username Of Each System User With abcdefg Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'abcdefg'
@@ -182,14 +230,15 @@ With Any Valid Token, Updating Username Of Each System User With abcdefg Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=abcdefg
+            token=${api_user}[token]      username=abcdefg
     END
 
 With Any Valid Token, Updating Username Of Each System User With abcdefgh Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'abcdefgh'
@@ -199,14 +248,15 @@ With Any Valid Token, Updating Username Of Each System User With abcdefgh Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=abcdefgh
+            token=${api_user}[token]      username=abcdefgh
     END
 
 With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnprstop Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'abcdefghijklmnprstop'
@@ -216,14 +266,15 @@ With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=abcdefghijklmnprstop
+            token=${api_user}[token]      username=abcdefghijklmnprstop
     END
 
 With Any Valid Token, Updating Username Of Each System User With hakan12 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'hakan12'
@@ -233,14 +284,15 @@ With Any Valid Token, Updating Username Of Each System User With hakan12 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=hakan12
+            token=${api_user}[token]      username=hakan12
     END
 
 With Any Valid Token, Updating Username Of Each System User With hakan123 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'hakan123'
@@ -250,14 +302,15 @@ With Any Valid Token, Updating Username Of Each System User With hakan123 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=hakan123
+            token=${api_user}[token]      username=hakan123
     END
 
 With Any Valid Token, Updating Username Of Each System User With hakan123456789123456789 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'hakan123456789123456789'
@@ -267,14 +320,15 @@ With Any Valid Token, Updating Username Of Each System User With hakan1234567891
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=hakan123456789123456789
+            token=${api_user}[token]      username=hakan123456789123456789
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤%123! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤%123!'
@@ -284,14 +338,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123! Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤%123!
+            token=${api_user}[token]      username=#¤%123!
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤%123!& Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤%123!&'
@@ -301,14 +356,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!& Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤%123!&
+            token=${api_user}[token]      username=#¤%123!&
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##()=?@#¤%&34567 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤%123!&7683##()=?@#¤%&34567'
@@ -318,14 +374,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤%123!&7683##()=?@#¤%&34567
+            token=${api_user}[token]      username=#¤%123!&7683##()=?@#¤%&34567
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤123ab Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤123ab'
@@ -335,14 +392,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤123ab Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤123ab
+            token=${api_user}[token]      username=#¤123ab
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤123abc Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤123abc'
@@ -352,14 +410,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤123abc Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤123abc
+            token=${api_user}[token]      username=#¤123abc
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/&¤!!123abc456hjk Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/&¤!!123abc456hjk'
@@ -369,14 +428,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/&¤!!123abc
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/&¤!!123abc456hjk
+            token=${api_user}[token]      username=#¤/&¤!!123abc456hjk
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/abc! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/abc!'
@@ -386,14 +446,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc! Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/abc!
+            token=${api_user}[token]      username=#¤/abc!
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/abc!g Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/abc!g'
@@ -403,14 +464,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/abc!g
+            token=${api_user}[token]      username=#¤/abc!g
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%¤fghjklQWERTY Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/abc!g()=&%¤fghjklQWERTY'
@@ -420,14 +482,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%�
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/abc!g()=&%¤fghjklQWERTY
+            token=${api_user}[token]      username=#¤/abc!g()=&%¤fghjklQWERTY
     END
 
 With Any Valid Token, Updating Username Of Each System User With !# &/¤% Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!# &/¤%'
@@ -437,14 +500,15 @@ With Any Valid Token, Updating Username Of Each System User With !# &/¤% Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!# &/¤%
+            token=${api_user}[token]      username=!# &/¤%
     END
 
 With Any Valid Token, Updating Username Of Each System User With !#%&/¤ = Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!#%&/¤ ='
@@ -454,14 +518,15 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤ = Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!#%&/¤ =
+            token=${api_user}[token]      username=!#%&/¤ =
     END
 
 With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '!#%&/¤%= ()=?'
@@ -471,14 +536,15 @@ With Any Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=? 
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=!#%&/¤%= ()=?
+            token=${api_user}[token]      username=!#%&/¤%= ()=?
     END
 
 With Any Valid Token, Updating Username Of Each System User With 1234 67 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '1234 67'
@@ -488,14 +554,15 @@ With Any Valid Token, Updating Username Of Each System User With 1234 67 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=1234 67
+            token=${api_user}[token]      username=1234 67
     END
 
 With Any Valid Token, Updating Username Of Each System User With 123456 8 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '123456 8'
@@ -505,14 +572,15 @@ With Any Valid Token, Updating Username Of Each System User With 123456 8 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=123456 8
+            token=${api_user}[token]      username=123456 8
     END
 
 With Any Valid Token, Updating Username Of Each System User With 12345678 12345 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '12345678 12345'
@@ -522,14 +590,15 @@ With Any Valid Token, Updating Username Of Each System User With 12345678 12345 
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=12345678 12345
+            token=${api_user}[token]      username=12345678 12345
     END
 
 With Any Valid Token, Updating Username Of Each System User With abcd fg Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'abcd fg'
@@ -539,14 +608,15 @@ With Any Valid Token, Updating Username Of Each System User With abcd fg Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=abcd fg
+            token=${api_user}[token]      username=abcd fg
     END
 
 With Any Valid Token, Updating Username Of Each System User With ab defgh Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'ab defgh'
@@ -556,14 +626,15 @@ With Any Valid Token, Updating Username Of Each System User With ab defgh Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=ab defgh
+            token=${api_user}[token]      username=ab defgh
     END
 
 With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp stop Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'abcdefghijklmnp stop'
@@ -573,14 +644,15 @@ With Any Valid Token, Updating Username Of Each System User With abcdefghijklmnp
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=abcdefghijklmnp stop
+            token=${api_user}[token]      username=abcdefghijklmnp stop
     END
 
 With Any Valid Token, Updating Username Of Each System User With haka 12 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'haka 12'
@@ -590,14 +662,15 @@ With Any Valid Token, Updating Username Of Each System User With haka 12 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=haka 12
+            token=${api_user}[token]      username=haka 12
     END
 
 With Any Valid Token, Updating Username Of Each System User With haka 123 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'haka 123'
@@ -607,14 +680,15 @@ With Any Valid Token, Updating Username Of Each System User With haka 123 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=haka 123
+            token=${api_user}[token]      username=haka 123
     END
 
 With Any Valid Token, Updating Username Of Each System User With haka 123456789123456789 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": 'haka 123456789123456789'
@@ -624,14 +698,15 @@ With Any Valid Token, Updating Username Of Each System User With haka 1234567891
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=haka 123456789123456789
+            token=${api_user}[token]      username=haka 123456789123456789
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤% 23! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤% 23!'
@@ -641,14 +716,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤% 23! Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤% 23!
+            token=${api_user}[token]      username=#¤% 23!
     END
 
 With Any Valid Token, Updating Username Of Each System User With # %123!& Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '# %123!&'
@@ -658,14 +734,15 @@ With Any Valid Token, Updating Username Of Each System User With # %123!& Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=# %123!&
+            token=${api_user}[token]      username=# %123!&
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##() ?@#¤%&34567 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤%123!&7683##() ?@#¤%&34567'
@@ -675,14 +752,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤%123!&7683##
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤%123!&7683##() ?@#¤%&34567
+            token=${api_user}[token]      username=#¤%123!&7683##() ?@#¤%&34567
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤12 ab Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤12 ab'
@@ -692,14 +770,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤12 ab Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤12 ab
+            token=${api_user}[token]      username=#¤12 ab
     END
 
 With Any Valid Token, Updating Username Of Each System User With # 123abc Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '# 123abc'
@@ -709,14 +788,15 @@ With Any Valid Token, Updating Username Of Each System User With # 123abc Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=# 123abc
+            token=${api_user}[token]      username=# 123abc
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/&\ \ !123abc456hjk Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/&  !123abc456hjk'
@@ -726,14 +806,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/&\ \ !123ab
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/&\ \ !123abc456hjk
+            token=${api_user}[token]      username=#¤/&\ \ !123abc456hjk
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤ abc! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤ abc!'
@@ -743,14 +824,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤ abc! Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤ abc!
+            token=${api_user}[token]      username=#¤ abc!
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤ abc!g Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤ abc!g'
@@ -760,14 +842,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤ abc!g Resul
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤ abc!g
+            token=${api_user}[token]      username=#¤ abc!g
     END
 
 With Any Valid Token, Updating Username Of Each System User With #¤/abc!g() &%¤fghjklQWERTY Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set a
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set a
     ...                 username as such:
     ...                 {
     ...                     "username": '#¤/abc!g() &%¤fghjklQWERTY'
@@ -777,14 +860,15 @@ With Any Valid Token, Updating Username Of Each System User With #¤/abc!g() &%�
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      username_value=#¤/abc!g() &%¤fghjklQWERTY
+            token=${api_user}[token]      username=#¤/abc!g() &%¤fghjklQWERTY
     END
 
 With Any Valid Token, Updating Password Of Each System User With '' Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": ''
@@ -794,14 +878,15 @@ With Any Valid Token, Updating Password Of Each System User With '' Results In "
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=${EMPTY}
+            token=${api_user}[token]      password=${EMPTY}
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdefg Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdefg'
@@ -811,14 +896,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdefg Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdefg
+            token=${api_user}[token]      password=abcdefg
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdefgh Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdefgh'
@@ -828,14 +914,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdefgh Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdefgh
+            token=${api_user}[token]      password=abcdefgh
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdefghjklmnprstoöuüvyz Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdefghjklmnprstoöuüvyz'
@@ -845,14 +932,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdefghjklmnpr
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdefghjklmnprstoöuüvyz
+            token=${api_user}[token]      password=abcdefghjklmnprstoöuüvyz
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCDEFG Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCDEFG'
@@ -862,14 +950,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFG Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCDEFG
+            token=${api_user}[token]      password=ABCDEFG
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCDEFGH Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCDEFGH'
@@ -879,14 +968,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFGH Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCDEFGH
+            token=${api_user}[token]      password=ABCDEFGH
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNPRSTOÖUÜVYZ Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCDEFGHJKLMNPRSTOÖUÜVYZ'
@@ -896,14 +986,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNPR
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCDEFGHJKLMNPRSTOÖUÜVYZ
+            token=${api_user}[token]      password=ABCDEFGHJKLMNPRSTOÖUÜVYZ
     END
 
 With Any Valid Token, Updating Password Of Each System User With 0123456 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '0123456'
@@ -913,14 +1004,15 @@ With Any Valid Token, Updating Password Of Each System User With 0123456 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=0123456
+            token=${api_user}[token]      password=0123456
     END
 
 With Any Valid Token, Updating Password Of Each System User With 01234567 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '01234567'
@@ -930,14 +1022,15 @@ With Any Valid Token, Updating Password Of Each System User With 01234567 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=01234567
+            token=${api_user}[token]      password=01234567
     END
 
 With Any Valid Token, Updating Password Of Each System User With 01234567890123456789 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '01234567890123456789'
@@ -947,14 +1040,15 @@ With Any Valid Token, Updating Password Of Each System User With 012345678901234
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=01234567890123456789
+            token=${api_user}[token]      password=01234567890123456789
     END
 
 With Any Valid Token, Updating Password Of Each System User With !?.?!.! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '!?.?!.!'
@@ -964,14 +1058,15 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.! Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=!?.?!.!
+            token=${api_user}[token]      password=!?.?!.!
     END
 
 With Any Valid Token, Updating Password Of Each System User With !?.?!.!? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '!?.?!.!?'
@@ -981,14 +1076,15 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.!? Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=!?.?!.!?
+            token=${api_user}[token]      password=!?.?!.!?
     END
 
 With Any Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.!?!.!. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '!?.?!.!?!?.?!.!?!.!.'
@@ -998,14 +1094,15 @@ With Any Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.!
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=!?.?!.!?!?.?!.!?!.!.
+            token=${api_user}[token]      password=!?.?!.!?!?.?!.!?!.!.
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdABC Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdABC'
@@ -1015,14 +1112,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdABC Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdABC
+            token=${api_user}[token]      password=abcdABC
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdABCD Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdABCD'
@@ -1032,14 +1130,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdABCD Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdABCD
+            token=${api_user}[token]      password=abcdABCD
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdABCDefgjklmnprstoö Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdABCDefgjklmnprstoö'
@@ -1049,14 +1148,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdABCDefgjklm
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdABCDefgjklmnprstoö
+            token=${api_user}[token]      password=abcdABCDefgjklmnprstoö
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd012 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd012'
@@ -1066,14 +1166,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd012 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd012
+            token=${api_user}[token]      password=abcd012
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd0123 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd0123'
@@ -1083,14 +1184,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd0123 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd0123
+            token=${api_user}[token]      password=abcd0123
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd0123456789defghjk4 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd0123456789defghjk4'
@@ -1100,14 +1202,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd0123456789d
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd0123456789defghjk4
+            token=${api_user}[token]      password=abcd0123456789defghjk4
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd!?.'
@@ -1117,14 +1220,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?. Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd!?.
+            token=${api_user}[token]      password=abcd!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd!?.! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd!?.!'
@@ -1134,14 +1238,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?.! Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd!?.!
+            token=${api_user}[token]      password=abcd!?.!
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?.!abcd?? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcd!?.!abcd!?.!abcd??'
@@ -1151,14 +1256,15 @@ With Any Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?.
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcd!?.!abcd!?.!abcd??
+            token=${api_user}[token]      password=abcd!?.!abcd!?.!abcd??
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD012 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD012'
@@ -1168,14 +1274,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD012 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD012
+            token=${api_user}[token]      password=ABCD012
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD0123 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD0123'
@@ -1185,14 +1292,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD0123 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD0123
+            token=${api_user}[token]      password=ABCD0123
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD0123ABCD0123ABCD01 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD0123ABCD0123ABCD01'
@@ -1202,14 +1310,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD0123ABCD012
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD0123ABCD0123ABCD01
+            token=${api_user}[token]      password=ABCD0123ABCD0123ABCD01
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD!?.'
@@ -1219,14 +1328,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?. Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD!?.
+            token=${api_user}[token]      password=ABCD!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD!?.. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD!?..'
@@ -1236,14 +1346,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?.. Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD!?..
+            token=${api_user}[token]      password=ABCD!?..
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?..ABCD!? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCD!?..ABCD!?..ABCD!?'
@@ -1253,14 +1364,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?.
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCD!?..ABCD!?..ABCD!?
+            token=${api_user}[token]      password=ABCD!?..ABCD!?..ABCD!?
     END
 
 With Any Valid Token, Updating Password Of Each System User With 0123!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '0123!?.'
@@ -1270,14 +1382,15 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?. Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=0123!?.
+            token=${api_user}[token]      password=0123!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With 0123!?.0 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '0123!?.0'
@@ -1287,14 +1400,15 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?.0 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=0123!?.0
+            token=${api_user}[token]      password=0123!?.0
     END
 
 With Any Valid Token, Updating Password Of Each System User With 0123!?.00123!?.00123!? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '0123!?.00123!?.00123!?'
@@ -1304,14 +1418,15 @@ With Any Valid Token, Updating Password Of Each System User With 0123!?.00123!?.
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=0123!?.00123!?.00123!?
+            token=${api_user}[token]      password=0123!?.00123!?.00123!?
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdAB9 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdAB9'
@@ -1321,14 +1436,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB9 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdAB9
+            token=${api_user}[token]      password=abcdAB9
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdAB90 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdAB90'
@@ -1338,14 +1454,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB90 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdAB90
+            token=${api_user}[token]      password=abcdAB90
     END
 
 With Any Valid Token, Updating Password Of Each System User With abcdAB90abcdAB90abcdAB Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abcdAB90abcdAB90abcdAB'
@@ -1355,14 +1472,15 @@ With Any Valid Token, Updating Password Of Each System User With abcdAB90abcdAB9
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abcdAB90abcdAB90abcdAB
+            token=${api_user}[token]      password=abcdAB90abcdAB90abcdAB
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCabc! Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCabc!'
@@ -1372,14 +1490,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc! Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCabc!
+            token=${api_user}[token]      password=ABCabc!
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCabc!? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCabc!?'
@@ -1389,14 +1508,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc!? Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCabc!?
+            token=${api_user}[token]      password=ABCabc!?
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc!?ABCab. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABCabc!?ABCabc!?ABCab.'
@@ -1406,14 +1526,15 @@ With Any Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc!
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABCabc!?ABCabc!?ABCab.
+            token=${api_user}[token]      password=ABCabc!?ABCabc!?ABCab.
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc012. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc012.'
@@ -1423,14 +1544,15 @@ With Any Valid Token, Updating Password Of Each System User With abc012. Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc012.
+            token=${api_user}[token]      password=abc012.
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc012!? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc012!?'
@@ -1440,14 +1562,15 @@ With Any Valid Token, Updating Password Of Each System User With abc012!? Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc012!?
+            token=${api_user}[token]      password=abc012!?
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc012!?abc012!?abc012 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc012!?abc012!?abc012'
@@ -1457,14 +1580,15 @@ With Any Valid Token, Updating Password Of Each System User With abc012!?abc012!
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc012!?abc012!?abc012
+            token=${api_user}[token]      password=abc012!?abc012!?abc012
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.Z Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.Z'
@@ -1474,14 +1598,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.Z Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.Z
+            token=${api_user}[token]      password=abc!?.Z
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.ZA Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.ZA'
@@ -1491,14 +1616,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.ZA Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.ZA
+            token=${api_user}[token]      password=abc!?.ZA
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.ZAabc!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.ZAabc!?.ZAabc!?.'
@@ -1508,14 +1634,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.Z
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.ZAabc!?.ZAabc!?.
+            token=${api_user}[token]      password=abc!?.ZAabc!?.ZAabc!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.6 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.6'
@@ -1525,14 +1652,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.6 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.6
+            token=${api_user}[token]      password=abc!?.6
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.67 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.67'
@@ -1542,14 +1670,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.67 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.67
+            token=${api_user}[token]      password=abc!?.67
     END
 
 With Any Valid Token, Updating Password Of Each System User With abc!?.67abc!?.67abc!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'abc!?.67abc!?.67abc!?.'
@@ -1559,14 +1688,15 @@ With Any Valid Token, Updating Password Of Each System User With abc!?.67abc!?.6
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=abc!?.67abc!?.67abc!?.
+            token=${api_user}[token]      password=abc!?.67abc!?.67abc!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC456. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC456.'
@@ -1576,14 +1706,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC456. Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC456.
+            token=${api_user}[token]      password=ABC456.
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC456.? Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC456.?'
@@ -1593,14 +1724,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC456.? Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC456.?
+            token=${api_user}[token]      password=ABC456.?
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC456.?ABC456.?ABC456 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC456.?ABC456.?ABC456'
@@ -1610,14 +1742,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC456.?ABC456.
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC456.?ABC456.?ABC456
+            token=${api_user}[token]      password=ABC456.?ABC456.?ABC456
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC!?.0 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC!?.0'
@@ -1627,14 +1760,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.0 Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC!?.0
+            token=${api_user}[token]      password=ABC!?.0
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC!?.01 Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC!?.01'
@@ -1644,14 +1778,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.01 Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC!?.01
+            token=${api_user}[token]      password=ABC!?.01
     END
 
 With Any Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.01ABC!?. Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": 'ABC!?.01ABC!?.01ABC!?.'
@@ -1661,14 +1796,15 @@ With Any Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.0
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=ABC!?.01ABC!?.01ABC!?.
+            token=${api_user}[token]      password=ABC!?.01ABC!?.01ABC!?.
     END
 
 With Any Valid Token, Updating Password Of Each System User With 012!.Aa Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '012!.Aa'
@@ -1678,14 +1814,15 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aa Results
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=012!.Aa
+            token=${api_user}[token]      password=012!.Aa
     END
 
 With Any Valid Token, Updating Password Of Each System User With 012!.Aab Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '012!.Aab'
@@ -1695,14 +1832,15 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aab Result
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=012!.Aab
+            token=${api_user}[token]      password=012!.Aab
     END
 
 With Any Valid Token, Updating Password Of Each System User With 012!.Aab012!.Aab012!.A Results In "Field update not allowed"
-    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes PUT requests to /api/users/<username>
-    ...                 where <username> is any system user's username. In the requests' body, we set an empty
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
     ...                 password as such:
     ...                 {
     ...                     "password": '012!.Aab012!.Aab012!.A'
@@ -1712,7 +1850,274 @@ With Any Valid Token, Updating Password Of Each System User With 012!.Aab012!.Aa
     ...                     "message": "Field update not allowed",
     ...                     "status": "FAILURE"
     ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
-            token=${api_user}[token]      password_value=012!.Aab012!.Aab012!.A
+            token=${api_user}[token]      password=012!.Aab012!.Aab012!.A
     END
+
+With Any Valid Token, Updating First Name Of Each System User With '' Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": ''
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    An empty first name
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Hakan Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Hakan'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    A first name containing more than 2 characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Hakan123!?. Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Hakan123!?.'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    A name containing numbers and non-alphanumeric characters
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Ha Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Ha'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    A minimum 2 characters first name
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Ha Xu Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Ha Xu'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    minimum 2 characters first names for each first name
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With H Xu Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'H Xu'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    The first first name is invalid with only 1 letter, the second first name is valid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Ha X Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Ha X'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    The second first name is invalid with only 1 letter, the first first name is valid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With H X Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'H X'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    The both first names are invalid with only 1 letter
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Helena123 Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Helena123'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    First name does contain numbers, which makes it invalid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Helena!.? Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Helena!.?'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    First name does contain non alphanumeric characters, which makes it invalid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Helena Margaretha Results In Success
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Helena Margaretha'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    Two valid first names seperated by a single space character
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
+With Any Valid Token, Updating First Name Of Each System User With Helena\ \ \ \ \ \ Margaretha Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set an empty
+    ...                 firstname as such:
+    ...                 {
+    ...                     "firstname": 'Helena      Margaretha'
+    ...                 }
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "Each first name must contain only characters from the set [a-zA-Z]. First names must be seperated by a a single space. First names must have at least 2 characters",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]          run-me
+    ${user_data} =     Get Valid User's Registration Form Data
+    # at this stage, user_data is valid
+    # make it have the right firstname for testing purposes
+    Manipulate      ${user_data}       first_name    Two valid first names seperated by multiple space characters making it invalid
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set First Name To All System Users
+            ...     token=${api_user}[token]      firstname=${user_data}[first_name]
+    END
+
