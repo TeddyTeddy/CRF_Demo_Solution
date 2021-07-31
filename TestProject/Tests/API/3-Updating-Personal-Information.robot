@@ -111,6 +111,41 @@ With Valid Token, Attempt to Set Given Fields For All System Users
             Verify System Users In Database Are Intact
     END
 
+Compare System User With Payload     
+    [Arguments]     ${system_user}     ${payload}
+    IF  'firstname' in $payload.keys()
+        Should Be Equal As Strings      ${system_user}[firstname]   ${payload}[firstname]
+    END
+    IF  'lastname' in $payload.keys()
+        Should Be Equal As Strings      ${system_user}[lastname]   ${payload}[lastname]
+    END
+    IF  'phone' in $payload.keys()
+        Should Be Equal As Strings      ${system_user}[phone]   ${payload}[phone]
+    END
+
+Verify System User's Data Updated In Database With Payload       
+    [Arguments]     ${target_user}      ${payload}
+    Fetch All System Users From Db      # updates SYSTEM_USERS
+    ${is_updated} =     Set Variable    ${False}
+    ${is_found} =       Set Variable    ${False}
+    FOR     ${system_user}  IN      @{SYSTEM_USERS}
+        IF  $system_user['username']==$target_user['username']      # this is the system user we are looking for
+            ${is_found} =       Set Variable    ${True}
+            Compare System User With Payload     ${system_user}     ${payload}   
+        END
+    END
+    Should Be True  ${is_found}
+
+With Valid Token, Update Given Fields For All System Users
+    [Arguments]     ${token}        ${payload}
+    ${headers} =        Create Dictionary       Token=${token}    
+    Log     ${payload}
+    FOR     ${system_user}      IN      @{SYSTEM_USERS}
+            ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
+            Verify Response     ${response}     message=Updated   status=SUCCESS
+            Verify System User's Data Updated In Database With Payload       ${system_user}      ${payload}
+    END
+
 *** Test Cases ***
 With Each Valid Token, Updating Username Of Each System User With '' Results In "Field update not allowed"
     [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
@@ -2657,3 +2692,168 @@ With Each Valid Token, Updating Each System User With Multiple Unknown Fields Re
             With Valid Token, Attempt to Set Given Fields For All System Users
             ...     ${api_user}[token]     ${payload}   alien_field_one
     END
+
+All System Users With A Valid Token Can Update Firstname, Lastname And Phone Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan",
+    ...                     "lastname": "Cuzdan",
+    ...                     "phone": '+358406875453'
+    ...                 }
+    ...                 Note that firstname, lastname and phone are valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
+    Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
+    Set To Dictionary     ${payload}      phone=+358406875453   # phone is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Firstname And Lastname Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan",
+    ...                     "lastname": "Cuzdan"
+    ...                 }
+    ...                 Note that firstname, lastname are valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
+    Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Firstname And Phone Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan",
+    ...                     "phone": '+358406875453'
+    ...                 }
+    ...                 Note that firstname and phone are valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
+    Set To Dictionary     ${payload}      phone=+358406875453   # phone is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Lastname And Phone Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "lastname": "Cuzdan",
+    ...                     "phone": '+358406875453'
+    ...                 }
+    ...                 Note that lastname and phone are valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
+    Set To Dictionary     ${payload}      phone=+358406875453   # phone is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Firstname Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan"
+    ...                 }
+    ...                 Note that firstname is valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Lastname Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "lastname": "Cuzdan"
+    ...                 }
+    ...                 Note that firstname, lastname and phone are valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
+All System Users With A Valid Token Can Update Phone Of All System Users With Valid Values
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "phone": '+358406875453'
+    ...                 }
+    ...                 Note that phone is valid.
+    ...                 Then, each request should pass with the following response body:
+    ...                 {
+    ...                     "message": "Updated",
+    ...                     "status": "SUCCESS"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
+    [Tags]      run-me
+    ${payload} =     Create Dictionary
+    # manipulate payload for testing purposes
+    Set To Dictionary     ${payload}      phone=+358406875453   # phone is a field in SUT's database
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Update Given Fields For All System Users
+            ...     ${api_user}[token]     ${payload}
+    END
+
