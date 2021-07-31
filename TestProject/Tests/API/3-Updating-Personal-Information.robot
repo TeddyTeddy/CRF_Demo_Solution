@@ -74,9 +74,9 @@ Verify System User's Data Updated In Database
     Should Be True  ${is_updated}
 
 Verify System User's Data In Database
-    [Arguments]     ${firstname}        ${system_user}
-    IF  ${firstname}[isValid]   # if valid, firstname must be updated for system user
-        Verify System User's Data Updated In Database    ${system_user}      firstname    ${firstname}[value]
+    [Arguments]     ${system_user}   ${field_name}    ${field_data}
+    IF  ${field_data}[isValid]   # if valid, field_data must be updated for system user
+        Verify System User's Data Updated In Database    ${system_user}      ${field_name}    ${field_data}[value]
     ELSE
         Verify System Users In Database Are Intact
     END
@@ -97,7 +97,42 @@ With Valid Token, Attempt to Set A Field For All System Users
     FOR     ${system_user}      IN      @{SYSTEM_USERS}
             ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
             Verify Response Based On Field Data    ${response}     ${field_data}
-            Verify System User's Data In Database  ${field_data}    ${system_user}
+            Verify System User's Data In Database  ${system_user}   ${field_name}    ${field_data}
+    END
+
+Create Payload
+    [Arguments]     ${user_data}
+    ${fields} =     Get Dictionary Keys     ${user_data}    sort_keys=False
+    ${payload} =    Create Dictionary
+    ${first_unknown_field} =       Set Variable    ${EMPTY}
+    FOR    ${field}     IN   @{fields}
+        IF  $field=='first_name'
+            Set To Dictionary       ${payload}      firstname=${user_data}[first_name][value]
+        ELSE IF		$field=='last_name'
+            Set To Dictionary       ${payload}      lastname=${user_data}[last_name][value]
+        ELSE IF		$field=='phone_number'
+            Set To Dictionary       ${payload}      phone=${user_data}[phone_number][value]
+        ELSE IF	    $field=='username'
+            No Operation    # We don't provide username in headers, because SUT would reject the call
+        ELSE IF	    $field=='password'
+            No Operation    # We don't provide passwprd in headers, because SUT would reject the call
+        ELSE
+            Set To Dictionary       ${payload}      ${field}=${user_data}[${field}]  # we want to test the response when an unknown field is added to headers
+            IF  not $first_unknown_field
+                ${first_unknown_field} =            Set Variable   ${field}
+            END
+        END
+    END
+    [Return]    ${payload}  ${first_unknown_field}
+
+With Valid Token, Attempt to Set Given Fields For All System Users
+    [Arguments]     ${token}        ${user_data}
+    ${headers} =        Create Dictionary       Token=${token}
+    ${payload}  ${first_unknown_field} =    Create Payload      ${user_data}
+    FOR     ${system_user}      IN      @{SYSTEM_USERS}
+            ${response} =       PUT     /users/${system_user}[username]        headers=${headers}   body=${payload}
+            Verify Response     ${response}     message=Unknown field ${first_unknown_field}   status=FAILURE
+            Verify System Users In Database Are Intact
     END
 
 *** Test Cases ***
@@ -2589,4 +2624,60 @@ With Each Valid Token, Updating Phone Number Of Each System User With +35840 687
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             With Valid Token, Attempt to Set A Field For All System Users
             ...     token=${api_user}[token]     field_name=phone   field_data=${user_data}[phone_number]
+    END
+
+With Each Valid Token, Updating Each System User With Unknown Field Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan",
+    ...                     "lastname": "Cuzdan",
+    ...                     "phone": '+358406875453',
+    ...                     "alien_field_one": "some value"
+    ...                 }
+    ...                 Note that firstname, lastname and phone are valid, and alien_field_one is not available in user table in SUT.
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "unknown field alien_field_one",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # manipulate user_data for testing purposes
+    Set To Dictionary     ${user_data}[first_name]      value=Hakan
+    Set To Dictionary     ${user_data}[last_name]       value=Cuzdan
+    Set To Dictionary     ${user_data}[phone_number]    value=+358406875453
+    Set To Dictionary     ${user_data}       alien_field_one=some value
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set Given Fields For All System Users
+            ...     ${api_user}[token]     ${user_data}
+    END
+
+With Each Valid Token, Updating Each System User With Multiple Unknown Fields Results In Failure Status With Right Error Message
+    [Documentation]     Imagine we have three system & api users X, Y, Z, each of whom makes multiple PUT requests to /api/users/<username>
+    ...                 where <username> is replaced with each system user's username. In the requests' body, we set:
+    ...                 {
+    ...                     "firstname": "Hakan",
+    ...                     "lastname": "Cuzdan",
+    ...                     "phone": '+358406875453',
+    ...                     "alien_field_one": "some value",
+    ...                     "alien_field_two": "some other value"
+    ...                 }
+    ...                 Note that firstname, lastname and phone are valid, and alien_field_one is not available in user table in SUT.
+    ...                 Then, each request should fail with the following response body:
+    ...                 {
+    ...                     "message": "unknown field alien_field_one",
+    ...                     "status": "FAILURE"
+    ...                 }
+    ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    ${user_data} =     Get Valid User's Registration Form Data
+    # manipulate user_data for testing purposes
+    Set To Dictionary     ${user_data}[first_name]      value=Hakan
+    Set To Dictionary     ${user_data}[last_name]       value=Cuzdan
+    Set To Dictionary     ${user_data}[phone_number]    value=+358406875453
+    Set To Dictionary     ${user_data}       alien_field_one=some value
+    Set To Dictionary     ${user_data}       alien_field_two=some other value
+    FOR     ${api_user}      IN      @{SYSTEM_USERS}
+            With Valid Token, Attempt to Set Given Fields For All System Users
+            ...     ${api_user}[token]     ${user_data}
     END
