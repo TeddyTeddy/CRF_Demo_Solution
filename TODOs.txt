@@ -3,11 +3,11 @@ Login tests run & verify
 Write the problem specification for testability
 + Fix Filter System Users By
 + Document 1-Review-Users.robot & CRUD_Library.robot
-go through postman to list exploratory tests with 500
++ go through postman to list exploratory tests with 500
 re-run with -v USE_EXISTING_FORM_DATA_SET:False both API & WebUI test cases
 
 
-/api/user/{username}		Token		Body					Expected Outcome
+/api/user/{username}		Token		Payload/Body					Expected Outcome
 non-existing-username		valid		valid-json-firstname-lastname-phone	status: FAILURE		message:'User does not exist'
 non-existing-username		invalid		valid-json				status: FAILURE		message:'Invalid Token'
 non-existing-username		valid		invalid-html				status: FAILURE		message:'User does not exist'
@@ -17,17 +17,20 @@ non-existing-username		invalid		invalid-json				status: FAILURE		message:'Invali
 non-existing-username		none		invalid-json				status: FAILURE		message:'Token authentication required'
 non-existing-username		none		valid-json				status: FAILURE		message:'Token authentication required'
 
-existing-username		valid		valid-json-(firstname)-(lastname)-(phone)	status: SUCCESS		message:'Updated'
-existing-username		valid		invalid-json with unknown field 	status: FAILURE		message:'Field update not allowed'
-existing-username		valid		invalid-html			 	status: FAILURE		message:'Bad Request'
+DONE: existing-username		valid		valid-json-(firstname)-(lastname)-(phone)	status: SUCCESS		message:'Updated'
+DONE: existing-username		valid		invalid-json with unknown field 	status: FAILURE		message:'Unknown field <field_name>'
+
+Setting Content-Type To application/json BUT setting body to HTML/XML must fail with Bad Request message
+	existing-username		valid		invalid-html			 	status: FAILURE		message:'Bad Request'
+	existing-username		valid		invalid-XML			 	status: FAILURE		message:'Bad Request'
 existing-username		invalid		valid-json				status: FAILURE		message:'Invalid Token'
 existing-username		invalid		invalid-html				status: FAILURE		message:'Invalid Token'
 existing-username		none		invalid-json with unknown field		status: FAILURE		message:'Token authentication required'
 existing-username		none		valid-json				status: FAILURE		message:'Token authentication required'
 
 
-existing-username		valid		valid-json-firstname-lastname-phone	status: SUCCESS		message:'Updated'
- - any system user with a valid token can update the firstname-lastname-phone 		of all system users with valid values
+DONE existing-username		valid		valid-json-firstname-lastname-phone	status: SUCCESS		message:'Updated'
+ - any system user with a valid token can update the firstname-lastname-phone of all system users with valid values
  - any system user with a valid token can update the firstname-lastname	  		of all system users with valid values
  - any system user with a valid token can update the firstname-phone	  		of all system users with valid values
  - any system user with a valid token can update the firstname	  	  		of all system users with valid values
@@ -35,7 +38,7 @@ existing-username		valid		valid-json-firstname-lastname-phone	status: SUCCESS		m
  - any system user with a valid token can update the lastname-phone	  	  	of all system users with valid values
  - any system user with a valid token can update the phone		  	  	of all system users with valid values
 
-						
+DONE ALL BELOW					
 existing-username		valid		firstname=""				status: FAILURE		message:'firstname cannot be blank'
 existing-username		valid		firstname=Hakan123!?.			status: FAILURE		message:'Each first name must contain only characters from the set [a-zA-Z]. First names 
                                                                                                                 must be seperated by a a single space. First names must have at least 2 characters'

@@ -1,1 +1,1 @@
-{"level":30,"time":"2021-07-31T09:09:20.091Z","pid":21588,"hostname":"hakan-VirtualBox","msg":"Listening on 50799"}
+{"level":30,"time":"2021-07-31T18:37:22.117Z","pid":3204,"hostname":"hakan-VirtualBox","msg":"Listening on 58099"}

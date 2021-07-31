@@ -1,9 +1,6 @@
-# rm -rf ./Results
-# mkdir Results
-# robot -d Results/WebUI/Firefox -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:firefox -P CustomLibs Tests/
-# robot -d Results/WebUI/Webkit -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:webkit -P CustomLibs Tests/
-# robot -d Results/WebUI/Chromium -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True  -v BROWSER:chromium -P CustomLibs Tests/
-
-robot -i run-me -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True -d Results/API/ Tests/API/3-Updating-Personal-Information.robot
-
-# robot -d Results/WebUI/Chromium -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True -v BROWSER:chromium -P CustomLibs Tests/WebUI/2-Login.robot
+rm -rf ./Results
+mkdir Results
+robot -d Results/WebUI/Firefox -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:False  -v BROWSER:firefox -P CustomLibs Tests/WebUI/
+robot -d Results/WebUI/Webkit -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:False  -v BROWSER:webkit -P CustomLibs Tests/WebUI/
+robot -d Results/WebUI/Chromium -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:False  -v BROWSER:chromium -P CustomLibs Tests/WebUI/
+robot -v DATA_SET_LENGTH:100 -v USE_EXISTING_FORM_DATA_SET:True -d Results/API/ Tests/API/

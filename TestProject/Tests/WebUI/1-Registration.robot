@@ -939,7 +939,10 @@ Registering With Variety Of Registration Form Data
     ...                 then this keyword checks that registration is successful iff all of the fields are valid acc.to requirements.
     ...                 Otherwise, an appropriate error message is displayed based on the first erroneus field from top to bottom
     ...                 (refer to UML/RegistrationFormFlowChart.jpg)
-    [Tags]              CI  REQ-REG-FORM-USERNAME-1     REQ-REG-FORM-PASSWORD-1     REQ-REG-FORM-FIRST-NAME-1       REQ-REG-FORM-LAST-NAME-1    REQ-REG-FORM-PHONE-NUMBER-6
+    [Tags]              CI  REQ-REG-FORM-USERNAME-1     REQ-REG-FORM-PASSWORD-1     REQ-REG-FORM-FIRST-NAME-1       
+    ...                 REQ-REG-FORM-LAST-NAME-1    REQ-REG-FORM-PHONE-NUMBER-6     REQ-REG-FORM-USERNAME-5
+    ...                 REQ-REG-FORM-PASSWORD-4    REQ-REG-FORM-FIRST-NAME-8        REQ-REG-FORM-LAST-NAME-8
+    ...                 REQ-REG-FORM-PHONE-NUMBER-7
     ${test_case_passed} =     Set Variable      ${True}
     FOR     ${index}        IN RANGE    999999
         ${registration_form_data} =     Get Registration Form Data

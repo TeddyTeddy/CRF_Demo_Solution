@@ -160,6 +160,8 @@ With Each Valid Token, Updating Username Of Each System User With '' Results In 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=${EMPTY}
@@ -178,6 +180,8 @@ With Each Valid Token, Updating Username Of Each System User With !#%&/¤% Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!#%&/¤%
@@ -196,6 +200,8 @@ With Each Valid Token, Updating Username Of Each System User With !#%&/¤%= Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!#%&/¤%=
@@ -214,6 +220,8 @@ With Each Valid Token, Updating Username Of Each System User With !#%&/¤%=!()=?
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!#%&/¤%=!()=?
@@ -232,6 +240,8 @@ With Each Valid Token, Updating Username Of Each System User With 1234567 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=1234567
@@ -250,6 +260,8 @@ With Each Valid Token, Updating Username Of Each System User With 12345678 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=12345678
@@ -268,6 +280,8 @@ With Each Valid Token, Updating Username Of Each System User With 12345678912345
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=12345678912345
@@ -286,6 +300,8 @@ With Each Valid Token, Updating Username Of Each System User With abcdefg Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=abcdefg
@@ -304,6 +320,8 @@ With Each Valid Token, Updating Username Of Each System User With abcdefgh Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=abcdefgh
@@ -322,6 +340,8 @@ With Each Valid Token, Updating Username Of Each System User With abcdefghijklmn
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=abcdefghijklmnprstop
@@ -340,6 +360,8 @@ With Each Valid Token, Updating Username Of Each System User With hakan12 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=hakan12
@@ -358,6 +380,8 @@ With Each Valid Token, Updating Username Of Each System User With hakan123 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=hakan123
@@ -376,6 +400,8 @@ With Each Valid Token, Updating Username Of Each System User With hakan123456789
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=hakan123456789123456789
@@ -394,6 +420,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤%123! Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤%123!
@@ -412,6 +440,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤%123!& Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤%123!&
@@ -430,6 +460,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤%123!&7683#
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤%123!&7683##()=?@#¤%&34567
@@ -448,6 +480,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤123ab Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤123ab
@@ -466,6 +500,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤123abc Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤123abc
@@ -484,6 +520,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/&¤!!123ab
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/&¤!!123abc456hjk
@@ -502,6 +540,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/abc! Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/abc!
@@ -520,6 +560,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/abc!g Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/abc!g
@@ -538,6 +580,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/abc!g()=&%
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/abc!g()=&%¤fghjklQWERTY
@@ -556,6 +600,8 @@ With Each Valid Token, Updating Username Of Each System User With !# &/¤% Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!# &/¤%
@@ -574,6 +620,8 @@ With Each Valid Token, Updating Username Of Each System User With !#%&/¤ = Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!#%&/¤ =
@@ -592,6 +640,8 @@ With Each Valid Token, Updating Username Of Each System User With !#%&/¤%= ()=?
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=!#%&/¤%= ()=?
@@ -610,6 +660,8 @@ With Each Valid Token, Updating Username Of Each System User With 1234 67 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=1234 67
@@ -628,6 +680,8 @@ With Each Valid Token, Updating Username Of Each System User With 123456 8 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=123456 8
@@ -646,6 +700,8 @@ With Each Valid Token, Updating Username Of Each System User With 12345678 12345
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=12345678 12345
@@ -664,6 +720,8 @@ With Each Valid Token, Updating Username Of Each System User With abcd fg Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=abcd fg
@@ -682,6 +740,8 @@ With Each Valid Token, Updating Username Of Each System User With ab defgh Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=ab defgh
@@ -700,6 +760,8 @@ With Each Valid Token, Updating Username Of Each System User With abcdefghijklmn
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=abcdefghijklmnp stop
@@ -718,6 +780,8 @@ With Each Valid Token, Updating Username Of Each System User With haka 12 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=haka 12
@@ -736,6 +800,8 @@ With Each Valid Token, Updating Username Of Each System User With haka 123 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=haka 123
@@ -754,6 +820,8 @@ With Each Valid Token, Updating Username Of Each System User With haka 123456789
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=haka 123456789123456789
@@ -772,6 +840,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤% 23! Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤% 23!
@@ -790,6 +860,8 @@ With Each Valid Token, Updating Username Of Each System User With # %123!& Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=# %123!&
@@ -808,6 +880,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤%123!&7683#
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤%123!&7683##() ?@#¤%&34567
@@ -826,6 +900,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤12 ab Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤12 ab
@@ -844,6 +920,8 @@ With Each Valid Token, Updating Username Of Each System User With # 123abc Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=# 123abc
@@ -862,6 +940,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/&\ \ !123a
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/&\ \ !123abc456hjk
@@ -880,6 +960,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤ abc! Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤ abc!
@@ -898,6 +980,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤ abc!g Resu
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤ abc!g
@@ -916,6 +1000,8 @@ With Each Valid Token, Updating Username Of Each System User With #¤/abc!g() &%
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	   REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-USERNAME-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Username To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      username=#¤/abc!g() &%¤fghjklQWERTY
@@ -934,6 +1020,8 @@ With Each Valid Token, Updating Password Of Each System User With '' Results In 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=${EMPTY}
@@ -952,6 +1040,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdefg Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdefg
@@ -970,6 +1060,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdefgh Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdefgh
@@ -988,6 +1080,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdefghjklmnp
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdefghjklmnprstoöuüvyz
@@ -1006,6 +1100,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCDEFG Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCDEFG
@@ -1024,6 +1120,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCDEFGH Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCDEFGH
@@ -1042,6 +1140,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCDEFGHJKLMNP
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCDEFGHJKLMNPRSTOÖUÜVYZ
@@ -1060,6 +1160,8 @@ With Each Valid Token, Updating Password Of Each System User With 0123456 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=0123456
@@ -1078,6 +1180,8 @@ With Each Valid Token, Updating Password Of Each System User With 01234567 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=01234567
@@ -1096,6 +1200,8 @@ With Each Valid Token, Updating Password Of Each System User With 01234567890123
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=01234567890123456789
@@ -1114,6 +1220,8 @@ With Each Valid Token, Updating Password Of Each System User With !?.?!.! Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=!?.?!.!
@@ -1132,6 +1240,8 @@ With Each Valid Token, Updating Password Of Each System User With !?.?!.!? Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=!?.?!.!?
@@ -1150,6 +1260,8 @@ With Each Valid Token, Updating Password Of Each System User With !?.?!.!?!?.?!.
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=!?.?!.!?!?.?!.!?!.!.
@@ -1168,6 +1280,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdABC Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdABC
@@ -1186,6 +1300,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdABCD Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdABCD
@@ -1204,6 +1320,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdABCDefgjkl
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdABCDefgjklmnprstoö
@@ -1222,6 +1340,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd012 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd012
@@ -1240,6 +1360,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd0123 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd0123
@@ -1258,6 +1380,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd0123456789
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd0123456789defghjk4
@@ -1276,6 +1400,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd!?. Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd!?.
@@ -1294,6 +1420,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd!?.! Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd!?.!
@@ -1312,6 +1440,8 @@ With Each Valid Token, Updating Password Of Each System User With abcd!?.!abcd!?
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcd!?.!abcd!?.!abcd??
@@ -1330,6 +1460,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD012 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD012
@@ -1348,6 +1480,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD0123 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD0123
@@ -1366,6 +1500,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD0123ABCD01
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD0123ABCD0123ABCD01
@@ -1384,6 +1520,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD!?. Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD!?.
@@ -1402,6 +1540,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD!?.. Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD!?..
@@ -1420,6 +1560,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCD!?..ABCD!?
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCD!?..ABCD!?..ABCD!?
@@ -1438,6 +1580,8 @@ With Each Valid Token, Updating Password Of Each System User With 0123!?. Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=0123!?.
@@ -1456,6 +1600,8 @@ With Each Valid Token, Updating Password Of Each System User With 0123!?.0 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=0123!?.0
@@ -1474,6 +1620,8 @@ With Each Valid Token, Updating Password Of Each System User With 0123!?.00123!?
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=0123!?.00123!?.00123!?
@@ -1492,6 +1640,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdAB9 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdAB9
@@ -1510,6 +1660,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdAB90 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdAB90
@@ -1528,6 +1680,8 @@ With Each Valid Token, Updating Password Of Each System User With abcdAB90abcdAB
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abcdAB90abcdAB90abcdAB
@@ -1546,6 +1700,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCabc! Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCabc!
@@ -1564,6 +1720,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCabc!? Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCabc!?
@@ -1582,6 +1740,8 @@ With Each Valid Token, Updating Password Of Each System User With ABCabc!?ABCabc
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABCabc!?ABCabc!?ABCab.
@@ -1600,6 +1760,8 @@ With Each Valid Token, Updating Password Of Each System User With abc012. Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc012.
@@ -1618,6 +1780,8 @@ With Each Valid Token, Updating Password Of Each System User With abc012!? Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc012!?
@@ -1636,6 +1800,8 @@ With Each Valid Token, Updating Password Of Each System User With abc012!?abc012
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc012!?abc012!?abc012
@@ -1654,6 +1820,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.Z Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.Z
@@ -1672,6 +1840,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.ZA Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.ZA
@@ -1690,6 +1860,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.ZAabc!?.
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.ZAabc!?.ZAabc!?.
@@ -1708,6 +1880,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.6 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.6
@@ -1726,6 +1900,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.67 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.67
@@ -1744,6 +1920,8 @@ With Each Valid Token, Updating Password Of Each System User With abc!?.67abc!?.
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=abc!?.67abc!?.67abc!?.
@@ -1762,6 +1940,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC456. Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC456.
@@ -1780,6 +1960,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC456.? Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC456.?
@@ -1798,6 +1980,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC456.?ABC456
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC456.?ABC456.?ABC456
@@ -1816,6 +2000,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC!?.0 Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC!?.0
@@ -1834,6 +2020,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC!?.01 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC!?.01
@@ -1852,6 +2040,8 @@ With Each Valid Token, Updating Password Of Each System User With ABC!?.01ABC!?.
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=ABC!?.01ABC!?.01ABC!?.
@@ -1870,6 +2060,8 @@ With Each Valid Token, Updating Password Of Each System User With 012!.Aa Result
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=012!.Aa
@@ -1888,6 +2080,8 @@ With Each Valid Token, Updating Password Of Each System User With 012!.Aab Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=012!.Aab
@@ -1906,6 +2100,8 @@ With Each Valid Token, Updating Password Of Each System User With 012!.Aab012!.A
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+    [Tags]      REQ-API-VALID-TOKEN	    REQ-API-VALID-USERNAME-IN-URL  	REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-PASSWORD-CANNOT-BE-UPDATED    
     [Template]          With Valid Token, Attempt to Set Password To All System Users
     FOR     ${api_user}      IN      @{SYSTEM_USERS}
             token=${api_user}[token]      password=012!.Aab012!.Aab012!.A
@@ -1924,6 +2120,8 @@ With Each Valid Token, Updating First Name Of Each System User With '' Results I
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -1946,6 +2144,9 @@ With Each Valid Token, Updating First Name Of Each System User With Hakan Result
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	        REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME	                    REQ-API-NO-PHONE	
+    ...         REQ-API-CAN-UPDATE-SUPPORTED-FIELDS	
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -1968,6 +2169,8 @@ With Each Valid Token, Updating First Name Of Each System User With Hakan123!?. 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -1990,6 +2193,9 @@ With Each Valid Token, Updating First Name Of Each System User With Ha Results I
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	        REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME	                    REQ-API-NO-PHONE	
+    ...         REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2012,6 +2218,9 @@ With Each Valid Token, Updating First Name Of Each System User With Ha Xu Result
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	        REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME	                    REQ-API-NO-PHONE	
+    ...         REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2034,6 +2243,8 @@ With Each Valid Token, Updating First Name Of Each System User With H Xu Results
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2056,6 +2267,8 @@ With Each Valid Token, Updating First Name Of Each System User With Ha X Results
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2078,6 +2291,8 @@ With Each Valid Token, Updating First Name Of Each System User With H X Results 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2100,6 +2315,8 @@ With Each Valid Token, Updating First Name Of Each System User With Helena123 Re
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2122,6 +2339,8 @@ With Each Valid Token, Updating First Name Of Each System User With Helena!.? Re
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2144,6 +2363,9 @@ With Each Valid Token, Updating First Name Of Each System User With Helena Marga
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL  	        REQ-API-REQUEST-BODY-JSON
+    ...         REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME	                    REQ-API-NO-PHONE	
+    ...         REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2166,6 +2388,8 @@ With Each Valid Token, Updating First Name Of Each System User With Helena\ \ \ 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags] 		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON	REQ-API-FIRSTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right firstname for testing purposes
@@ -2188,6 +2412,8 @@ With Each Valid Token, Updating Last Name Of Each System User With '' Results In
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME	REQ-API-LASTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2210,6 +2436,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Cuzdan Result
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2232,6 +2460,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Cuzdan123!?. 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2254,6 +2484,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Wi Results In
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2276,6 +2508,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Wi Xi Results
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2298,6 +2532,8 @@ With Each Valid Token, Updating Last Name Of Each System User With W Xi Results 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID    
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2320,6 +2556,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Wi X Results 
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2342,6 +2580,8 @@ With Each Valid Token, Updating Last Name Of Each System User With W X Results I
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID    
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2364,6 +2604,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm123 Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID    
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2386,6 +2628,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm!.? Resul
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID    
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2408,6 +2652,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm Cuzdan R
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID    
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2430,6 +2676,8 @@ With Each Valid Token, Updating Last Name Of Each System User With Holm\ \ \ \ \
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right lastname for testing purposes
@@ -2452,6 +2700,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With Empty Stri
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2474,6 +2724,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With +358506662
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2496,6 +2748,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With +358+50666
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2518,6 +2772,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With 0+50666271
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2540,6 +2796,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With 0506662712
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that the <username>'s data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2562,6 +2820,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With +358506abc
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2584,6 +2844,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With 050!?.#662
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2606,6 +2868,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With +358abc662
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2628,6 +2892,8 @@ With Each Valid Token, Updating Phone Number Of Each System User With +35840 687
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-NO-LASTNAME	    REQ-API-PHONE-NOT-VALID
     ${user_data} =     Get Valid User's Registration Form Data
     # at this stage, user_data is valid
     # make it have the right phone number for testing purposes
@@ -2653,6 +2919,9 @@ With Each Valid Token, Updating Each System User With Unknown Field Results In F
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-LASTNAME-VALID		REQ-API-PHONE-VALID
+	...         REQ-API-UNKNOWN-FIELD(S)    
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan
@@ -2681,6 +2950,9 @@ With Each Valid Token, Updating Each System User With Multiple Unknown Fields Re
     ...                     "status": "FAILURE"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that no data in the database has changed.
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-LASTNAME-VALID		REQ-API-PHONE-VALID
+	...         REQ-API-UNKNOWN-FIELD(S)
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan
@@ -2708,7 +2980,9 @@ All System Users With A Valid Token Can Update Firstname, Lastname And Phone Of 
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-LASTNAME-VALID		REQ-API-PHONE-VALID
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
@@ -2733,7 +3007,9 @@ All System Users With A Valid Token Can Update Firstname And Lastname Of All Sys
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-LASTNAME-VALID		REQ-API-NO-PHONE
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
@@ -2757,7 +3033,9 @@ All System Users With A Valid Token Can Update Firstname And Phone Of All System
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME		REQ-API-PHONE-VALID
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
@@ -2781,7 +3059,9 @@ All System Users With A Valid Token Can Update Lastname And Phone Of All System 
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID		REQ-API-PHONE-VALID
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
@@ -2804,7 +3084,9 @@ All System Users With A Valid Token Can Update Firstname Of All System Users Wit
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-FIRSTNAME-VALID		REQ-API-NO-LASTNAME		REQ-API-NO-PHONE
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      firstname=Hakan       # firstname is a field in SUT's database
@@ -2826,7 +3108,9 @@ All System Users With A Valid Token Can Update Lastname Of All System Users With
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-FIRSTNAME		REQ-API-LASTNAME-VALID		REQ-API-NO-PHONE
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      lastname=Cuzdan       # lastname is a field in SUT's database
@@ -2848,7 +3132,9 @@ All System Users With A Valid Token Can Update Phone Of All System Users With Va
     ...                     "status": "SUCCESS"
     ...                 }
     ...                 This test not only verifies message and status but also verifies that <username>'s data in the database has changed.
-    [Tags]      run-me
+	[Tags]		REQ-API-VALID-TOKEN	        REQ-API-VALID-USERNAME-IN-URL
+    ...         REQ-API-REQUEST-BODY-JSON		REQ-API-NO-LASTNAME		REQ-API-NO-FIRSTNAME		REQ-API-PHONE-VALID
+    ...         REQ-API-NO-UNKNOWN-FIELD        REQ-API-CAN-UPDATE-SUPPORTED-FIELDS
     ${payload} =     Create Dictionary
     # manipulate payload for testing purposes
     Set To Dictionary     ${payload}      phone=+358406875453   # phone is a field in SUT's database
