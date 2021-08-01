@@ -1,10 +1,10 @@
 + update requirements.txt
-Login tests run & verify
-Write the problem specification for testability
++ Login tests run & verify
++ Write the problem specification for testability
 + Fix Filter System Users By
 + Document 1-Review-Users.robot & CRUD_Library.robot
 + go through postman to list exploratory tests with 500
-re-run with -v USE_EXISTING_FORM_DATA_SET:False both API & WebUI test cases
++ re-run with -v USE_EXISTING_FORM_DATA_SET:False both API & WebUI test cases
 
 
 /api/user/{username}		Token		Payload/Body					Expected Outcome
